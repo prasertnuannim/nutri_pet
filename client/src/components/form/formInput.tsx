@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 
 type FormInputProps = {
   name: string;
@@ -18,22 +19,23 @@ const FormInput = ({
   placeholder,
   error,
 }: FormInputProps) => {
+  const { t } = useTranslation();
   return (
     <div className="mb-2">
       {label && (
         <Label htmlFor={name} className="p-1">
-          {label}
+          {t(label, { defaultValue: label })}
         </Label>
       )}
       <Input
         id={name}
         name={name}
         type={type}
-        placeholder={placeholder}
+        placeholder={placeholder ? t(placeholder, { defaultValue: placeholder }) : undefined}
         defaultValue={defaultValue}
       />
       {error && (
-        <p className="text-red-500 text-sm">{error}</p> 
+        <p className="text-destructive text-sm">{t(error, { defaultValue: error })}</p>
       )}
     </div>
   );

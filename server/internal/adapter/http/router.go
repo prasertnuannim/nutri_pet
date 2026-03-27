@@ -14,7 +14,13 @@ import (
 	"github.com/prasertnuannim/sert_v3/internal/usecase/port"
 )
 
-func Register(app *fiber.App, h *handler.AuthHandler, userHandler *handler.UserHandler, verifier port.TokenVerifier) {
+func Register(
+	app *fiber.App,
+	h *handler.AuthHandler,
+	userHandler *handler.UserHandler,
+	petHandler *handler.PetHandler,
+	verifier port.TokenVerifier,
+) {
 	app.Use(recover.New())
 	app.Use(cors.New())
 	app.Use(middleware.RequestID())
@@ -25,6 +31,10 @@ func Register(app *fiber.App, h *handler.AuthHandler, userHandler *handler.UserH
 	})
 
 	auth := app.Group("/auth")
+	auth.Post("/register",
+		limiter.New(limiter.Config{Max: 5, Expiration: time.Minute}),
+		h.Register,
+	)
 	auth.Post("/login",
 		limiter.New(limiter.Config{Max: 10, Expiration: time.Minute}),
 		h.Login,
@@ -34,6 +44,7 @@ func Register(app *fiber.App, h *handler.AuthHandler, userHandler *handler.UserH
 
 	protected := app.Group("", middleware.RequireAuth(verifier))
 	protected.Get("/me", h.Me)
+	protected.Post("/auth/change-password", h.ChangePassword)
 	protected.Get("/admin", middleware.RequireRole(entity.RoleAdmin), h.AdminOnly)
 
 	users := protected.Group("/users", middleware.RequireRole(entity.RoleAdmin))
@@ -42,4 +53,9 @@ func Register(app *fiber.App, h *handler.AuthHandler, userHandler *handler.UserH
 	users.Post("/", userHandler.Create)
 	users.Patch("/:id", userHandler.Update)
 	users.Delete("/:id", userHandler.Delete)
+
+	pets := protected.Group("/pets")
+	pets.Get("/", petHandler.List)
+	pets.Post("/register", petHandler.Register)
+	pets.Get("/owners", petHandler.SearchOwners)
 }

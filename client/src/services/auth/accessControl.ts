@@ -3,7 +3,16 @@ import { AccessRole } from "@/lib/auth/accessRole";
 export const ACCESS_RULES: Record<string, AccessRole[]> = {
   "/account": [AccessRole.Admin],
   "/admin": [AccessRole.Admin],
+  "/change-password": [
+    AccessRole.Admin,
+    AccessRole.User,
+    AccessRole.Doctor,
+    AccessRole.Nurse,
+  ],
   "/dashboard": [AccessRole.Admin, AccessRole.User],
+  "/pets": [AccessRole.Admin, AccessRole.User],
+  "/orders": [AccessRole.Admin, AccessRole.User],
+  "/factory": [AccessRole.Admin, AccessRole.User],
   "/doctor": [AccessRole.Doctor],
   "/nurse": [AccessRole.Nurse],
 };

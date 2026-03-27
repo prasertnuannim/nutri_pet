@@ -1,5 +1,20 @@
+"use client";
+
+import { useTranslation } from "react-i18next";
+
 export const dynamic = "force-dynamic";
 
 export default function Page() {
-  return <div>yearly Page</div>;
+  const { t } = useTranslation();
+
+  return (
+    <main className="mx-auto max-w-6xl space-y-3">
+      <h1 className="text-3xl font-semibold text-foreground">
+        {t("statisticsPage.yearlyTitle")}
+      </h1>
+      <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+        {t("statisticsPage.yearlyDescription")}
+      </p>
+    </main>
+  );
 }

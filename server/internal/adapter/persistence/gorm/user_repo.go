@@ -3,6 +3,7 @@ package gormrepo
 import (
 	"context"
 	"errors"
+	"strings"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"
@@ -16,6 +17,21 @@ type UserRepo struct{ db *gorm.DB }
 
 func NewUserRepo(db *gorm.DB) *UserRepo { return &UserRepo{db: db} }
 
+func isUniqueConstraintError(err error) bool {
+	if err == nil {
+		return false
+	}
+	msg := strings.ToLower(err.Error())
+	return strings.Contains(msg, "duplicate key value") || strings.Contains(msg, "unique constraint")
+}
+
+func toOptionalString(value string) *string {
+	if value == "" {
+		return nil
+	}
+	return &value
+}
+
 func (r *UserRepo) GetByEmail(ctx context.Context, email string) (*entity.User, error) {
 	var m dbm.User
 	err := r.db.WithContext(ctx).Where("email = ?", email).First(&m).Error
@@ -26,6 +42,59 @@ func (r *UserRepo) GetByEmail(ctx context.Context, email string) (*entity.User, 
 		return nil, err
 	}
 	return mapUser(m), nil
+}
+
+func (r *UserRepo) Create(ctx context.Context, user *entity.User) error {
+	email := user.Email
+	passwordHash := user.PasswordHash
+	name := user.Name
+	tenant := strings.TrimSpace(user.Tenant)
+	promotion := strings.TrimSpace(user.Promotion)
+
+	m := dbm.User{
+		ID:                 user.ID,
+		Email:              &email,
+		PasswordHash:       &passwordHash,
+		Name:               &name,
+		Role:               user.Role,
+		Tenant:             toOptionalString(tenant),
+		Promotion:          toOptionalString(promotion),
+		MustChangePassword: user.MustChangePassword,
+	}
+
+	if err := r.db.WithContext(ctx).Create(&m).Error; err != nil {
+		if isUniqueConstraintError(err) {
+			return errorx.ErrEmailAlreadyExists
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (r *UserRepo) UpdatePassword(
+	ctx context.Context,
+	userID string,
+	passwordHash string,
+	mustChangePassword bool,
+) error {
+	result := r.db.WithContext(ctx).
+		Model(&dbm.User{}).
+		Where("id = ?", userID).
+		Updates(map[string]any{
+			"password_hash":        passwordHash,
+			"must_change_password": mustChangePassword,
+		})
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	if result.RowsAffected == 0 {
+		return errorx.ErrUserNotFound
+	}
+
+	return nil
 }
 
 func (r *UserRepo) GetByID(ctx context.Context, id string) (*entity.User, error) {
@@ -100,14 +169,15 @@ func mapUser(m dbm.User) *entity.User {
 	}
 
 	return &entity.User{
-		ID:           m.ID,
-		Email:        email,
-		PasswordHash: passwordHash,
-		Name:         name,
-		Role:         role,
-		Tenant:       tenant,
-		Promotion:    promotion,
-		CreatedAt:    m.CreatedAt,
-		UpdatedAt:    m.UpdatedAt,
+		ID:                 m.ID,
+		Email:              email,
+		PasswordHash:       passwordHash,
+		Name:               name,
+		Role:               role,
+		Tenant:             tenant,
+		Promotion:          promotion,
+		MustChangePassword: m.MustChangePassword,
+		CreatedAt:          m.CreatedAt,
+		UpdatedAt:          m.UpdatedAt,
 	}
 }

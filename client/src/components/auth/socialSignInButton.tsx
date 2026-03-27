@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
@@ -14,10 +15,11 @@ type SocialSignInButtonProps = {
 
 export const SocialSignInButton = ({
   provider = "google",
-  label = "Continue with Google",
+  label = "common.actions.continueWithGoogle",
   icon = <FcGoogle className="w-6 h-6 mr-2" />,
   className,
 }: SocialSignInButtonProps) => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
@@ -34,8 +36,7 @@ export const SocialSignInButton = ({
       aria-busy={loading}
       aria-live="polite"
       className={`
-        w-full bg-white/20 hover:bg-white/40 
-        text-black transition cursor-pointer
+        w-full cursor-pointer border-border bg-card/80 text-foreground transition hover:bg-muted
         ${className}
       `}
       variant="outline"
@@ -44,7 +45,7 @@ export const SocialSignInButton = ({
         <>
           {icon}
           <span className="text-sm font-medium flex items-center gap-0.2">
-            Loading
+            {t("common.status.loading")}
             <span className="loading-dots">
               <span>.</span>
               <span>.</span>
@@ -55,7 +56,7 @@ export const SocialSignInButton = ({
       ) : (
         <>
           {icon}
-          {label}
+          {t(label, { defaultValue: label })}
         </>
       )}
     </Button>

@@ -1,23 +1,37 @@
 "use client";
 
-import { useActionState, useCallback, useEffect, useState } from "react";
-import { getUsersAction, updateUserAction, deleteUserAction, createUserAction as baseCreateUserAction } from "./actions";
+import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { getUsersAction, updateUserAction, deleteUserAction } from "./actions";
 import { FullUser } from "@/types/account.type";
 import { DataTable, Column } from "@/components/form/dataTable";
+import RegisterModal from "@/components/auth/registerForm";
 
 const roleToText = (role: FullUser["role"] | undefined) =>
   typeof role === "string" ? role : role?.name ?? "";
+
+const uniqueSortedValues = (values: Array<string | undefined>) =>
+  Array.from(
+    new Set(
+      values
+        .map((value) => value?.trim() ?? "")
+        .filter((value) => value.length > 0),
+    ),
+  ).sort((left, right) => left.localeCompare(right));
+
 type UserColumnKey = "name" | "email" | "role" | "tenant" | "promotion";
 
 export default function AccountForm() {
+  const { t } = useTranslation();
   const [users, setUsers] = useState<FullUser[]>([]);
   const [isUsersLoading, setIsUsersLoading] = useState(true);
   const [usersError, setUsersError] = useState<string | null>(null);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
   const fetchUsers = useCallback(async (): Promise<FullUser[]> => {
     const result = await getUsersAction({ page: 1, limit: 100 });
     if (!result?.success) {
-      setUsersError(result?.error ?? "Failed to fetch users");
+      setUsersError(result?.error ?? "errors.users.fetchFailed");
       return [];
     }
     setUsersError(null);
@@ -36,25 +50,9 @@ export default function AccountForm() {
     }
   }, [fetchUsers]);
 
-  const createUserAction = async (state: FullUser[], formData: FormData): Promise<FullUser[]> => {
-    const result = await baseCreateUserAction(formData);
-    if (result?.success) {
-      const updated = await fetchUsers();
-      return updated;
-    }
-    return state;
-  };
-  const [state, , isCreatePending] = useActionState<FullUser[], FormData>(createUserAction, users);
-
   useEffect(() => {
     syncUsers();
   }, [syncUsers]);
-
-  useEffect(() => {
-    if (state && state.length >= users.length) {
-      setUsers(state);
-    }
-  }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleUpdateUser = async (id: string, values: Partial<FullUser>) => {
     const upd: Record<string, unknown> = {
@@ -77,35 +75,39 @@ export default function AccountForm() {
   };
 
   const columns: Column<FullUser, UserColumnKey>[] = [
-    { key: "name", header: "Name", sortable: true,className: "break-all max-w-[260px]" },
-    { key: "email", header: "Email", sortable: true,  className: "break-all max-w-[260px]" },
+    { key: "name", header: t("accountForm.name"), sortable: true,className: "break-all max-w-[260px]" },
+    { key: "email", header: t("accountForm.email"), sortable: true,  className: "break-all max-w-[260px]" },
     {
       key: "role",
-      header: "Role",
+      header: t("accountForm.role"),
       sortable: true,
       render: (u) => (
         <span
-          className={`px-2 py-1 rounded text-xs ${
-            roleToText(u.role) === "admin" ? "bg-red-100 text-red-700" : "bg-gray-100 text-gray-700"
+          className={`rounded px-2 py-1 text-xs ${
+            roleToText(u.role) === "admin"
+              ? "bg-destructive/10 text-destructive"
+              : "bg-muted text-muted-foreground"
           }`}
         >
-          {roleToText(u.role)}
+          {roleToText(u.role) === "admin"
+            ? t("accountForm.roleAdmin")
+            : t("accountForm.roleUser")}
         </span>
       ),
       editor: ({ value, set }) => (
         <select
           value={roleToText(value)}
           onChange={(e) => set(e.target.value)}
-          className="border px-2 py-1 rounded w-full text-sm"
+          className="w-full rounded border border-border bg-card px-2 py-1 text-sm text-foreground"
         >
-          <option value="admin">admin</option>
-          <option value="user">user</option>
+          <option value="admin">{t("accountForm.roleOptionAdmin")}</option>
+          <option value="user">{t("accountForm.roleOptionUser")}</option>
         </select>
       ),
     },
     {
       key: "tenant",
-      header: "Tenant",
+      header: t("accountForm.tenant"),
       sortable: true,
       className: "break-all max-w-[220px]",
       editor: ({ value, set }) => (
@@ -113,13 +115,13 @@ export default function AccountForm() {
           type="text"
           value={typeof value === "string" ? value : ""}
           onChange={(e) => set(e.target.value)}
-          className="border px-2 py-1 rounded w-full text-sm"
+          className="w-full rounded border border-border bg-card px-2 py-1 text-sm text-foreground"
         />
       ),
     },
     {
       key: "promotion",
-      header: "Promotion",
+      header: t("accountForm.promotion"),
       sortable: true,
       className: "break-all max-w-[220px]",
       editor: ({ value, set }) => (
@@ -127,11 +129,14 @@ export default function AccountForm() {
           type="text"
           value={typeof value === "string" ? value : ""}
           onChange={(e) => set(e.target.value)}
-          className="border px-2 py-1 rounded w-full text-sm"
+          className="w-full rounded border border-border bg-card px-2 py-1 text-sm text-foreground"
         />
       ),
     },
   ];
+
+  const tenantOptions = uniqueSortedValues(users.map((user) => user.tenant));
+  const promotionOptions = uniqueSortedValues(users.map((user) => user.promotion));
 
   return (
     <div className="container mx-auto py-5">
@@ -140,21 +145,34 @@ export default function AccountForm() {
         columns={columns}
         initialPageSize={10}
         initialSort={{ key: "name", dir: "asc" }}
-        searchPlaceholder="Search name / email / role / tenant / promotion…"
-        emptyMessage={usersError ?? "No results."}
-        isLoading={isUsersLoading || isCreatePending}
+        searchPlaceholder={t("accountForm.searchPlaceholder")}
+        emptyMessage={usersError ?? t("accountForm.noResults")}
+        isLoading={isUsersLoading}
+        onCreateClick={() => setIsRegisterOpen(true)}
         onUpdate={handleUpdateUser}
         onHardDelete={handleHardDeleteUser}
-        confirmDeleteTitle="Delete this user permanently?"
-        confirmDeleteDescription="This action cannot be undone."
-        confirmDeleteText="Delete"
-        confirmDeleteClassName="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
+        confirmDeleteTitle={t("accountForm.deleteTitle")}
+        confirmDeleteDescription={t("accountForm.deleteDescription")}
+        confirmDeleteText={t("accountForm.deleteConfirm")}
+        confirmDeleteClassName="cursor-pointer bg-destructive text-white hover:bg-destructive/90"
         getConfirmDeleteProps={(row) => ({
-          title: `Permanently delete “${row.name ?? row.email ?? row.id}”?`,
-          description: "This record will be removed from the system forever.",
-          confirmText: "Confirm delete",
+          title: t("accountForm.deleteRowTitle", {
+            name: row.name ?? row.email ?? row.id,
+          }),
+          description: t("accountForm.deleteRowDescription"),
+          confirmText: t("accountForm.deleteRowConfirm"),
         })}
       />
+
+      {isRegisterOpen && (
+        <RegisterModal
+          open={isRegisterOpen}
+          onOpenChange={setIsRegisterOpen}
+          onSuccess={syncUsers}
+          tenantOptions={tenantOptions}
+          promotionOptions={promotionOptions}
+        />
+      )}
     </div>
   );
 }

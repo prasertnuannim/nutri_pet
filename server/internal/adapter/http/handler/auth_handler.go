@@ -16,6 +16,48 @@ type AuthHandler struct {
 
 func NewAuthHandler(svc *auth.Service) *AuthHandler { return &AuthHandler{svc: svc} }
 
+func (h *AuthHandler) Register(c *fiber.Ctx) error {
+	var req struct {
+		Name      string `json:"name"`
+		Email     string `json:"email"`
+		Tenant    string `json:"tenant"`
+		Promotion string `json:"promotion"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "invalid body")
+	}
+
+	out, err := h.svc.Register(c.Context(), dto.RegisterInput{
+		Name:      req.Name,
+		Email:     req.Email,
+		Tenant:    req.Tenant,
+		Promotion: req.Promotion,
+	})
+	if err != nil {
+		switch {
+		case errors.Is(err, errorx.ErrNameRequired),
+			errors.Is(err, errorx.ErrEmailRequired):
+			return fiber.NewError(fiber.StatusBadRequest, err.Error())
+		case errors.Is(err, errorx.ErrEmailAlreadyExists):
+			return fiber.NewError(fiber.StatusConflict, err.Error())
+		default:
+			return fiber.NewError(fiber.StatusInternalServerError, "internal error")
+		}
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"user": fiber.Map{
+			"id":                 out.UserID,
+			"email":              out.Email,
+			"name":               out.Name,
+			"role":               out.Role,
+			"tenant":             out.Tenant,
+			"promotion":          out.Promotion,
+			"mustChangePassword": out.MustChangePassword,
+		},
+	})
+}
+
 func (h *AuthHandler) Login(c *fiber.Ctx) error {
 	var req struct {
 		Email    string `json:"email"`
@@ -43,12 +85,13 @@ func (h *AuthHandler) Login(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"user": fiber.Map{
-			"id":        out.UserID,
-			"email":     out.Email,
-			"name":      out.Name,
-			"role":      out.Role,
-			"tenant":    out.Tenant,
-			"promotion": out.Promotion,
+			"id":                 out.UserID,
+			"email":              out.Email,
+			"name":               out.Name,
+			"role":               out.Role,
+			"tenant":             out.Tenant,
+			"promotion":          out.Promotion,
+			"mustChangePassword": out.MustChangePassword,
 		},
 		"access_token":  out.AccessToken,
 		"access_exp":    out.AccessExp.Unix(),
@@ -76,16 +119,44 @@ func (h *AuthHandler) Refresh(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{
-		"user_id":       out.UserID,
-		"email":         out.Email,
-		"role":          out.Role,
-		"tenant":        out.Tenant,
-		"promotion":     out.Promotion,
-		"access_token":  out.AccessToken,
-		"access_exp":    out.AccessExp.Unix(),
-		"refresh_token": out.RefreshToken,
-		"refresh_exp":   out.RefreshExp.Unix(),
+		"user_id":            out.UserID,
+		"email":              out.Email,
+		"role":               out.Role,
+		"tenant":             out.Tenant,
+		"promotion":          out.Promotion,
+		"mustChangePassword": out.MustChangePassword,
+		"access_token":       out.AccessToken,
+		"access_exp":         out.AccessExp.Unix(),
+		"refresh_token":      out.RefreshToken,
+		"refresh_exp":        out.RefreshExp.Unix(),
 	})
+}
+
+func (h *AuthHandler) ChangePassword(c *fiber.Ctx) error {
+	var req struct {
+		NewPassword string `json:"new_password"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "invalid body")
+	}
+
+	userID, _ := c.Locals("user_id").(string)
+	err := h.svc.ChangePassword(c.Context(), userID, dto.ChangePasswordInput{
+		NewPassword: req.NewPassword,
+	})
+	if err != nil {
+		switch {
+		case errors.Is(err, errorx.ErrPasswordRequired),
+			errors.Is(err, errorx.ErrPasswordTooShort):
+			return fiber.NewError(fiber.StatusBadRequest, err.Error())
+		case errors.Is(err, errorx.ErrUserNotFound):
+			return fiber.NewError(fiber.StatusNotFound, err.Error())
+		default:
+			return fiber.NewError(fiber.StatusInternalServerError, "internal error")
+		}
+	}
+
+	return c.JSON(fiber.Map{"ok": true})
 }
 
 func (h *AuthHandler) Logout(c *fiber.Ctx) error {
@@ -113,12 +184,13 @@ func (h *AuthHandler) Me(c *fiber.Ctx) error {
 		return fiber.NewError(fiber.StatusInternalServerError, "internal error")
 	}
 	return c.JSON(fiber.Map{
-		"id":        out.UserID,
-		"email":     out.Email,
-		"name":      out.Name,
-		"role":      out.Role,
-		"tenant":    out.Tenant,
-		"promotion": out.Promotion,
+		"id":                 out.UserID,
+		"email":              out.Email,
+		"name":               out.Name,
+		"role":               out.Role,
+		"tenant":             out.Tenant,
+		"promotion":          out.Promotion,
+		"mustChangePassword": out.MustChangePassword,
 	})
 }
 

@@ -1,25 +1,28 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
+import { LockKeyhole, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { useTranslation } from "react-i18next";
 import { SubmitButton } from "@/components/form/submitButton";
-import FormInput from "@/components/form/formInput";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { LoginFormState } from "@/types/auth.type";
 import FormAlert from "@/components/form/formAlert";
 import { loginSchema } from "@/lib/validators/auth";
-import RegisterModal from "@/components/auth/registerForm";
 
 export default function LoginForm() {
+  const { t } = useTranslation();
   const router = useRouter();
   const initialState: LoginFormState = {
     errors: {},
+    //values: { email: "user@example.com", password: "user123" },
     values: { email: "admin@example.com", password: "Admin1234" },
   };
 
   const [state, setState] = useState<LoginFormState>(initialState);
   const [isPending, setIsPending] = useState(false);
-  const [openRegister, setOpenRegister] = useState(false);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,7 +36,7 @@ export default function LoginForm() {
     const parsed = loginSchema.safeParse(raw);
     if (!parsed.success) {
       const errors: LoginFormState["errors"] = {};
-      parsed.error.errors.forEach((err) => {
+      parsed.error.issues.forEach((err) => {
         const field = err.path[0] as keyof NonNullable<LoginFormState["errors"]>;
         errors[field] = err.message;
       });
@@ -64,7 +67,7 @@ export default function LoginForm() {
 
       if (result?.error) {
         setState({
-          errors: { general: "Invalid email or password" },
+          errors: { general: "loginForm.invalidCredentials" },
           values: { email: parsed.data.email },
         });
         return;
@@ -74,7 +77,7 @@ export default function LoginForm() {
       router.refresh();
     } catch {
       setState({
-        errors: { general: "Unable to login. Please try again." },
+        errors: { general: "loginForm.unableLogin" },
         values: { email: parsed.data.email },
       });
     } finally {
@@ -83,47 +86,85 @@ export default function LoginForm() {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit} className="space-y-1">
-        <p className="flex justify-center text-md text-black/20 font-bold">Login with Email</p>
-        <FormInput
-          name="email"
-          type="email"
-          label="Email"
-          placeholder="Your email"
-          defaultValue={state.values?.email}
-          error={state.errors?.email}
+    <form onSubmit={onSubmit} className="space-y-5">
+      <div className="space-y-1">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+          {t("loginForm.eyebrow")}
+        </p>
+        <p className="text-sm leading-6 text-muted-foreground">
+          {t("loginForm.description")}
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-sm font-semibold text-foreground">
+            {t("loginForm.emailLabel")}
+          </Label>
+          <div className="relative">
+            <Mail className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-primary" />
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder={t("loginForm.emailPlaceholder")}
+              defaultValue={state.values?.email}
+              autoComplete="email"
+              aria-invalid={Boolean(state.errors?.email)}
+              className="h-12 rounded-2xl border-border bg-background pl-11 pr-4 text-foreground placeholder:text-muted-foreground shadow-sm focus-visible:border-ring focus-visible:ring-ring/30"
+            />
+          </div>
+          {state.errors?.email ? (
+            <p className="text-sm font-medium text-destructive">
+              {t(state.errors.email, { defaultValue: state.errors.email })}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-sm font-semibold text-foreground">
+            {t("loginForm.passwordLabel")}
+          </Label>
+          <div className="relative">
+            <LockKeyhole className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-primary" />
+            <Input
+              id="password"
+              name="password"
+              type="password"
+              placeholder={t("loginForm.passwordPlaceholder")}
+              defaultValue={state.values?.password}
+              autoComplete="current-password"
+              aria-invalid={Boolean(state.errors?.password)}
+              className="h-12 rounded-2xl border-border bg-background pl-11 pr-4 text-foreground placeholder:text-muted-foreground shadow-sm focus-visible:border-ring focus-visible:ring-ring/30"
+            />
+          </div>
+          {state.errors?.password ? (
+            <p className="text-sm font-medium text-destructive">
+              {t(state.errors.password, { defaultValue: state.errors.password })}
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <SubmitButton
+          text="loginForm.signIn"
+          isPending={isPending}
+          className="h-12 rounded-2xl shadow-[0_14px_30px_rgba(15,23,42,0.14)]"
         />
-        <FormInput
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="Your password"
-          defaultValue={state.values?.password}
-          error={state.errors?.password}
-        />
-        <SubmitButton text="Login" isPending={isPending} />
 
         {state.errors?.general && (
           <FormAlert
             variant="error"
-            title="Login failed"
+            title="loginForm.failedTitle"
             message={state.errors?.general}
           />
         )}
+      </div>
 
-        <div className="flex justify-end">
-          <button
-            type="button"
-             onClick={() => setOpenRegister(true)}
-            className="hover:text-gray-400 text-gray-500 transition text-sm"
-          >
-            Register here
-          </button>
-        </div>
-      </form>
-
-      <RegisterModal open={openRegister} onOpenChange={setOpenRegister} />
-    </>
+      <p className="text-xs leading-5 text-muted-foreground">
+        {t("loginForm.footer")}
+      </p>
+    </form>
   );
 }

@@ -20,11 +20,11 @@ export default async function DashboardLayout({
 
   return (
     <AdminProviders>
-      <div className="flex h-screen">
+      <div className="flex min-h-screen bg-background text-foreground">
         <Sidebar profile={profile} />
-        <div className="flex flex-col flex-1">
+        <div className="flex min-w-0 flex-1 flex-col">
           <Navbar />
-          <main className="flex-1 overflow-y-auto p-4">
+          <main className="flex-1 overflow-y-auto bg-background p-5 sm:p-6">
             {children}
           </main>
         </div>

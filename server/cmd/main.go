@@ -29,6 +29,8 @@ func main() {
 		&gormrepo_model.VerificationToken{},
 		&gormrepo_model.Authenticator{},
 		&gormrepo_model.RefreshTokenModel{},
+		&gormrepo_model.PetOwner{},
+		&gormrepo_model.Pet{},
 	); err != nil {
 		log.Fatal(err)
 	}

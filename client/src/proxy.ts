@@ -66,6 +66,17 @@ function getRoleFromToken(token: unknown): string | undefined {
   return typeof nestedRole === "string" ? nestedRole : undefined;
 }
 
+function getMustChangePasswordFromToken(token: unknown): boolean {
+  if (!token || typeof token !== "object") return false;
+
+  const nestedUser = (token as { user?: unknown }).user;
+  if (!nestedUser || typeof nestedUser !== "object") return false;
+
+  const mustChangePassword = (nestedUser as { mustChangePassword?: unknown })
+    .mustChangePassword;
+  return mustChangePassword === true;
+}
+
 async function readToken(req: NextRequest, secret: string) {
   let token = await getToken({ req, secret, decode: decodeSharedJwt });
   if (token) return token;
@@ -125,9 +136,25 @@ export async function proxy(req: NextRequest) {
 
   const tokenRole = sessionExpired ? undefined : getRoleFromToken(token);
   const role = normalizeAccessRole(tokenRole) ?? AccessRole.Guest;
+  const mustChangePassword = !sessionExpired && getMustChangePasswordFromToken(token);
+  const isChangePasswordPath =
+    pathname === "/change-password" || pathname.startsWith("/change-password/");
+
   if (!matched) {
+    if (token && mustChangePassword && !isChangePasswordPath) {
+      return NextResponse.redirect(new URL("/change-password", nextUrl.origin));
+    }
+
+    if (isChangePasswordPath && role !== AccessRole.Guest && !mustChangePassword) {
+      return NextResponse.redirect(
+        new URL(resolveAccessRedirectPath(role), nextUrl.origin),
+      );
+    }
+
     if (pathname === "/" && role !== AccessRole.Guest) {
-      const redirectPath = resolveAccessRedirectPath(role);
+      const redirectPath = mustChangePassword
+        ? "/change-password"
+        : resolveAccessRedirectPath(role);
      
       if (redirectPath && redirectPath !== "/") {
         return NextResponse.redirect(new URL(redirectPath, nextUrl.origin));
@@ -161,6 +188,16 @@ export async function proxy(req: NextRequest) {
   if (!allowed.includes(role)) {
     const fallback = resolveAccessRedirectPath(role);
     return NextResponse.redirect(new URL(fallback ?? "/", nextUrl.origin));
+  }
+
+  if (mustChangePassword && !isChangePasswordPath) {
+    return NextResponse.redirect(new URL("/change-password", nextUrl.origin));
+  }
+
+  if (isChangePasswordPath && !mustChangePassword) {
+    return NextResponse.redirect(
+      new URL(resolveAccessRedirectPath(role), nextUrl.origin),
+    );
   }
 
   return NextResponse.next();

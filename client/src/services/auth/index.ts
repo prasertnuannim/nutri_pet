@@ -10,6 +10,7 @@ export type AppUser = {
   role: string;
   tenant: string;
   promotion: string;
+  mustChangePassword: boolean;
 };
 
 type BackendLoginResponse = {
@@ -25,6 +26,7 @@ type BackendRefreshResponse = {
   role?: string;
   tenant?: string;
   promotion?: string;
+  mustChangePassword?: boolean;
   access_exp: number;
   access_token: string;
   refresh_exp?: number;
@@ -44,6 +46,7 @@ type ExtendedUser = User & {
   role: string;
   tenant: string;
   promotion: string;
+  mustChangePassword: boolean;
   accessToken: string;
   accessTokenExp: number;
   refreshToken: string;
@@ -149,6 +152,8 @@ async function refreshAccessToken(token: ExtendedToken): Promise<ExtendedToken> 
             role: data.role ?? token.user.role,
             tenant: data.tenant ?? token.user.tenant ?? "",
             promotion: data.promotion ?? token.user.promotion ?? "",
+            mustChangePassword:
+              data.mustChangePassword ?? token.user.mustChangePassword ?? false,
           }
         : token.user,
       accessToken: data.access_token,
@@ -247,6 +252,7 @@ export const authOptions: NextAuthOptions = {
             role: data.user.role,
             tenant: data.user.tenant ?? "",
             promotion: data.user.promotion ?? "",
+            mustChangePassword: data.user.mustChangePassword ?? false,
             accessToken: data.access_token,
             accessTokenExp: data.access_exp,
             refreshToken: data.refresh_token,
@@ -280,6 +286,7 @@ export const authOptions: NextAuthOptions = {
             role: currentUser.role,
             tenant: currentUser.tenant,
             promotion: currentUser.promotion,
+            mustChangePassword: currentUser.mustChangePassword,
           },
           accessToken: currentUser.accessToken,
           accessTokenExp: currentUser.accessTokenExp,
@@ -310,6 +317,7 @@ export const authOptions: NextAuthOptions = {
           role: session.user?.role,
           tenant: session.user?.tenant,
           promotion: session.user?.promotion,
+          mustChangePassword: session.user?.mustChangePassword,
           error: session.error,
           accessTokenExp: currentToken.accessTokenExp,
           refreshTokenExp: currentToken.refreshTokenExp,

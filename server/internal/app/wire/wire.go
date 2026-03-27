@@ -35,9 +35,10 @@ func BuildApp(db *gorm.DB, issuer, accessSecret, refreshSecret string, accessTTL
 
 	authHandler := handler.NewAuthHandler(authSvc)
 	userHandler := handler.NewUserHandler(db)
+	petHandler := handler.NewPetHandler(db)
 
 	app := fiber.New()
-	httpadapter.Register(app, authHandler, userHandler, j)
+	httpadapter.Register(app, authHandler, userHandler, petHandler, j)
 
 	return app
 }

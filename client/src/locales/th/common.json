@@ -1,0 +1,493 @@
+{
+  "languageSwitcher": {
+    "label": "ภาษา",
+    "placeholder": "เลือกภาษา"
+  },
+  "themeSwitcher": {
+    "label": "ธีมสี",
+    "placeholder": "เลือกธีมสี"
+  },
+  "languages": {
+    "th": "ไทย",
+    "en": "English",
+    "zh": "中文"
+  },
+  "common": {
+    "actions": {
+      "add": "เพิ่ม",
+      "cancel": "ยกเลิก",
+      "confirm": "ยืนยัน",
+      "close": "ปิด",
+      "delete": "ลบ",
+      "continueWithGoogle": "ดำเนินการต่อด้วย Google",
+      "clearFilters": "ล้างตัวกรอง",
+      "signOut": "ออกจากระบบ",
+      "save": "บันทึก"
+    },
+    "status": {
+      "loading": "กำลังโหลด",
+      "processing": "กำลังประมวลผล..."
+    },
+    "table": {
+      "actions": "การดำเนินการ",
+      "searchPlaceholder": "ค้นหา…",
+      "noResults": "ไม่พบข้อมูล",
+      "deleteTitle": "ลบถาวรหรือไม่?",
+      "deleteDescription": "การดำเนินการนี้ไม่สามารถย้อนกลับได้"
+    },
+    "units": {
+      "kg": "กก."
+    },
+    "pagination": {
+      "rows": "แถว",
+      "page": "หน้า",
+      "showingRange": "{{start}}-{{end}} จาก {{total}}",
+      "showingEmpty": "0 จาก 0"
+    }
+  },
+  "dialog": {
+    "confirm": {
+      "title": "ยืนยันการทำรายการ",
+      "description": "การดำเนินการนี้ไม่สามารถย้อนกลับได้"
+    }
+  },
+  "themes": {
+    "forest": {
+      "label": "เขียวป่า",
+      "description": "โทนเขียวสำหรับงานคลินิก"
+    },
+    "sky": {
+      "label": "ฟ้าใส",
+      "description": "โทนฟ้าอ่อนสดใหม่"
+    },
+    "yellow": {
+      "label": "เหลืองทอง",
+      "description": "โทนเหลืองอบอุ่นสว่าง"
+    },
+    "lime": {
+      "label": "เขียวมะนาว",
+      "description": "โทนเขียวสมุนไพรสด"
+    },
+    "navy": {
+      "label": "น้ำเงินเข้ม",
+      "description": "โทนน้ำเงินมืออาชีพ"
+    },
+    "cocoa": {
+      "label": "น้ำตาลโกโก้",
+      "description": "โทนน้ำตาลอบอุ่นเป็นธรรมชาติ"
+    },
+    "sunset": {
+      "label": "ส้มยามเย็น",
+      "description": "โทนส้มอบอุ่น"
+    },
+    "violet": {
+      "label": "ม่วงราชัน",
+      "description": "โทนม่วงเด่นชัด"
+    },
+    "rose": {
+      "label": "ชมพูกุหลาบ",
+      "description": "โทนชมพูสดนุ่ม"
+    }
+  },
+  "notFound": {
+    "title": "ไม่พบหน้าที่ต้องการ",
+    "description": "หน้าที่คุณกำลังค้นหาไม่มีอยู่ในระบบ"
+  },
+  "loginPage": {
+    "heroTitle": "เข้าใช้งานง่ายสำหรับทีมดูแลสัตว์เลี้ยงของคุณ",
+    "heroDescription": "เข้าสู่ระบบเพื่อจัดการประวัติสัตว์เลี้ยง แผนโภชนาการ และงานภายในคลินิกในที่เดียว",
+    "heroCardDescription": "พื้นที่ทำงานเดียวที่ปลอดภัยสำหรับการเช็กอินหน้าเคาน์เตอร์ ประวัติสัตว์เลี้ยง และการติดตามโภชนาการ",
+    "welcomeTitle": "ยินดีต้อนรับ",
+    "welcomeDescription": "เข้าสู่ระบบเพื่อไปยังพื้นที่ทำงานของคุณ",
+    "mobileDescription": "เข้าใช้งานคลินิกสำหรับประวัติสัตว์เลี้ยง แผนโภชนาการ และงานประจำวัน",
+    "emailOnly": "เข้าใช้งานด้วยอีเมลเท่านั้น",
+    "footer": "ใช้บัญชีคลินิกของคุณเพื่อเข้าใช้งาน NutriPet",
+    "mascotAlt": "มาสคอต NutriPet"
+  },
+  "loginForm": {
+    "eyebrow": "เข้าสู่ระบบเจ้าหน้าที่",
+    "description": "กรอกอีเมลและรหัสผ่านของคลินิกเพื่อเข้าใช้งาน NutriPet",
+    "emailLabel": "อีเมล",
+    "emailPlaceholder": "yourname@clinic.com",
+    "passwordLabel": "รหัสผ่าน",
+    "passwordPlaceholder": "กรอกรหัสผ่าน",
+    "signIn": "เข้าสู่ระบบ",
+    "failedTitle": "เข้าสู่ระบบไม่สำเร็จ",
+    "invalidCredentials": "อีเมลหรือรหัสผ่านไม่ถูกต้อง",
+    "unableLogin": "ไม่สามารถเข้าสู่ระบบได้ กรุณาลองใหม่อีกครั้ง",
+    "footer": "การเข้าถึงจำกัดเฉพาะบัญชีคลินิกที่ได้รับอนุมัติ"
+  },
+  "validation": {
+    "auth": {
+      "nameRequired": "กรุณากรอกชื่อ",
+      "emailInvalid": "รูปแบบอีเมลไม่ถูกต้อง",
+      "emailRequired": "กรุณากรอกอีเมล",
+      "passwordRequired": "กรุณากรอกรหัสผ่าน",
+      "passwordMin": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+      "confirmPasswordRequired": "กรุณายืนยันรหัสผ่าน",
+      "passwordMismatch": "รหัสผ่านไม่ตรงกัน"
+    },
+    "pet": {
+      "patientNameRequired": "กรุณากรอกชื่อผู้ป่วย",
+      "speciesRequired": "กรุณาเลือกสายพันธุ์สัตว์",
+      "sexRequired": "กรุณาเลือกเพศ",
+      "breedRequired": "กรุณาเลือกประเภทสายพันธุ์",
+      "neuteredRequired": "กรุณาเลือกสถานะทำหมัน",
+      "housingRequired": "กรุณาเลือกสภาพการเลี้ยง",
+      "weightNumber": "น้ำหนักต้องเป็นตัวเลข",
+      "weightPositive": "น้ำหนักต้องมากกว่า 0",
+      "weightRequired": "กรุณากรอกน้ำหนัก",
+      "firstNameRequired": "กรุณากรอกชื่อเจ้าของ",
+      "lastNameRequired": "กรุณากรอกนามสกุลเจ้าของ",
+      "phoneRequired": "กรุณากรอกเบอร์โทรศัพท์",
+      "ownerSelectRequired": "กรุณาเลือกเจ้าของเดิม",
+      "emailInvalid": "รูปแบบอีเมลไม่ถูกต้อง",
+      "visualScoreRequired": "กรุณาเลือกคะแนนกิจกรรมแบบมองเห็น",
+      "yearsInteger": "ปีต้องเป็นจำนวนเต็ม",
+      "yearsMin": "ปีต้องไม่น้อยกว่า 0",
+      "monthsInteger": "เดือนต้องเป็นจำนวนเต็ม",
+      "monthsMin": "เดือนต้องไม่น้อยกว่า 0",
+      "monthsMax": "เดือนต้องไม่เกิน 11"
+    }
+  },
+  "errors": {
+    "shared": {
+      "unableReachServer": "ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง",
+      "unexpected": "เกิดข้อผิดพลาดที่ไม่คาดคิด",
+      "unauthorized": "ไม่มีสิทธิ์เข้าถึง",
+      "invalidUserPayload": "ข้อมูลผู้ใช้จากระบบหลังบ้านไม่ถูกต้อง",
+      "invalidUsersResponse": "ข้อมูลรายการผู้ใช้จากระบบหลังบ้านไม่ถูกต้อง"
+    },
+    "register": {
+      "failed": "ลงทะเบียนไม่สำเร็จ กรุณาลองใหม่อีกครั้ง"
+    },
+    "changePassword": {
+      "failed": "ไม่สามารถอัปเดตรหัสผ่านได้ กรุณาลองใหม่อีกครั้ง"
+    },
+    "pets": {
+      "fetchFailed": "ไม่สามารถดึงข้อมูลสัตว์เลี้ยงได้",
+      "searchOwnersFailed": "ไม่สามารถค้นหาเจ้าของได้",
+      "saveFailed": "ไม่สามารถบันทึกข้อมูลได้"
+    },
+    "users": {
+      "fetchFailed": "ไม่สามารถดึงข้อมูลผู้ใช้ได้"
+    }
+  },
+  "authRegister": {
+    "badge": "การเข้าถึงบัญชี",
+    "title": "สร้างบัญชีพนักงาน",
+    "description": "เพิ่มผู้ใช้คลินิกใหม่ด้วยรหัสผ่านเริ่มต้น และบังคับให้เปลี่ยนรหัสผ่านเมื่อเข้าสู่ระบบครั้งแรก",
+    "detailsEyebrow": "รายละเอียดผู้ใช้",
+    "detailsDescription": "กรอกข้อมูลที่จำเป็นเพื่อสร้างบัญชีผู้ใช้ใหม่",
+    "defaultPasswordTitle": "รหัสผ่านเริ่มต้น",
+    "defaultPasswordDescription": "บัญชีใหม่จะเริ่มต้นด้วย {{password}} และต้องเปลี่ยนเมื่อเข้าสู่ระบบครั้งแรก",
+    "usernameLabel": "ชื่อผู้ใช้",
+    "usernamePlaceholder": "กรอกชื่อเต็ม",
+    "emailLabel": "อีเมล",
+    "emailPlaceholder": "staff@clinic.com",
+    "tenantLabel": "เทนเนนต์",
+    "promotionLabel": "โปรโมชัน",
+    "notSet": "ไม่ระบุ",
+    "createAccount": "สร้างบัญชี",
+    "failedTitle": "สร้างบัญชีไม่สำเร็จ",
+    "successTitle": "สร้างบัญชีแล้ว",
+    "successMessage": "สร้างบัญชีสำเร็จ รหัสผ่านชั่วคราว: {{password}}",
+    "footer": "บัญชีใหม่จะถูกสร้างตามกฎสิทธิ์ที่กำหนดไว้บนเซิร์ฟเวอร์"
+  },
+  "changePasswordPage": {
+    "badge": "ต้องตั้งค่าการเข้าสู่ระบบครั้งแรก",
+    "title": "เปลี่ยนรหัสผ่านชั่วคราวของคุณ",
+    "description": "บัญชีของคุณถูกสร้างด้วยรหัสผ่านเริ่มต้น กรุณาตั้งรหัสผ่านใหม่ก่อนเข้าใช้งาน NutriPet ต่อ",
+    "temporaryPasswordLabel": "รหัสผ่านชั่วคราว",
+    "autoSignOutNote": "ระบบจะออกจากระบบอัตโนมัติหลังอัปเดตรหัสผ่าน เพื่อให้คุณเข้าสู่ระบบใหม่ด้วยรหัสผ่านล่าสุด"
+  },
+  "changePasswordForm": {
+    "eyebrow": "อัปเดตความปลอดภัย",
+    "description": "ตั้งรหัสผ่านใหม่ก่อนเข้าสู่พื้นที่ทำงานของคุณ",
+    "newPasswordLabel": "รหัสผ่านใหม่",
+    "newPasswordPlaceholder": "อย่างน้อย 6 ตัวอักษร",
+    "confirmPasswordLabel": "ยืนยันรหัสผ่าน",
+    "confirmPasswordPlaceholder": "กรอกรหัสผ่านใหม่อีกครั้ง",
+    "submit": "อัปเดตรหัสผ่าน",
+    "failedTitle": "อัปเดตรหัสผ่านไม่สำเร็จ",
+    "successTitle": "อัปเดตรหัสผ่านแล้ว",
+    "successMessage": "กรุณาเข้าสู่ระบบใหม่ด้วยรหัสผ่านล่าสุด"
+  },
+  "adminShell": {
+    "appName": "NutriPet",
+    "workspaceBadge": "NutriPet Main · {{badge}}",
+    "sidebarTitle": "NutriPet Pro",
+    "sidebarSubtitle": "ระบบโภชนาการ",
+    "workspaceLabel": "พื้นที่ทำงาน",
+    "accounts": "บัญชี",
+    "settings": "ตั้งค่า",
+    "statistics": "สถิติ",
+    "audit": "บันทึกการตรวจสอบ",
+    "dailyReport": "รายงานประจำวัน",
+    "monthlyKpi": "สรุปรายเดือน",
+    "yearlySummary": "สรุปรายปี",
+    "guest": "ผู้เยี่ยมชม",
+    "workspaceMember": "สมาชิกเวิร์กสเปซ",
+    "pages": {
+      "account": {
+        "label": "บัญชี",
+        "badge": "ศูนย์บัญชี",
+        "section": "จัดการผู้ใช้"
+      },
+      "settings": {
+        "label": "ตั้งค่าธีม",
+        "badge": "สตูดิโอธีม",
+        "section": "ปรับแต่งธีม"
+      },
+      "statisticsDaily": {
+        "label": "รายงานประจำวัน",
+        "badge": "สถิติรายวัน",
+        "section": "สถิติ"
+      },
+      "statisticsMonthly": {
+        "label": "สรุปรายเดือน",
+        "badge": "สถิติรายเดือน",
+        "section": "สถิติ"
+      },
+      "statisticsYearly": {
+        "label": "สรุปรายปี",
+        "badge": "สถิติรายปี",
+        "section": "สถิติ"
+      },
+      "statistics": {
+        "label": "สถิติ",
+        "badge": "ศูนย์วิเคราะห์",
+        "section": "สถิติ"
+      },
+      "audit": {
+        "label": "บันทึกการตรวจสอบ",
+        "badge": "ติดตามกิจกรรม",
+        "section": "ความปลอดภัย"
+      },
+      "dashboard": {
+        "label": "แดชบอร์ด",
+        "badge": "ภาพรวม",
+        "section": "แดชบอร์ด"
+      },
+      "default": {
+        "label": "แดชบอร์ด",
+        "badge": "เวิร์กสเปซ",
+        "section": "แดชบอร์ด"
+      }
+    }
+  },
+  "accountPage": {
+    "title": "จัดการบัญชี",
+    "description": "จัดการผู้ใช้ บทบาท และสิทธิ์การเข้าถึงจากแดชบอร์ดเดียว"
+  },
+  "accountForm": {
+    "name": "ชื่อ",
+    "email": "อีเมล",
+    "role": "บทบาท",
+    "tenant": "เทนเนนต์",
+    "promotion": "โปรโมชัน",
+    "searchPlaceholder": "ค้นหาชื่อ / อีเมล / บทบาท / เทนเนนต์ / โปรโมชัน…",
+    "noResults": "ไม่พบข้อมูล",
+    "deleteTitle": "ลบผู้ใช้นี้ถาวรหรือไม่?",
+    "deleteDescription": "การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    "deleteConfirm": "ลบ",
+    "deleteRowTitle": "ลบ “{{name}}” ถาวรหรือไม่?",
+    "deleteRowDescription": "ข้อมูลนี้จะถูกลบออกจากระบบอย่างถาวร",
+    "deleteRowConfirm": "ยืนยันการลบ",
+    "roleAdmin": "ผู้ดูแลระบบ",
+    "roleUser": "ผู้ใช้",
+    "roleOptionAdmin": "ผู้ดูแลระบบ",
+    "roleOptionUser": "ผู้ใช้",
+    "validation": {
+      "nameRequired": "กรุณากรอกชื่อ",
+      "emailInvalid": "รูปแบบอีเมลไม่ถูกต้อง",
+      "roleRequired": "กรุณาเลือกบทบาท",
+      "atLeastOneField": "กรุณากรอกอย่างน้อย 1 ช่อง",
+      "invalidInput": "ข้อมูลที่กรอกไม่ถูกต้อง",
+      "invalidPagination": "ข้อมูลการแบ่งหน้าไม่ถูกต้อง",
+      "invalidUpdatePayload": "ข้อมูลที่ใช้แก้ไขไม่ถูกต้อง"
+    }
+  },
+  "settingsPage": {
+    "badge": "สตูดิโอธีม",
+    "title": "เลือกโทนสีธีม",
+    "description": "เลือกหนึ่งใน 9 โทนสีหลักสำหรับพื้นที่ทำงานฝั่งแอดมิน ธีมที่เลือกจะอัปเดต navbar, sidebar, พื้นผิว, badge และฟอร์มทันที",
+    "paletteTitle": "พาเลตธีม",
+    "paletteDescription": "เลือกได้จาก 9 โทนสีหลักโดยตรง",
+    "active": "กำลังใช้งาน: {{theme}}"
+  },
+  "auditPage": {
+    "title": "บันทึกการตรวจสอบ",
+    "description": "ตรวจสอบกิจกรรมสำคัญของระบบ ประวัติการแก้ไข และเหตุการณ์ด้านความปลอดภัย"
+  },
+  "statisticsPage": {
+    "dailyTitle": "รายงานประจำวัน",
+    "dailyDescription": "สรุปตัวเลขและกิจกรรมรายวันจะอยู่ที่หน้านี้",
+    "monthlyTitle": "สรุปรายเดือน",
+    "monthlyDescription": "ตัวชี้วัดและแนวโน้มรายเดือนจะอยู่ที่หน้านี้",
+    "yearlyTitle": "สรุปรายปี",
+    "yearlyDescription": "ภาพรวมเชิงกลยุทธ์และผลลัพธ์รายปีจะอยู่ที่หน้านี้"
+  },
+  "userShell": {
+    "actions": {
+      "expandNavigation": "ขยายเมนูนำทาง",
+      "collapseNavigation": "ย่อเมนูนำทาง",
+      "signOut": "ออกจากระบบ"
+    },
+    "workspace": {
+      "brand": "VetClinic Pro",
+      "shortName": "VetClinic",
+      "clinic": "VetClinic Main",
+      "department": "เวชระเบียน",
+      "subtitle": "ระบบโภชนาการ"
+    },
+    "navigation": {
+      "dashboard": "แดชบอร์ด",
+      "pets": "สัตว์เลี้ยง",
+      "orders": "คำสั่งซื้อ",
+      "factory": "โรงงาน"
+    },
+    "profile": {
+      "defaultName": "เจ้าหน้าที่คลินิก",
+      "defaultMeta": "เวชระเบียน"
+    }
+  },
+  "userPlaceholder": {
+    "ordersTitle": "คำสั่งซื้อ",
+    "ordersDescription": "ระบบติดตามคำสั่งซื้ออยู่ภายใต้ shell เดียวกับแดชบอร์ดคลินิก พร้อมต่อยอดโมดูลคิว แผนโภชนาการ และการจัดส่ง",
+    "factoryTitle": "โรงงาน",
+    "factoryDescription": "ภาพรวมโรงงานถูกเพิ่มในเมนูผู้ใช้แล้ว หน้านี้พร้อมต่อยอดตัวชี้วัดการผลิตและสถานะแต่ละ batch"
+  },
+  "userDashboard": {
+    "stats": {
+      "todayQueue": "คิววันนี้",
+      "waiting": "รอดำเนินการ",
+      "inProgress": "กำลังดำเนินการ",
+      "totalPets": "สัตว์เลี้ยงทั้งหมด"
+    },
+    "queueTitle": "คิวสัตว์เลี้ยง",
+    "queueDescription": "จัดการการเข้ารับบริการของสัตว์เลี้ยงในทุกแผนก",
+    "filter": "ตัวกรอง:",
+    "today": "วันนี้",
+    "thisWeek": "สัปดาห์นี้",
+    "thisMonth": "เดือนนี้",
+    "allStatus": "ทุกสถานะ",
+    "completed": "เสร็จสิ้น",
+    "clinicMain": "VetClinic Main",
+    "clinicEast": "VetClinic East",
+    "medicalRecords": "เวชระเบียน",
+    "laboratory": "ห้องปฏิบัติการ",
+    "pharmacy": "เภสัชกรรม",
+    "number": "ลำดับ",
+    "checkInTime": "เวลาเช็กอิน",
+    "petName": "ชื่อสัตว์เลี้ยง",
+    "weightKg": "น้ำหนัก (กก.)",
+    "assignedDoctor": "สัตวแพทย์",
+    "department": "แผนก",
+    "billing": "ค่าบริการ",
+    "action": "จัดการ",
+    "unpaid": "ยังไม่ชำระ",
+    "showingPets": "แสดง {{shown}} จาก {{total}} ตัว",
+    "openPatient": "เปิดข้อมูล {{name}}"
+  },
+  "userPets": {
+    "loadFailedTitle": "ไม่สามารถโหลดข้อมูลผู้ป่วยได้",
+    "searchPlaceholder": "ค้นหาจากชื่อ เจ้าของ หรือชนิดสัตว์...",
+    "registerPets": "ลงทะเบียนสัตว์เลี้ยง",
+    "number": "ลำดับ",
+    "hn": "HN",
+    "patientName": "ชื่อผู้ป่วย",
+    "speciesBreed": "ชนิด / สายพันธุ์",
+    "age": "อายุ",
+    "weight": "น้ำหนัก",
+    "owner": "เจ้าของ",
+    "registeredDate": "วันที่ลงทะเบียน",
+    "actions": "การดำเนินการ",
+    "mixedBreed": "พันธุ์ผสม",
+    "purebred": "พันธุ์แท้",
+    "year_one": "{{count}} ปี",
+    "year_other": "{{count}} ปี",
+    "month_one": "{{count}} เดือน",
+    "month_other": "{{count}} เดือน",
+    "loading": "กำลังโหลดข้อมูลผู้ป่วย...",
+    "empty": "ไม่พบข้อมูลผู้ป่วย",
+    "showingPatients": "แสดง {{shown}} จาก {{total}} ราย",
+    "openPatient": "เปิดข้อมูล {{name}}"
+  },
+  "registerPet": {
+    "title": "ลงทะเบียนผู้ป่วย",
+    "description": "กรอกข้อมูลผู้ป่วยและเจ้าของ",
+    "saveFailedTitle": "บันทึกไม่สำเร็จ",
+    "savedTitle": "บันทึกแล้ว",
+    "saveSuccessWithPet": "บันทึก {{name}} ด้วย HN {{hn}} แล้ว",
+    "saveSuccess": "ลงทะเบียนสัตว์เลี้ยงเรียบร้อยแล้ว",
+    "cancel": "ยกเลิก",
+    "saveOnly": "บันทึกอย่างเดียว",
+    "saveVisit": "บันทึกและกลับหน้ารายชื่อ",
+    "patientInformation": "ข้อมูลผู้ป่วย",
+    "ownerInformation": "ข้อมูลเจ้าของ",
+    "healthStatus": "สถานะสุขภาพ",
+    "activeScore": "คะแนนกิจกรรม",
+    "hospitalNumber": "เลขประจำตัวผู้ป่วย (HN)",
+    "hospitalNumberPlaceholder": "เว้นว่างเพื่อสร้างอัตโนมัติ",
+    "patientName": "ชื่อผู้ป่วย",
+    "patientNamePlaceholder": "เช่น Momo, Buddy",
+    "species": "ชนิดสัตว์",
+    "selectSpecies": "เลือกชนิดสัตว์",
+    "dog": "สุนัข",
+    "cat": "แมว",
+    "rabbit": "กระต่าย",
+    "bird": "นก",
+    "other": "อื่น ๆ",
+    "sex": "เพศ",
+    "male": "ตัวผู้",
+    "female": "ตัวเมีย",
+    "breed": "สายพันธุ์",
+    "mixedBreedOption": "พันธุ์ผสม",
+    "purebredOption": "พันธุ์แท้",
+    "mixedBreedPlaceholder": "ถ้ามี ระบุว่าสายพันธุ์ผสมกับอะไร",
+    "neuteredStatus": "สถานะทำหมัน",
+    "intact": "ยังไม่ทำหมัน",
+    "neutered": "ทำหมันแล้ว",
+    "housingCondition": "สภาพการเลี้ยง",
+    "indoor": "เลี้ยงในบ้าน",
+    "outdoor": "เลี้ยงนอกบ้าน",
+    "indoorOutdoor": "ทั้งในและนอกบ้าน",
+    "ageBirthDate": "อายุและวันเกิด",
+    "age": "อายุ",
+    "years": "ปี",
+    "months": "เดือน",
+    "birthDate": "วันเกิด",
+    "weightKg": "น้ำหนัก (กก.)",
+    "weightPlaceholder": "0.00",
+    "newOwner": "เจ้าของใหม่",
+    "existingOwner": "เจ้าของเดิม",
+    "firstName": "ชื่อ",
+    "firstNamePlaceholder": "เช่น John",
+    "lastName": "นามสกุล",
+    "lastNamePlaceholder": "เช่น Smith",
+    "phoneNumber": "เบอร์โทรศัพท์",
+    "phoneNumberPlaceholder": "+1 (555) 123-4567",
+    "email": "อีเมล",
+    "emailPlaceholder": "john.smith@example.com",
+    "searchExistingOwner": "ค้นหาเจ้าของเดิม",
+    "searchExistingOwnerPlaceholder": "ค้นหาจากชื่อเจ้าของหรือเบอร์โทรศัพท์",
+    "selectedOwner": "เจ้าของที่เลือก: {{name}} ({{phone}})",
+    "matchingOwners": "เจ้าของที่ตรงกัน",
+    "recentOwners": "เจ้าของล่าสุด",
+    "searchingOwners": "กำลังค้นหาเจ้าของ...",
+    "ownersNotFound": "ไม่พบข้อมูลเจ้าของ",
+    "petsCount_one": "{{count}} ตัว",
+    "petsCount_other": "{{count}} ตัว",
+    "healthy": "สุขภาพดี",
+    "diseaseHistory": "มีประวัติโรค",
+    "visualActiveScore": "คะแนนกิจกรรมแบบมองเห็น",
+    "activeScoreAssessment": "แบบประเมินคะแนนกิจกรรม",
+    "selectVisualActiveScore": "เลือกคะแนนกิจกรรมแบบมองเห็น",
+    "veryActive": "เคลื่อนไหวมาก",
+    "moderatelyActive": "เคลื่อนไหวปานกลาง",
+    "notVeryActive": "เคลื่อนไหวน้อย",
+    "points": "({{count}} คะแนน)",
+    "assessmentArea": "พื้นที่สำหรับแบบประเมิน"
+  }
+}

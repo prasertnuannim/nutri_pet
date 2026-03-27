@@ -3,7 +3,7 @@
 import { registerSchema } from "@/lib/validators/auth";
 import { AuthFormState } from "@/types/auth.type";
 
-const REGISTER_FAILURE_MESSAGE = "Registration failed. Please try again.";
+const REGISTER_FAILURE_MESSAGE = "errors.register.failed";
 
 export async function registerUser(
   _prevState: unknown,
@@ -12,15 +12,15 @@ export async function registerUser(
   const raw = {
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
-    password: String(formData.get("password") ?? ""),
-    confirmPassword: String(formData.get("confirmPassword") ?? ""),
+    tenant: String(formData.get("tenant") ?? ""),
+    promotion: String(formData.get("promotion") ?? ""),
   };
 
   const parsed = registerSchema.safeParse(raw);
   if (!parsed.success) {
     const errors: AuthFormState["errors"] = {};
 
-    parsed.error.errors.forEach((err) => {
+    parsed.error.issues.forEach((err) => {
       const field = err.path[0] as keyof NonNullable<AuthFormState["errors"]>;
       errors[field] = err.message;
     });
@@ -30,6 +30,8 @@ export async function registerUser(
       values: {
         name: raw.name,
         email: raw.email,
+        tenant: raw.tenant,
+        promotion: raw.promotion,
       },
     };
   }
@@ -43,22 +45,31 @@ export async function registerUser(
       body: JSON.stringify({
         name: parsed.data.name,
         email: parsed.data.email,
-        password: parsed.data.password,
+        tenant: parsed.data.tenant,
+        promotion: parsed.data.promotion,
       }),
       cache: "no-store",
     });
 
     if (!res.ok) {
       let message = REGISTER_FAILURE_MESSAGE;
+      const body = await res.text();
+      const contentType = res.headers.get("content-type") ?? "";
 
-      try {
-        const data = (await res.json()) as {
-          error?: string;
-          message?: string;
-        };
-        message = data.message ?? data.error ?? REGISTER_FAILURE_MESSAGE;
-      } catch {
-        // keep fallback message
+      if (body) {
+        if (contentType.includes("application/json")) {
+          try {
+            const data = JSON.parse(body) as {
+              error?: string;
+              message?: string;
+            };
+            message = data.message ?? data.error ?? REGISTER_FAILURE_MESSAGE;
+          } catch {
+            message = body.trim() || REGISTER_FAILURE_MESSAGE;
+          }
+        } else {
+          message = body.trim() || REGISTER_FAILURE_MESSAGE;
+        }
       }
 
       return {
@@ -66,6 +77,8 @@ export async function registerUser(
         values: {
           name: parsed.data.name,
           email: parsed.data.email,
+          tenant: parsed.data.tenant,
+          promotion: parsed.data.promotion,
         },
       };
     }
@@ -75,14 +88,18 @@ export async function registerUser(
       values: {
         name: parsed.data.name,
         email: parsed.data.email,
+        tenant: parsed.data.tenant,
+        promotion: parsed.data.promotion,
       },
     };
   } catch {
     return {
-      errors: { general: "Unable to reach server. Please try again." },
+      errors: { general: "errors.shared.unableReachServer" },
       values: {
         name: parsed.data.name,
         email: parsed.data.email,
+        tenant: parsed.data.tenant,
+        promotion: parsed.data.promotion,
       },
     };
   }

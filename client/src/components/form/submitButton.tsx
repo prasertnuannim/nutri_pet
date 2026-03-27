@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type SubmitButtonProps = {
   text: string;
@@ -14,6 +15,7 @@ export function SubmitButton({
   className,
   isPending = false,
 }: SubmitButtonProps) {
+  const { t } = useTranslation();
   const busy = !!isPending;
 
   return (
@@ -22,15 +24,15 @@ export function SubmitButton({
       disabled={busy}
       aria-busy={busy}
       className={[
-        "w-full rounded-md py-2 text-white font-semibold transition duration-300",
+        "w-full rounded-md py-2 font-semibold transition duration-300",
         busy
-          ? "bg-gray-400 cursor-not-allowed"
-          : "bg-blue-500 hover:bg-blue-600",
+          ? "cursor-not-allowed bg-muted text-muted-foreground hover:bg-muted"
+          : "",
         className ?? "",
       ].join(" ")}
     >
       {busy && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      {busy ? "Processing..." : text}
+      {busy ? t("common.status.processing") : t(text, { defaultValue: text })}
     </Button>
   );
 }

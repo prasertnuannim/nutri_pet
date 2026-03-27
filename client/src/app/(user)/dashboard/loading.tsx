@@ -3,5 +3,5 @@
 import Loading from "@/components/form/loading";
 
 export default function DashboardLoading() {
-  return <Loading message="Loading dashboard..." />;
+  return <Loading messageKey="userDashboard.queueTitle" />;
 }

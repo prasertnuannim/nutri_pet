@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 type Props = {
   message?: string;
   title?: string;
@@ -9,12 +11,12 @@ type Props = {
 
 const styles = {
   error:
-    "border-red-300 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/60 dark:text-red-200",
+    "border-destructive/20 bg-destructive/10 text-destructive",
   success:
-    "border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/60 dark:text-emerald-200",
-  info: "border-blue-300 bg-blue-50 text-blue-800 dark:border-blue-900/60 dark:bg-blue-950/60 dark:text-blue-200",
+    "border-primary/20 bg-primary-soft text-primary",
+  info: "border-primary/20 bg-primary-soft text-primary",
   warning:
-    "border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/60 dark:text-amber-200",
+    "border-warning/20 bg-warning-soft text-warning",
 };
 
 export default function FormAlert({
@@ -23,6 +25,8 @@ export default function FormAlert({
   variant = "error",
   className = "",
 }: Props) {
+  const { t } = useTranslation();
+
   if (!message) return null;
   return (
     <div
@@ -31,8 +35,12 @@ export default function FormAlert({
       className={`rounded-md border px-3 py-2 text-sm shadow-sm ${styles[variant]} ${className}`}
     >
       <div className="flex flex-col items-center-safe">
-        {title && <div className="mb-0.5 font-semibold">{title}</div>}
-        <p>{message}</p>
+        {title ? (
+          <div className="mb-0.5 font-semibold">
+            {t(title, { defaultValue: title })}
+          </div>
+        ) : null}
+        <p>{t(message, { defaultValue: message })}</p>
       </div>
     </div>
   );

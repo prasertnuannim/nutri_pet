@@ -9,7 +9,7 @@ export async function goApiFetch(
   const { accessToken, ...requestInit } = init;
 
   if (!accessToken) {
-    throw new Error("Unauthorized");
+    throw new Error("errors.shared.unauthorized");
   }
 
   const res = await fetch(`${process.env.GO_API_URL}${input}`, {

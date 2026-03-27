@@ -14,6 +14,7 @@ import {
   ChevronRight,
   ChevronsRight,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { ConfirmDialog } from "./confirmDialog";
 
 export type SortDir = "asc" | "desc";
@@ -105,20 +106,21 @@ export function DataTable<
   searchPredicate,
   initialPageSize = 10,
   initialSort = null,
-  searchPlaceholder = "Search…",
+  searchPlaceholder = "common.table.searchPlaceholder",
 
   /** Skeleton */
   isLoading = false,
   loadingRows = 8,
 
   renderActions,
-  confirmDeleteTitle = "Delete permanently?",
-  confirmDeleteDescription = "This action cannot be undone.",
-  confirmDeleteText = "Delete",
-  confirmDeleteClassName = "bg-red-600 text-white hover:bg-red-700",
-  emptyMessage = "No results.",
+  confirmDeleteTitle = "common.table.deleteTitle",
+  confirmDeleteDescription = "common.table.deleteDescription",
+  confirmDeleteText = "common.actions.delete",
+  confirmDeleteClassName = "bg-destructive text-white hover:bg-destructive/90",
+  emptyMessage = "common.table.noResults",
   getConfirmDeleteProps,
 }: DataTableProps<T, K>) {
+  const { t } = useTranslation();
   // --- State ---
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<SortState<K>>(initialSort);
@@ -248,7 +250,7 @@ export function DataTable<
                 : (Number(e.target.value) as T[typeof key])
             )
           }
-          className="border px-2 py-1 rounded w-full text-sm"
+          className="w-full rounded border border-border bg-card px-2 py-1 text-sm text-foreground"
         />
       );
     }
@@ -256,7 +258,7 @@ export function DataTable<
       <input
         value={String(v ?? "")}
         onChange={(e) => setDraftField(key, e.target.value as T[typeof key])}
-        className="border px-2 py-1 rounded w-full text-sm"
+        className="w-full rounded border border-border bg-card px-2 py-1 text-sm text-foreground"
       />
     );
   };
@@ -277,11 +279,11 @@ export function DataTable<
   }: RenderActionsArgs<T>) => {
     if (isEditing) {
       return (
-        <div className="flex gap-2 justify-center">
-          <button onClick={() => saveEdit(row.id)} className="text-green-600 cursor-pointer">
+        <div className="flex justify-center gap-2">
+          <button onClick={() => saveEdit(row.id)} className="cursor-pointer text-primary">
             <Save size={18} />
           </button>
-          <button onClick={cancelEdit} className="text-gray-600 cursor-pointer">
+          <button onClick={cancelEdit} className="cursor-pointer text-muted-foreground">
             <X size={18} />
           </button>
         </div>
@@ -295,9 +297,9 @@ export function DataTable<
     const confirmClassName = dyn.confirmClassName ?? confirmDeleteClassName;
 
     return (
-      <div className="flex gap-2 justify-center">
+      <div className="flex justify-center gap-2">
         {onUpdate && (
-          <button onClick={() => startEdit(row)} className="text-blue-600 cursor-pointer">
+          <button onClick={() => startEdit(row)} className="cursor-pointer text-primary">
             <Pencil size={18} />
           </button>
         )}
@@ -305,7 +307,7 @@ export function DataTable<
         {onHardDelete && (
           <ConfirmDialog
             trigger={
-              <button className="text-red-600 cursor-pointer">
+              <button className="cursor-pointer text-destructive">
                 <Trash2 size={18} />
               </button>
             }
@@ -325,26 +327,26 @@ export function DataTable<
   // -------------------------------------------------------------------
 
   return (
-    <div className="rounded-md border min-h-[250px] flex flex-col">
+    <div className="flex min-h-[250px] flex-col rounded-md border border-border bg-card">
       {/* Header */}
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between px-4 py-3">
+      <div className="flex flex-col gap-2 px-4 py-3 md:flex-row md:items-center md:justify-between">
         <input
           type="text"
-          placeholder={searchPlaceholder}
+          placeholder={t(searchPlaceholder, { defaultValue: searchPlaceholder })}
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
             setPage(1);
           }}
-          className="border rounded px-3 py-1 text-sm w-full md:w-64"
+          className="w-full rounded border border-border bg-card px-3 py-1 text-sm text-foreground md:w-64"
         />
 
         {onCreateClick && (
           <button
             onClick={onCreateClick}
-            className="px-3 py-1 bg-blue-600 text-white rounded text-sm"
+            className="rounded bg-primary px-3 py-1 text-sm cursor-pointer text-primary-foreground transition hover:bg-primary/90"
           >
-            Add
+            {t("common.actions.add")}
           </button>
         )}
       </div>
@@ -352,25 +354,30 @@ export function DataTable<
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
-          <thead className="bg-gray-100">
+          <thead className="bg-muted/70">
             <tr>
               {columns.map((col) => (
                 <th
                   key={String(col.key)}
-                  className="border px-4 py-2 text-left"
+                  className="border border-border px-4 py-2 text-left text-foreground"
                 >
                   <button
                     onClick={() => toggleSort(col.key, col.sortable)}
                     className={`inline-flex items-center gap-1 ${
-                      col.sortable ? "hover:underline cursor-pointer" : "cursor-default"
+                      col.sortable
+                        ? "cursor-pointer hover:text-primary hover:underline"
+                        : "cursor-default"
                     }`}
                   >
-                    {col.header} {col.sortable && <SortIcon col={col.key} />}
+                    {t(col.header, { defaultValue: col.header })}{" "}
+                    {col.sortable && <SortIcon col={col.key} />}
                   </button>
                 </th>
               ))}
               {showActions && (
-                <th className="border px-4 py-2 text-center">Actions</th>
+                <th className="border border-border px-4 py-2 text-center text-foreground">
+                  {t("common.table.actions")}
+                </th>
               )}
             </tr>
           </thead>
@@ -381,7 +388,7 @@ export function DataTable<
               Array.from({ length: loadingRows }).map((_, i) => (
                 <tr key={`sk-${i}`}>
                   {columns.map((col) => (
-                    <td key={col.key} className="border px-4 py-2">
+                    <td key={col.key} className="border border-border px-4 py-2">
                       <SkeletonCell
                         width={
                           col.key === "name"
@@ -394,7 +401,7 @@ export function DataTable<
                     </td>
                   ))}
                   {showActions && (
-                    <td className="border px-4 py-2 text-center">
+                    <td className="border border-border px-4 py-2 text-center">
                       <div className="flex justify-center gap-2">
                         <SkeletonCell width="w-4" />
                         <SkeletonCell width="w-4" />
@@ -407,7 +414,7 @@ export function DataTable<
               pageRows.map((row) => {
                 const isEditing = editingRowId === row.id;
                 return (
-                  <tr key={row.id} className="hover:bg-gray-50">
+                  <tr key={row.id} className="hover:bg-muted/40">
                     {columns.map((col) => {
                       const value = isEditing
                         ? (draft as T)[col.key]
@@ -415,7 +422,7 @@ export function DataTable<
                       return (
                         <td
                           key={`${row.id}-${String(col.key)}`}
-                          className={`border px-4 py-2 ${col.className ?? ""}`}
+                          className={`border border-border px-4 py-2 text-foreground ${col.className ?? ""}`}
                         >
                           {isEditing
                             ? col.editor
@@ -433,7 +440,7 @@ export function DataTable<
                     })}
 
                     {showActions && (
-                      <td className="border px-4 py-2 text-center">
+                      <td className="border border-border px-4 py-2 text-center">
                         {(renderActions ?? defaultRenderActions)({
                           row,
                           isEditing,
@@ -451,9 +458,9 @@ export function DataTable<
               <tr>
                 <td
                   colSpan={columns.length + (showActions ? 1 : 0)}
-                  className="text-center py-4 text-gray-500"
+                  className="py-4 text-center text-muted-foreground"
                 >
-                  {emptyMessage}
+                  {t(emptyMessage, { defaultValue: emptyMessage })}
                 </td>
               </tr>
             )}
@@ -461,20 +468,28 @@ export function DataTable<
         </table>
       </div>
       {/* Footer */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-4 py-3 border-t mt-auto">
+      <div className="mt-auto flex flex-col gap-3 border-t border-border px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="text-sm text-gray-600">
-            {total ? `${startIdx + 1}–${endIdx} of ${total}` : "0 of 0"}
+          <div className="text-sm text-muted-foreground">
+            {total
+              ? t("common.pagination.showingRange", {
+                  start: startIdx + 1,
+                  end: endIdx,
+                  total,
+                })
+              : t("common.pagination.showingEmpty")}
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-sm text-gray-600">Rows</label>
+            <label className="text-sm text-muted-foreground">
+              {t("common.pagination.rows")}
+            </label>
             <select
               value={pageSize}
               onChange={(e) => {
                 setPageSize(Number(e.target.value));
                 setPage(1);
               }}
-              className="border rounded px-2 py-1 text-sm"
+              className="rounded border border-border bg-card px-2 py-1 text-sm text-foreground"
             >
               {[5, 10, 20, 50, 100].map((n) => (
                 <option key={n} value={n}>
@@ -487,31 +502,32 @@ export function DataTable<
 
         <div className="flex items-center">
           <button
-            className="p-1 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="rounded p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground disabled:opacity-40"
             onClick={() => setPage(1)}
             disabled={safePage <= 1}
           >
             <ChevronsLeft size={18} />
           </button>
           <button
-            className="p-1 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="rounded p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground disabled:opacity-40"
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={safePage <= 1}
           >
             <ChevronLeft size={18} />
           </button>
-          <span className="px-2 text-sm">
-            Page <span className="font-medium">{safePage}</span> / {totalPages}
+          <span className="px-2 text-sm text-foreground">
+            {t("common.pagination.page")}{" "}
+            <span className="font-medium">{safePage}</span> / {totalPages}
           </span>
           <button
-            className="p-1 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="rounded p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground disabled:opacity-40"
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={safePage >= totalPages}
           >
             <ChevronRight size={18} />
           </button>
           <button
-            className="p-1 rounded hover:bg-gray-100 disabled:opacity-40"
+            className="rounded p-1 text-muted-foreground transition hover:bg-muted hover:text-foreground disabled:opacity-40"
             onClick={() => setPage(totalPages)}
             disabled={page >= totalPages}
           >
@@ -529,7 +545,7 @@ function SkeletonCell({ width = "w-3/4" }: { width?: string }) {
       className={`
         h-4 ${width} rounded
         bg-linear-to-r
-        from-gray-200 via-gray-300 to-gray-200
+        from-muted via-border to-muted
         bg-size-[400px_100%]
         animate-[shimmer_3s_ease-in-out_infinite]
       `}

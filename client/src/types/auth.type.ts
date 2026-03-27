@@ -7,14 +7,27 @@ export type AuthFormState = {
   errors?: {
     name?: string;
     email?: string;
-    password?: string;
-    confirmPassword?: string;
+    tenant?: string;
+    promotion?: string;
     general?: string;
   };
   values?: {
     name?: string | null;
     email?: string | null;
-    password?: string | null;
+    tenant?: string | null;
+    promotion?: string | null;
+  };
+  success?: boolean;
+};
+
+export type PasswordChangeFormState = {
+  errors?: {
+    newPassword?: string;
+    confirmPassword?: string;
+    general?: string;
+  };
+  values?: {
+    newPassword?: string | null;
     confirmPassword?: string | null;
   };
   success?: boolean;

@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -23,12 +24,13 @@ type ConfirmDialogProps = {
 
 export function ConfirmDialog({
   trigger,
-  title = "Are you sure?",
-  description = "This action cannot be undone.",
-  confirmText = "Confirm",
+  title = "dialog.confirm.title",
+  description = "dialog.confirm.description",
+  confirmText = "common.actions.confirm",
   confirmClassName,
   onConfirm,
 }: ConfirmDialogProps) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
 
@@ -48,8 +50,10 @@ export function ConfirmDialog({
 
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogTitle>{t(title, { defaultValue: title })}</DialogTitle>
+          <DialogDescription>
+            {t(description, { defaultValue: description })}
+          </DialogDescription>
         </DialogHeader>
 
         <DialogFooter className="gap-2">
@@ -59,7 +63,7 @@ export function ConfirmDialog({
             onClick={() => setOpen(false)}
             disabled={isPending}
           >
-            Cancel
+            {t("common.actions.cancel")}
           </Button>
           <Button
             type="button"
@@ -67,7 +71,9 @@ export function ConfirmDialog({
             disabled={isPending}
             className={confirmClassName}
           >
-            {isPending ? "Please wait..." : confirmText}
+            {isPending
+              ? t("common.status.processing")
+              : t(confirmText, { defaultValue: confirmText })}
           </Button>
         </DialogFooter>
       </DialogContent>

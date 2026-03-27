@@ -1,0 +1,493 @@
+{
+  "languageSwitcher": {
+    "label": "Language",
+    "placeholder": "Select language"
+  },
+  "themeSwitcher": {
+    "label": "Color theme",
+    "placeholder": "Select color theme"
+  },
+  "languages": {
+    "th": "ไทย",
+    "en": "English",
+    "zh": "中文"
+  },
+  "common": {
+    "actions": {
+      "add": "Add",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "close": "Close",
+      "delete": "Delete",
+      "continueWithGoogle": "Continue with Google",
+      "clearFilters": "Clear Filters",
+      "signOut": "Sign out",
+      "save": "Save"
+    },
+    "status": {
+      "loading": "Loading",
+      "processing": "Processing..."
+    },
+    "table": {
+      "actions": "Actions",
+      "searchPlaceholder": "Search…",
+      "noResults": "No results.",
+      "deleteTitle": "Delete permanently?",
+      "deleteDescription": "This action cannot be undone."
+    },
+    "units": {
+      "kg": "kg"
+    },
+    "pagination": {
+      "rows": "Rows",
+      "page": "Page",
+      "showingRange": "{{start}}-{{end}} of {{total}}",
+      "showingEmpty": "0 of 0"
+    }
+  },
+  "dialog": {
+    "confirm": {
+      "title": "Are you sure?",
+      "description": "This action cannot be undone."
+    }
+  },
+  "themes": {
+    "forest": {
+      "label": "Forest Green",
+      "description": "Primary care green"
+    },
+    "sky": {
+      "label": "Sky Blue",
+      "description": "Fresh light blue tone"
+    },
+    "yellow": {
+      "label": "Golden Yellow",
+      "description": "Warm bright yellow"
+    },
+    "lime": {
+      "label": "Lime Green",
+      "description": "Fresh herbal green"
+    },
+    "navy": {
+      "label": "Navy Blue",
+      "description": "Deep professional blue"
+    },
+    "cocoa": {
+      "label": "Cocoa Brown",
+      "description": "Earthy brown tone"
+    },
+    "sunset": {
+      "label": "Sunset Orange",
+      "description": "Warm orange glow"
+    },
+    "violet": {
+      "label": "Royal Violet",
+      "description": "Bold elegant purple"
+    },
+    "rose": {
+      "label": "Rose Bloom",
+      "description": "Soft vibrant rose"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you’re looking for doesn’t exist."
+  },
+  "loginPage": {
+    "heroTitle": "Simple access for your pet care team.",
+    "heroDescription": "Sign in to manage pet records, nutrition plans, and clinic workflows in one place.",
+    "heroCardDescription": "One secure workspace for front desk check-in, pet records, and nutrition follow-up.",
+    "welcomeTitle": "Welcome",
+    "welcomeDescription": "Sign in to continue to your workspace.",
+    "mobileDescription": "Clinic access for pet records, nutrition plans, and daily workflow.",
+    "emailOnly": "Email access only",
+    "footer": "Use your clinic account to access NutriPet.",
+    "mascotAlt": "NutriPet mascot"
+  },
+  "loginForm": {
+    "eyebrow": "Staff Sign In",
+    "description": "Enter your clinic email and password to access NutriPet.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "yourname@clinic.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signIn": "Sign In",
+    "failedTitle": "Login failed",
+    "invalidCredentials": "Invalid email or password",
+    "unableLogin": "Unable to login. Please try again.",
+    "footer": "Access is limited to approved clinic accounts."
+  },
+  "validation": {
+    "auth": {
+      "nameRequired": "Name is required",
+      "emailInvalid": "Invalid email address",
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 6 characters",
+      "confirmPasswordRequired": "Confirm password is required",
+      "passwordMismatch": "Passwords do not match"
+    },
+    "pet": {
+      "patientNameRequired": "Patient name is required",
+      "speciesRequired": "Species is required",
+      "sexRequired": "Sex is required",
+      "breedRequired": "Breed is required",
+      "neuteredRequired": "Neutered status is required",
+      "housingRequired": "Housing condition is required",
+      "weightNumber": "Weight must be a number",
+      "weightPositive": "Weight must be greater than 0",
+      "weightRequired": "Weight is required",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "phoneRequired": "Phone number is required",
+      "ownerSelectRequired": "Please select an existing owner",
+      "emailInvalid": "Invalid email",
+      "visualScoreRequired": "Visual active score is required",
+      "yearsInteger": "Years must be a whole number",
+      "yearsMin": "Years must be at least 0",
+      "monthsInteger": "Months must be a whole number",
+      "monthsMin": "Months must be at least 0",
+      "monthsMax": "Months must be at most 11"
+    }
+  },
+  "errors": {
+    "shared": {
+      "unableReachServer": "Unable to reach server. Please try again.",
+      "unexpected": "An unexpected error occurred.",
+      "unauthorized": "Unauthorized",
+      "invalidUserPayload": "Invalid user payload from backend",
+      "invalidUsersResponse": "Invalid users response from backend"
+    },
+    "register": {
+      "failed": "Registration failed. Please try again."
+    },
+    "changePassword": {
+      "failed": "Unable to update password. Please try again."
+    },
+    "pets": {
+      "fetchFailed": "Failed to fetch pets",
+      "searchOwnersFailed": "Failed to search owners",
+      "saveFailed": "Failed to save pet"
+    },
+    "users": {
+      "fetchFailed": "Failed to fetch users"
+    }
+  },
+  "authRegister": {
+    "badge": "Account Access",
+    "title": "Create staff account",
+    "description": "Add a new clinic user with a default password and require a password change on first sign in.",
+    "detailsEyebrow": "User details",
+    "detailsDescription": "Complete the required fields to create a new user account.",
+    "defaultPasswordTitle": "Default password",
+    "defaultPasswordDescription": "New accounts start with {{password}} and must change it on first sign in.",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Enter full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "staff@clinic.com",
+    "tenantLabel": "Tenant",
+    "promotionLabel": "Promotion",
+    "notSet": "Not set",
+    "createAccount": "Create Account",
+    "failedTitle": "Registration failed",
+    "successTitle": "Account created",
+    "successMessage": "Registration successful. Temporary password: {{password}}",
+    "footer": "New accounts are created with the access rules configured on the server."
+  },
+  "changePasswordPage": {
+    "badge": "First Sign-In Required",
+    "title": "Change your temporary password",
+    "description": "Your account was created with a default password. Set a new password now before continuing to NutriPet.",
+    "temporaryPasswordLabel": "Temporary password",
+    "autoSignOutNote": "Sign out will happen automatically after the password update so you can sign in again with the new password."
+  },
+  "changePasswordForm": {
+    "eyebrow": "Security update",
+    "description": "Set a new password before continuing to your workspace.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "At least 6 characters",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Repeat your new password",
+    "submit": "Update Password",
+    "failedTitle": "Password update failed",
+    "successTitle": "Password updated",
+    "successMessage": "Please sign in again with your new password."
+  },
+  "adminShell": {
+    "appName": "NutriPet",
+    "workspaceBadge": "NutriPet Main · {{badge}}",
+    "sidebarTitle": "NutriPet Pro",
+    "sidebarSubtitle": "Nutrition System",
+    "workspaceLabel": "Workspace",
+    "accounts": "Accounts",
+    "settings": "Settings",
+    "statistics": "Statistics",
+    "audit": "Audit Log",
+    "dailyReport": "Daily Report",
+    "monthlyKpi": "Monthly KPI",
+    "yearlySummary": "Yearly Summary",
+    "guest": "Guest",
+    "workspaceMember": "Workspace member",
+    "pages": {
+      "account": {
+        "label": "Accounts",
+        "badge": "Account Center",
+        "section": "User Management"
+      },
+      "settings": {
+        "label": "Theme Settings",
+        "badge": "Theme Studio",
+        "section": "Theme Customization"
+      },
+      "statisticsDaily": {
+        "label": "Daily Report",
+        "badge": "Daily Analytics",
+        "section": "Statistics"
+      },
+      "statisticsMonthly": {
+        "label": "Monthly KPI",
+        "badge": "Monthly Analytics",
+        "section": "Statistics"
+      },
+      "statisticsYearly": {
+        "label": "Yearly Summary",
+        "badge": "Yearly Analytics",
+        "section": "Statistics"
+      },
+      "statistics": {
+        "label": "Statistics",
+        "badge": "Analytics Hub",
+        "section": "Statistics"
+      },
+      "audit": {
+        "label": "Audit Log",
+        "badge": "Activity Monitoring",
+        "section": "Security"
+      },
+      "dashboard": {
+        "label": "Dashboard",
+        "badge": "Overview",
+        "section": "Dashboard"
+      },
+      "default": {
+        "label": "Dashboard",
+        "badge": "Workspace",
+        "section": "Dashboard"
+      }
+    }
+  },
+  "accountPage": {
+    "title": "Account Management",
+    "description": "Manage users, roles, and access from a single dashboard."
+  },
+  "accountForm": {
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "tenant": "Tenant",
+    "promotion": "Promotion",
+    "searchPlaceholder": "Search name / email / role / tenant / promotion…",
+    "noResults": "No results.",
+    "deleteTitle": "Delete this user permanently?",
+    "deleteDescription": "This action cannot be undone.",
+    "deleteConfirm": "Delete",
+    "deleteRowTitle": "Permanently delete “{{name}}”?",
+    "deleteRowDescription": "This record will be removed from the system forever.",
+    "deleteRowConfirm": "Confirm delete",
+    "roleAdmin": "Admin",
+    "roleUser": "User",
+    "roleOptionAdmin": "Admin",
+    "roleOptionUser": "User",
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailInvalid": "Invalid email address",
+      "roleRequired": "Role is required",
+      "atLeastOneField": "At least one field is required",
+      "invalidInput": "Invalid input",
+      "invalidPagination": "Invalid pagination",
+      "invalidUpdatePayload": "Invalid update payload"
+    }
+  },
+  "settingsPage": {
+    "badge": "Theme Studio",
+    "title": "Select A Theme Tone",
+    "description": "Choose one of the 9 main color tones for the admin workspace. The selected theme updates the navbar, sidebar, surfaces, badges, and form accents immediately.",
+    "paletteTitle": "Theme Palette",
+    "paletteDescription": "Choose from all 9 tones directly.",
+    "active": "Active: {{theme}}"
+  },
+  "auditPage": {
+    "title": "Audit Log",
+    "description": "Review important system activity, edit history, and security events."
+  },
+  "statisticsPage": {
+    "dailyTitle": "Daily Report",
+    "dailyDescription": "Daily totals and activity snapshots will live here.",
+    "monthlyTitle": "Monthly KPI",
+    "monthlyDescription": "Monthly trends and KPI summaries will live here.",
+    "yearlyTitle": "Yearly Summary",
+    "yearlyDescription": "Strategic yearly overviews and outcomes will live here."
+  },
+  "userShell": {
+    "actions": {
+      "expandNavigation": "Expand navigation",
+      "collapseNavigation": "Collapse navigation",
+      "signOut": "Sign out"
+    },
+    "workspace": {
+      "brand": "VetClinic Pro",
+      "shortName": "VetClinic",
+      "clinic": "VetClinic Main",
+      "department": "Medical Records",
+      "subtitle": "Nutrition System"
+    },
+    "navigation": {
+      "dashboard": "Dashboard",
+      "pets": "Pets",
+      "orders": "Orders",
+      "factory": "Factory"
+    },
+    "profile": {
+      "defaultName": "Clinic Operator",
+      "defaultMeta": "Medical Records"
+    }
+  },
+  "userPlaceholder": {
+    "ordersTitle": "Orders",
+    "ordersDescription": "Order tracking now sits under the same clinic dashboard shell. This page is prepared for queue, nutrition plan, and fulfillment modules.",
+    "factoryTitle": "Factory",
+    "factoryDescription": "Factory overview has been added to the user navigation so the menu matches the mockup. Production metrics and batch status can be plugged in here next."
+  },
+  "userDashboard": {
+    "stats": {
+      "todayQueue": "TODAY'S QUEUE",
+      "waiting": "WAITING",
+      "inProgress": "IN PROGRESS",
+      "totalPets": "TOTAL PETS"
+    },
+    "queueTitle": "Pet Queue",
+    "queueDescription": "Manage pet visits across all departments",
+    "filter": "Filter:",
+    "today": "Today",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "allStatus": "All Status",
+    "completed": "Completed",
+    "clinicMain": "VetClinic Main",
+    "clinicEast": "VetClinic East",
+    "medicalRecords": "Medical Records",
+    "laboratory": "Laboratory",
+    "pharmacy": "Pharmacy",
+    "number": "No",
+    "checkInTime": "Check-in Time",
+    "petName": "Pet Name",
+    "weightKg": "Weight (kg)",
+    "assignedDoctor": "Assigned Doctor",
+    "department": "Department",
+    "billing": "Billing",
+    "action": "Action",
+    "unpaid": "Unpaid",
+    "showingPets": "Showing {{shown}} of {{total}} pets",
+    "openPatient": "Open {{name}}"
+  },
+  "userPets": {
+    "loadFailedTitle": "Unable to load patients",
+    "searchPlaceholder": "Search by name, owner, or species...",
+    "registerPets": "Register Pets",
+    "number": "NO",
+    "hn": "HN",
+    "patientName": "PATIENT NAME",
+    "speciesBreed": "SPECIES / BREED",
+    "age": "AGE",
+    "weight": "WEIGHT",
+    "owner": "OWNER",
+    "registeredDate": "REGISTERED DATE",
+    "actions": "ACTIONS",
+    "mixedBreed": "Mixed Breed",
+    "purebred": "Purebred",
+    "year_one": "{{count}} year",
+    "year_other": "{{count}} years",
+    "month_one": "{{count}} month",
+    "month_other": "{{count}} months",
+    "loading": "Loading patients...",
+    "empty": "No patients found.",
+    "showingPatients": "Showing {{shown}} of {{total}} patients",
+    "openPatient": "Open {{name}}"
+  },
+  "registerPet": {
+    "title": "Patient Registration",
+    "description": "Enter patient and owner information",
+    "saveFailedTitle": "Unable to save",
+    "savedTitle": "Saved",
+    "saveSuccessWithPet": "Saved {{name}} with HN {{hn}}.",
+    "saveSuccess": "Pet registered successfully.",
+    "cancel": "Cancel",
+    "saveOnly": "Save Only",
+    "saveVisit": "Save & Visit",
+    "patientInformation": "Patient Information",
+    "ownerInformation": "Owner Information",
+    "healthStatus": "Health Status",
+    "activeScore": "Active Score",
+    "hospitalNumber": "Hospital Number (HN)",
+    "hospitalNumberPlaceholder": "Leave empty to auto-generate",
+    "patientName": "Patient Name",
+    "patientNamePlaceholder": "e.g. Momo, Buddy",
+    "species": "Species",
+    "selectSpecies": "Select species",
+    "dog": "Dog",
+    "cat": "Cat",
+    "rabbit": "Rabbit",
+    "bird": "Bird",
+    "other": "Other",
+    "sex": "Sex",
+    "male": "Male",
+    "female": "Female",
+    "breed": "Breed",
+    "mixedBreedOption": "Mixed Breed",
+    "purebredOption": "Purebred",
+    "mixedBreedPlaceholder": "Optional: Mixed with...",
+    "neuteredStatus": "Neutered Status",
+    "intact": "Intact",
+    "neutered": "Neutered",
+    "housingCondition": "Housing Condition",
+    "indoor": "Indoor",
+    "outdoor": "Outdoor",
+    "indoorOutdoor": "Indoor & Outdoor",
+    "ageBirthDate": "Age & Birth Date",
+    "age": "Age",
+    "years": "Years",
+    "months": "Months",
+    "birthDate": "Birth Date",
+    "weightKg": "Weight (kg)",
+    "weightPlaceholder": "0.00",
+    "newOwner": "New Owner",
+    "existingOwner": "Existing Owner",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "e.g. John",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "e.g. Smith",
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "+1 (555) 123-4567",
+    "email": "Email",
+    "emailPlaceholder": "john.smith@example.com",
+    "searchExistingOwner": "Search Existing Owner",
+    "searchExistingOwnerPlaceholder": "Search by owner name or phone number",
+    "selectedOwner": "Selected owner: {{name}} ({{phone}})",
+    "matchingOwners": "Matching owners",
+    "recentOwners": "Recent owners",
+    "searchingOwners": "Searching owners...",
+    "ownersNotFound": "No owners found.",
+    "petsCount_one": "{{count}} pet",
+    "petsCount_other": "{{count}} pets",
+    "healthy": "Healthy",
+    "diseaseHistory": "Disease History",
+    "visualActiveScore": "Visual Active Score",
+    "activeScoreAssessment": "Active Score Assessment",
+    "selectVisualActiveScore": "Select Visual Active Score",
+    "veryActive": "Very Active",
+    "moderatelyActive": "Moderately Active",
+    "notVeryActive": "Not Very Active",
+    "points": "({{count}} pts)",
+    "assessmentArea": "Assessment form area"
+  }
+}

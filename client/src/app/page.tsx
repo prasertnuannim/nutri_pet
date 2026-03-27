@@ -1,13 +1,14 @@
 "use client";
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Loading from "@/components/form/loading";
 
 export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/login');
+    router.replace("/login");
   }, [router]);
 
-  return <div>page</div>;
+  return <Loading />;
 }

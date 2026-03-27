@@ -1,24 +1,61 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface LoadingProps {
   message?: string;
+  messageKey?: string;
 }
 
-export default function Loading({ message }: LoadingProps) {
-  const text = message ?? "Loading";
-  const colors = ["#1e40af", "#9333ea", "#0ea5e9", "#db2777", "#1e40af"];
+const themeColorFallback = [
+  "var(--primary)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--primary)",
+];
+
+export default function Loading({ message, messageKey }: LoadingProps) {
+  const { t } = useTranslation();
+  const text = messageKey
+    ? t(messageKey)
+    : message
+      ? t(message, { defaultValue: message })
+      : t("common.status.loading");
+  const [colors, setColors] = useState(themeColorFallback);
+
+  useEffect(() => {
+    const readColors = () => {
+      const styles = getComputedStyle(document.documentElement);
+      const primary =
+        styles.getPropertyValue("--primary").trim() || themeColorFallback[0];
+      const chart2 =
+        styles.getPropertyValue("--chart-2").trim() || themeColorFallback[1];
+      const chart3 =
+        styles.getPropertyValue("--chart-3").trim() || themeColorFallback[2];
+      const chart4 =
+        styles.getPropertyValue("--chart-4").trim() || themeColorFallback[3];
+
+      setColors([primary, chart2, chart3, chart4, primary]);
+    };
+
+    readColors();
+
+    const observer = new MutationObserver(readColors);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-color-theme", "class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
-      className="
-        fixed inset-0 z-50 
-        flex flex-col justify-center items-center gap-4
-        backdrop-blur-md
-      "
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-4 bg-background/60 backdrop-blur-md"
     >
-      {/* Bouncing dots */}
       <div className="flex space-x-2">
         {[0, 0.2, 0.4].map((delay, index) => (
           <motion.span
@@ -40,7 +77,6 @@ export default function Loading({ message }: LoadingProps) {
         ))}
       </div>
 
-      {/* Text animation */}
       <div className="flex space-x-1 text-2xl font-bold">
         {text.split("").map((char, i) => (
           <motion.span

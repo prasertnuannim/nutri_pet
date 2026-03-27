@@ -32,9 +32,9 @@ type UsersPageResult = {
 };
 
 const createUserSchema = z.object({
-  name: z.string().trim().min(1, "Name is required"),
-  email: z.string().trim().email("Invalid email address"),
-  role: z.string().trim().min(1, "Role is required"),
+  name: z.string().trim().min(1, "accountForm.validation.nameRequired"),
+  email: z.string().trim().email("accountForm.validation.emailInvalid"),
+  role: z.string().trim().min(1, "accountForm.validation.roleRequired"),
   tenant: z.string().trim().optional().default(""),
   promotion: z.string().trim().optional().default(""),
 });
@@ -42,7 +42,7 @@ const createUserSchema = z.object({
 const updateUserSchema = createUserSchema
   .partial()
   .refine((payload) => Object.keys(payload).length > 0, {
-    message: "At least one field is required",
+    message: "accountForm.validation.atLeastOneField",
   });
 
 const paginationSchema = z.object({
@@ -66,7 +66,7 @@ const backendUserSchema = z
   .passthrough();
 
 const toErrorMessage = (error: unknown) =>
-  error instanceof Error ? error.message : "An unexpected error occurred";
+  error instanceof Error ? error.message : "errors.shared.unexpected";
 
 const parseNumber = (value: unknown, fallback: number) => {
   if (typeof value === "number" && Number.isFinite(value)) return value;
@@ -80,7 +80,7 @@ const parseNumber = (value: unknown, fallback: number) => {
 const toUser = (input: unknown): FullUser => {
   const parsed = backendUserSchema.safeParse(input);
   if (!parsed.success) {
-    throw new Error("Invalid user payload from backend");
+    throw new Error("errors.shared.invalidUserPayload");
   }
 
   return {
@@ -147,7 +147,7 @@ const normalizeUsersResult = (
     };
   }
 
-  throw new Error("Invalid users response from backend");
+  throw new Error("errors.shared.invalidUsersResponse");
 };
 
 const createUser = async (
@@ -163,7 +163,10 @@ const createUser = async (
   });
 
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return {
+      success: false,
+      error: parsed.error.issues[0]?.message ?? "accountForm.validation.invalidInput",
+    };
   }
 
   try {
@@ -181,7 +184,10 @@ const getUsers = async (
 ): Promise<AccountActionResult<UsersPageResult>> => {
   const parsed = paginationSchema.safeParse(raw ?? {});
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return {
+      success: false,
+      error: parsed.error.issues[0]?.message ?? "accountForm.validation.invalidPagination",
+    };
   }
 
   try {
@@ -200,7 +206,11 @@ const updateUser = async (
 ): Promise<AccountActionResult<FullUser>> => {
   const parsed = updateUserSchema.safeParse(data);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return {
+      success: false,
+      error:
+        parsed.error.issues[0]?.message ?? "accountForm.validation.invalidUpdatePayload",
+    };
   }
 
   try {

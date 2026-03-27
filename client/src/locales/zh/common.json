@@ -1,0 +1,493 @@
+{
+  "languageSwitcher": {
+    "label": "语言",
+    "placeholder": "选择语言"
+  },
+  "themeSwitcher": {
+    "label": "颜色主题",
+    "placeholder": "选择颜色主题"
+  },
+  "languages": {
+    "th": "ไทย",
+    "en": "English",
+    "zh": "中文"
+  },
+  "common": {
+    "actions": {
+      "add": "新增",
+      "cancel": "取消",
+      "confirm": "确认",
+      "close": "关闭",
+      "delete": "删除",
+      "continueWithGoogle": "使用 Google 继续",
+      "clearFilters": "清除筛选",
+      "signOut": "退出登录",
+      "save": "保存"
+    },
+    "status": {
+      "loading": "加载中",
+      "processing": "处理中..."
+    },
+    "table": {
+      "actions": "操作",
+      "searchPlaceholder": "搜索…",
+      "noResults": "没有结果。",
+      "deleteTitle": "永久删除？",
+      "deleteDescription": "此操作无法撤销。"
+    },
+    "units": {
+      "kg": "kg"
+    },
+    "pagination": {
+      "rows": "行",
+      "page": "页",
+      "showingRange": "{{start}}-{{end}} / 共 {{total}}",
+      "showingEmpty": "0 / 0"
+    }
+  },
+  "dialog": {
+    "confirm": {
+      "title": "确定要继续吗？",
+      "description": "此操作无法撤销。"
+    }
+  },
+  "themes": {
+    "forest": {
+      "label": "森林绿",
+      "description": "适合诊疗场景的绿色调"
+    },
+    "sky": {
+      "label": "天空蓝",
+      "description": "清新的浅蓝色调"
+    },
+    "yellow": {
+      "label": "金黄色",
+      "description": "温暖明亮的黄色"
+    },
+    "lime": {
+      "label": "青柠绿",
+      "description": "草本感清新绿色"
+    },
+    "navy": {
+      "label": "海军蓝",
+      "description": "沉稳专业的蓝色"
+    },
+    "cocoa": {
+      "label": "可可棕",
+      "description": "自然温暖的棕色调"
+    },
+    "sunset": {
+      "label": "落日橙",
+      "description": "温暖的橙色光感"
+    },
+    "violet": {
+      "label": "皇家紫",
+      "description": "醒目的高雅紫色"
+    },
+    "rose": {
+      "label": "玫瑰粉",
+      "description": "柔和鲜明的玫瑰色"
+    }
+  },
+  "notFound": {
+    "title": "找不到页面",
+    "description": "您要查找的页面不存在。"
+  },
+  "loginPage": {
+    "heroTitle": "为您的宠物护理团队提供更简单的访问方式。",
+    "heroDescription": "登录后即可在一个地方管理宠物档案、营养计划和诊所工作流。",
+    "heroCardDescription": "一个安全的统一工作区，用于前台接诊、宠物记录和营养跟进。",
+    "welcomeTitle": "欢迎",
+    "welcomeDescription": "登录以继续进入您的工作区。",
+    "mobileDescription": "用于宠物档案、营养计划和日常工作的诊所入口。",
+    "emailOnly": "仅支持邮箱登录",
+    "footer": "请使用您的诊所账号登录 NutriPet。",
+    "mascotAlt": "NutriPet 吉祥物"
+  },
+  "loginForm": {
+    "eyebrow": "员工登录",
+    "description": "请输入诊所邮箱和密码以登录 NutriPet。",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "yourname@clinic.com",
+    "passwordLabel": "密码",
+    "passwordPlaceholder": "输入您的密码",
+    "signIn": "登录",
+    "failedTitle": "登录失败",
+    "invalidCredentials": "邮箱或密码不正确",
+    "unableLogin": "无法登录，请稍后重试。",
+    "footer": "仅限已获批准的诊所账号访问。"
+  },
+  "validation": {
+    "auth": {
+      "nameRequired": "姓名为必填项",
+      "emailInvalid": "邮箱格式不正确",
+      "emailRequired": "邮箱为必填项",
+      "passwordRequired": "密码为必填项",
+      "passwordMin": "密码至少需要 6 个字符",
+      "confirmPasswordRequired": "确认密码为必填项",
+      "passwordMismatch": "两次输入的密码不一致"
+    },
+    "pet": {
+      "patientNameRequired": "患者名称为必填项",
+      "speciesRequired": "物种为必填项",
+      "sexRequired": "性别为必填项",
+      "breedRequired": "品种为必填项",
+      "neuteredRequired": "绝育状态为必填项",
+      "housingRequired": "饲养环境为必填项",
+      "weightNumber": "体重必须是数字",
+      "weightPositive": "体重必须大于 0",
+      "weightRequired": "体重为必填项",
+      "firstNameRequired": "名字为必填项",
+      "lastNameRequired": "姓氏为必填项",
+      "phoneRequired": "电话号码为必填项",
+      "ownerSelectRequired": "请选择已有主人",
+      "emailInvalid": "邮箱格式不正确",
+      "visualScoreRequired": "请选择可视活动评分",
+      "yearsInteger": "年份必须为整数",
+      "yearsMin": "年份不能小于 0",
+      "monthsInteger": "月份必须为整数",
+      "monthsMin": "月份不能小于 0",
+      "monthsMax": "月份不能大于 11"
+    }
+  },
+  "errors": {
+    "shared": {
+      "unableReachServer": "无法连接到服务器，请稍后重试。",
+      "unexpected": "发生了意外错误。",
+      "unauthorized": "未授权",
+      "invalidUserPayload": "后端返回的用户数据无效",
+      "invalidUsersResponse": "后端返回的用户列表数据无效"
+    },
+    "register": {
+      "failed": "注册失败，请稍后重试。"
+    },
+    "changePassword": {
+      "failed": "无法更新密码，请稍后重试。"
+    },
+    "pets": {
+      "fetchFailed": "无法获取宠物数据",
+      "searchOwnersFailed": "无法搜索主人",
+      "saveFailed": "无法保存宠物数据"
+    },
+    "users": {
+      "fetchFailed": "无法获取用户数据"
+    }
+  },
+  "authRegister": {
+    "badge": "账号访问",
+    "title": "创建员工账号",
+    "description": "为新的诊所用户创建账号，使用默认密码，并在首次登录时强制修改密码。",
+    "detailsEyebrow": "用户信息",
+    "detailsDescription": "请填写创建新用户账号所需的必要信息。",
+    "defaultPasswordTitle": "默认密码",
+    "defaultPasswordDescription": "新账号将以 {{password}} 作为初始密码，并必须在首次登录时修改。",
+    "usernameLabel": "用户名",
+    "usernamePlaceholder": "输入姓名",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "staff@clinic.com",
+    "tenantLabel": "租户",
+    "promotionLabel": "促销活动",
+    "notSet": "未设置",
+    "createAccount": "创建账号",
+    "failedTitle": "注册失败",
+    "successTitle": "账号已创建",
+    "successMessage": "注册成功。临时密码：{{password}}",
+    "footer": "新账号将按照服务器配置的访问规则创建。"
+  },
+  "changePasswordPage": {
+    "badge": "首次登录必须完成",
+    "title": "修改您的临时密码",
+    "description": "您的账号使用默认密码创建。继续进入 NutriPet 之前，请先设置新密码。",
+    "temporaryPasswordLabel": "临时密码",
+    "autoSignOutNote": "密码更新后系统会自动退出登录，您可以使用新密码重新登录。"
+  },
+  "changePasswordForm": {
+    "eyebrow": "安全更新",
+    "description": "继续进入工作区之前，请先设置新密码。",
+    "newPasswordLabel": "新密码",
+    "newPasswordPlaceholder": "至少 6 个字符",
+    "confirmPasswordLabel": "确认密码",
+    "confirmPasswordPlaceholder": "再次输入新密码",
+    "submit": "更新密码",
+    "failedTitle": "密码更新失败",
+    "successTitle": "密码已更新",
+    "successMessage": "请使用新密码重新登录。"
+  },
+  "adminShell": {
+    "appName": "NutriPet",
+    "workspaceBadge": "NutriPet Main · {{badge}}",
+    "sidebarTitle": "NutriPet Pro",
+    "sidebarSubtitle": "营养管理系统",
+    "workspaceLabel": "工作区",
+    "accounts": "账号",
+    "settings": "设置",
+    "statistics": "统计",
+    "audit": "审计日志",
+    "dailyReport": "日报",
+    "monthlyKpi": "月度 KPI",
+    "yearlySummary": "年度汇总",
+    "guest": "访客",
+    "workspaceMember": "工作区成员",
+    "pages": {
+      "account": {
+        "label": "账号",
+        "badge": "账号中心",
+        "section": "用户管理"
+      },
+      "settings": {
+        "label": "主题设置",
+        "badge": "主题工作台",
+        "section": "主题定制"
+      },
+      "statisticsDaily": {
+        "label": "日报",
+        "badge": "每日分析",
+        "section": "统计"
+      },
+      "statisticsMonthly": {
+        "label": "月度 KPI",
+        "badge": "月度分析",
+        "section": "统计"
+      },
+      "statisticsYearly": {
+        "label": "年度汇总",
+        "badge": "年度分析",
+        "section": "统计"
+      },
+      "statistics": {
+        "label": "统计",
+        "badge": "分析中心",
+        "section": "统计"
+      },
+      "audit": {
+        "label": "审计日志",
+        "badge": "活动监控",
+        "section": "安全"
+      },
+      "dashboard": {
+        "label": "仪表板",
+        "badge": "概览",
+        "section": "仪表板"
+      },
+      "default": {
+        "label": "仪表板",
+        "badge": "工作区",
+        "section": "仪表板"
+      }
+    }
+  },
+  "accountPage": {
+    "title": "账号管理",
+    "description": "在一个仪表板中管理用户、角色和访问权限。"
+  },
+  "accountForm": {
+    "name": "姓名",
+    "email": "邮箱",
+    "role": "角色",
+    "tenant": "租户",
+    "promotion": "促销活动",
+    "searchPlaceholder": "搜索姓名 / 邮箱 / 角色 / 租户 / 促销活动…",
+    "noResults": "没有结果。",
+    "deleteTitle": "永久删除该用户？",
+    "deleteDescription": "此操作无法撤销。",
+    "deleteConfirm": "删除",
+    "deleteRowTitle": "永久删除“{{name}}”？",
+    "deleteRowDescription": "该记录将从系统中永久移除。",
+    "deleteRowConfirm": "确认删除",
+    "roleAdmin": "管理员",
+    "roleUser": "用户",
+    "roleOptionAdmin": "管理员",
+    "roleOptionUser": "用户",
+    "validation": {
+      "nameRequired": "姓名为必填项",
+      "emailInvalid": "邮箱格式不正确",
+      "roleRequired": "角色为必填项",
+      "atLeastOneField": "至少需要填写一个字段",
+      "invalidInput": "输入内容无效",
+      "invalidPagination": "分页参数无效",
+      "invalidUpdatePayload": "更新数据无效"
+    }
+  },
+  "settingsPage": {
+    "badge": "主题工作台",
+    "title": "选择主题色调",
+    "description": "为管理工作区选择 9 种主色之一。所选主题会立即更新 navbar、sidebar、surface、badge 和表单强调色。",
+    "paletteTitle": "主题面板",
+    "paletteDescription": "可直接从 9 种色调中选择。",
+    "active": "当前主题：{{theme}}"
+  },
+  "auditPage": {
+    "title": "审计日志",
+    "description": "查看重要系统活动、编辑记录和安全事件。"
+  },
+  "statisticsPage": {
+    "dailyTitle": "日报",
+    "dailyDescription": "每日汇总和活动快照将显示在这里。",
+    "monthlyTitle": "月度 KPI",
+    "monthlyDescription": "月度趋势和 KPI 汇总将显示在这里。",
+    "yearlyTitle": "年度汇总",
+    "yearlyDescription": "年度战略概览和成果将显示在这里。"
+  },
+  "userShell": {
+    "actions": {
+      "expandNavigation": "展开导航",
+      "collapseNavigation": "收起导航",
+      "signOut": "退出登录"
+    },
+    "workspace": {
+      "brand": "VetClinic Pro",
+      "shortName": "VetClinic",
+      "clinic": "VetClinic Main",
+      "department": "病历管理",
+      "subtitle": "营养系统"
+    },
+    "navigation": {
+      "dashboard": "仪表板",
+      "pets": "宠物",
+      "orders": "订单",
+      "factory": "工厂"
+    },
+    "profile": {
+      "defaultName": "诊所操作员",
+      "defaultMeta": "病历管理"
+    }
+  },
+  "userPlaceholder": {
+    "ordersTitle": "订单",
+    "ordersDescription": "订单追踪现在位于同一个诊所仪表板框架下。此页面已为队列、营养计划和履约模块预留。",
+    "factoryTitle": "工厂",
+    "factoryDescription": "工厂概览已加入用户导航，因此菜单与设计稿一致。下一步可在这里接入产量指标和批次状态。"
+  },
+  "userDashboard": {
+    "stats": {
+      "todayQueue": "今日队列",
+      "waiting": "等待中",
+      "inProgress": "进行中",
+      "totalPets": "宠物总数"
+    },
+    "queueTitle": "宠物队列",
+    "queueDescription": "管理所有科室的宠物来访流程",
+    "filter": "筛选：",
+    "today": "今天",
+    "thisWeek": "本周",
+    "thisMonth": "本月",
+    "allStatus": "全部状态",
+    "completed": "已完成",
+    "clinicMain": "VetClinic Main",
+    "clinicEast": "VetClinic East",
+    "medicalRecords": "病历管理",
+    "laboratory": "检验室",
+    "pharmacy": "药房",
+    "number": "序号",
+    "checkInTime": "登记时间",
+    "petName": "宠物名称",
+    "weightKg": "体重 (kg)",
+    "assignedDoctor": "负责医生",
+    "department": "科室",
+    "billing": "费用",
+    "action": "操作",
+    "unpaid": "未支付",
+    "showingPets": "显示 {{shown}} / {{total}} 只宠物",
+    "openPatient": "打开 {{name}}"
+  },
+  "userPets": {
+    "loadFailedTitle": "无法加载患者列表",
+    "searchPlaceholder": "按名称、主人或物种搜索...",
+    "registerPets": "登记宠物",
+    "number": "序号",
+    "hn": "HN",
+    "patientName": "患者名称",
+    "speciesBreed": "物种 / 品种",
+    "age": "年龄",
+    "weight": "体重",
+    "owner": "主人",
+    "registeredDate": "登记日期",
+    "actions": "操作",
+    "mixedBreed": "混种",
+    "purebred": "纯种",
+    "year_one": "{{count}} 年",
+    "year_other": "{{count}} 年",
+    "month_one": "{{count}} 个月",
+    "month_other": "{{count}} 个月",
+    "loading": "正在加载患者列表...",
+    "empty": "未找到患者。",
+    "showingPatients": "显示 {{shown}} / {{total}} 位患者",
+    "openPatient": "打开 {{name}}"
+  },
+  "registerPet": {
+    "title": "患者登记",
+    "description": "请输入患者和主人的信息",
+    "saveFailedTitle": "保存失败",
+    "savedTitle": "已保存",
+    "saveSuccessWithPet": "已保存 {{name}}，HN 为 {{hn}}。",
+    "saveSuccess": "宠物登记成功。",
+    "cancel": "取消",
+    "saveOnly": "仅保存",
+    "saveVisit": "保存并返回列表",
+    "patientInformation": "患者信息",
+    "ownerInformation": "主人信息",
+    "healthStatus": "健康状态",
+    "activeScore": "活动评分",
+    "hospitalNumber": "病历号 (HN)",
+    "hospitalNumberPlaceholder": "留空将自动生成",
+    "patientName": "患者名称",
+    "patientNamePlaceholder": "例如：Momo、Buddy",
+    "species": "物种",
+    "selectSpecies": "选择物种",
+    "dog": "狗",
+    "cat": "猫",
+    "rabbit": "兔子",
+    "bird": "鸟",
+    "other": "其他",
+    "sex": "性别",
+    "male": "公",
+    "female": "母",
+    "breed": "品种",
+    "mixedBreedOption": "混种",
+    "purebredOption": "纯种",
+    "mixedBreedPlaceholder": "可选：与什么品种混种",
+    "neuteredStatus": "绝育状态",
+    "intact": "未绝育",
+    "neutered": "已绝育",
+    "housingCondition": "饲养环境",
+    "indoor": "室内",
+    "outdoor": "室外",
+    "indoorOutdoor": "室内和室外",
+    "ageBirthDate": "年龄与出生日期",
+    "age": "年龄",
+    "years": "年",
+    "months": "月",
+    "birthDate": "出生日期",
+    "weightKg": "体重 (kg)",
+    "weightPlaceholder": "0.00",
+    "newOwner": "新主人",
+    "existingOwner": "已有主人",
+    "firstName": "名字",
+    "firstNamePlaceholder": "例如：John",
+    "lastName": "姓氏",
+    "lastNamePlaceholder": "例如：Smith",
+    "phoneNumber": "电话号码",
+    "phoneNumberPlaceholder": "+1 (555) 123-4567",
+    "email": "邮箱",
+    "emailPlaceholder": "john.smith@example.com",
+    "searchExistingOwner": "搜索已有主人",
+    "searchExistingOwnerPlaceholder": "按主人姓名或电话号码搜索",
+    "selectedOwner": "已选择主人：{{name}}（{{phone}}）",
+    "matchingOwners": "匹配的主人",
+    "recentOwners": "最近的主人",
+    "searchingOwners": "正在搜索主人...",
+    "ownersNotFound": "未找到主人。",
+    "petsCount_one": "{{count}} 只",
+    "petsCount_other": "{{count}} 只",
+    "healthy": "健康",
+    "diseaseHistory": "有病史",
+    "visualActiveScore": "可视活动评分",
+    "activeScoreAssessment": "活动评分评估",
+    "selectVisualActiveScore": "选择可视活动评分",
+    "veryActive": "非常活跃",
+    "moderatelyActive": "中等活跃",
+    "notVeryActive": "不太活跃",
+    "points": "({{count}} 分)",
+    "assessmentArea": "评估表区域"
+  }
+}
