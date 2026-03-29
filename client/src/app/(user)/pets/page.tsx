@@ -32,7 +32,6 @@ export default function PatientsTablePage() {
 
   useEffect(() => {
     let ignore = false;
-    setIsLoading(true);
 
     getPetsAction({ query: deferredSearch, limit: 100 })
       .then((result) => {
@@ -96,7 +95,13 @@ export default function PatientsTablePage() {
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                const nextSearch = e.target.value;
+                if (nextSearch.trim() !== deferredSearch) {
+                  setIsLoading(true);
+                }
+                setSearch(nextSearch);
+              }}
               placeholder={t("userPets.searchPlaceholder")}
               className="pl-9"
             />
@@ -135,9 +140,12 @@ export default function PatientsTablePage() {
                     </TableCell>
 
                     <TableCell>
-                      <button className="font-medium text-primary hover:underline">
+                      <Link
+                        href={`/pets/${patient.id}`}
+                        className="font-medium text-primary hover:underline"
+                      >
                         {patient.hn}
-                      </button>
+                      </Link>
                     </TableCell>
 
                     <TableCell className="font-medium text-foreground">
@@ -187,12 +195,15 @@ export default function PatientsTablePage() {
                     <TableCell>
                       <div className="flex justify-center">
                         <Button
+                          asChild
                           variant="ghost"
                           size="icon"
                           aria-label={t("userPets.openPatient", { name: patient.patientName })}
                           className="text-primary hover:bg-primary-soft hover:text-primary"
                         >
-                          <ArrowRight className="h-4 w-4" />
+                          <Link href={`/pets/${patient.id}`}>
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
                         </Button>
                       </div>
                     </TableCell>

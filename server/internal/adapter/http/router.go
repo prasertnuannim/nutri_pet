@@ -58,4 +58,5 @@ func Register(
 	pets.Get("/", petHandler.List)
 	pets.Post("/register", petHandler.Register)
 	pets.Get("/owners", petHandler.SearchOwners)
+	pets.Get("/:id", petHandler.GetByID)
 }

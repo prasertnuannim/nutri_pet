@@ -17,8 +17,8 @@ export default function LoginForm() {
   const router = useRouter();
   const initialState: LoginFormState = {
     errors: {},
-    //values: { email: "user@example.com", password: "user123" },
-    values: { email: "admin@example.com", password: "Admin1234" },
+    values: { email: "user@example.com", password: "user123" },
+    //values: { email: "admin@example.com", password: "Admin1234" },
   };
 
   const [state, setState] = useState<LoginFormState>(initialState);

@@ -474,6 +474,26 @@ func (h *PetHandler) List(c *fiber.Ctx) error {
 	})
 }
 
+func (h *PetHandler) GetByID(c *fiber.Ctx) error {
+	petID := strings.TrimSpace(c.Params("id"))
+	if petID == "" {
+		return fiber.NewError(fiber.StatusBadRequest, "pet id is required")
+	}
+
+	var pet dbm.Pet
+	if err := h.db.WithContext(c.Context()).
+		Preload("Owner.Pets").
+		Where("id = ?", petID).
+		First(&pet).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return fiber.NewError(fiber.StatusNotFound, "pet not found")
+		}
+		return fiber.NewError(fiber.StatusInternalServerError, "failed to fetch pet")
+	}
+
+	return c.JSON(toPetResponse(pet))
+}
+
 func (h *PetHandler) SearchOwners(c *fiber.Ctx) error {
 	query := strings.TrimSpace(c.Query("query"))
 	limit := c.QueryInt("limit", 8)

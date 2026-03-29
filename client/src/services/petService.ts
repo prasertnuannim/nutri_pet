@@ -83,6 +83,19 @@ export const petService = {
     return res.json() as Promise<PetsListResponse>;
   },
 
+  async getById(id: string, auth: AuthInput) {
+    const res = await goApiFetch(`/pets/${id}`, {
+      method: "GET",
+      accessToken: auth.accessToken,
+    });
+
+    if (!res.ok) {
+      throw new Error(await extractApiError(res, "Failed to fetch pet"));
+    }
+
+    return res.json() as Promise<RegisteredPet>;
+  },
+
   async getOwners(params: { query?: string; limit?: number }, auth: AuthInput) {
     const query = new URLSearchParams();
 

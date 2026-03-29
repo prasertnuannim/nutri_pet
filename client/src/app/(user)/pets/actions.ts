@@ -17,10 +17,14 @@ type PetListInput = {
   limit?: number;
 };
 
+type PetDetailInput = {
+  id: string;
+};
+
 const toErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : "errors.shared.unexpected";
 
-function parsePositiveNumber(value: string, field: string): number {
+function parsePositiveNumber(value: string): number {
   const parsed = Number(value);
   if (!Number.isFinite(parsed) || parsed <= 0) {
     throw new Error("validation.pet.weightPositive");
@@ -81,7 +85,7 @@ function toRegisterPetPayload(values: RegisterPetsFormValues): RegisterPetPayloa
     neuteredStatus: values.neuteredStatus,
     housingCondition: values.housingCondition,
     ageType: values.ageType,
-    weight: parsePositiveNumber(values.weight, "Weight"),
+    weight: parsePositiveNumber(values.weight),
     ownerType: values.ownerType,
     healthStatus: values.healthStatus,
     activeScoreTab: values.activeScoreTab,
@@ -185,6 +189,41 @@ const getPets = async (
   }
 };
 
+const getPetById = async (
+  auth: AuthContext,
+  input: PetDetailInput,
+): Promise<PetActionResult<RegisteredPet>> => {
+  const petId = input.id.trim();
+
+  try {
+    const pet = await petService.getById(petId, {
+      accessToken: auth.accessToken,
+    });
+    return { success: true, data: pet };
+  } catch (error: unknown) {
+    if (
+      error instanceof Error &&
+      error.message.includes(`Cannot GET /pets/${petId}`)
+    ) {
+      try {
+        const pets = await petService.getAll(
+          { limit: 200 },
+          { accessToken: auth.accessToken },
+        );
+
+        const pet = pets.data.find((item) => item.id === petId);
+        if (pet) {
+          return { success: true, data: pet };
+        }
+      } catch {
+        // Fall through to the original error below.
+      }
+    }
+
+    return { success: false, error: toErrorMessage(error) };
+  }
+};
+
 export const registerPetAction = withAuthAction(registerPet, {
   roles: [AccessRole.Admin, AccessRole.User],
 });
@@ -194,5 +233,9 @@ export const searchPetOwnersAction = withAuthAction(searchPetOwners, {
 });
 
 export const getPetsAction = withAuthAction(getPets, {
+  roles: [AccessRole.Admin, AccessRole.User],
+});
+
+export const getPetByIdAction = withAuthAction(getPetById, {
   roles: [AccessRole.Admin, AccessRole.User],
 });
