@@ -14,6 +14,9 @@ import {
   LANGUAGE_STORAGE_KEY,
   resolveLanguage,
 } from "@/lib/i18n/shared";
+import RootAppShell from "@/components/app-shell/root-app-shell";
+import { normalizeAccessRole } from "@/lib/auth/accessRole";
+import { getAuthSession } from "@/services/auth/session";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -56,9 +59,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = await cookies();
+  const session = await getAuthSession();
   const initialLanguage = resolveLanguage(
     cookieStore.get(LANGUAGE_STORAGE_KEY)?.value,
   );
+  const role = normalizeAccessRole(session?.user?.role) ?? null;
+  const profile = session?.user
+    ? {
+        name: session.user.name ?? "User",
+        email: session.user.email ?? null,
+        role: session.user.role ?? null,
+        image: session.user.image ?? null,
+      }
+    : null;
 
   return (
     <html
@@ -78,7 +91,11 @@ export default async function RootLayout({
           {themeInitScript}
         </Script>
         <LanguageProvider initialLanguage={initialLanguage}>
-          <ColorThemeProvider>{children}</ColorThemeProvider>
+          <ColorThemeProvider>
+            <RootAppShell profile={profile} role={role}>
+              {children}
+            </RootAppShell>
+          </ColorThemeProvider>
         </LanguageProvider>
       </body>
     </html>

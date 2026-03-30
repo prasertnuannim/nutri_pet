@@ -15,6 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { userNavigationItems } from "@/app/(user)/navigation";
 import { LogoutButton } from "@/components/auth/logoutButton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSidebar } from "@/context/sidebar-context";
@@ -34,19 +35,14 @@ export default function Sidebar({
   const { open } = useSidebar();
   const pathname = usePathname() ?? "";
   const { t } = useTranslation();
-  const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [manualSubmenuOpen, setManualSubmenuOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement | null>(null);
 
   const isStatisticsActive =
     pathname === "/statistics" || pathname.startsWith("/statistics");
+  const submenuOpen = isStatisticsActive || manualSubmenuOpen;
   const avatarSrc =
     profile?.image && profile.image.trim().length > 0 ? profile.image : undefined;
-
-  useEffect(() => {
-    if (isStatisticsActive) {
-      setSubmenuOpen(true);
-    }
-  }, [isStatisticsActive]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -54,7 +50,7 @@ export default function Sidebar({
         popoverRef.current &&
         !popoverRef.current.contains(event.target as Node)
       ) {
-        setSubmenuOpen(false);
+        setManualSubmenuOpen(false);
       }
     }
 
@@ -94,13 +90,32 @@ export default function Sidebar({
       </div>
 
       <div className="relative flex-1 overflow-y-auto px-3 py-4">
-        {open ? (
-          <p className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            {t("adminShell.workspaceLabel")}
-          </p>
-        ) : null}
-
         <nav className="space-y-1">
+          {userNavigationItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <MenuLink
+                key={item.href}
+                href={item.href}
+                icon={<Icon size={18} />}
+                label={t(item.labelKey)}
+                active={
+                  pathname === item.href || pathname.startsWith(`${item.href}/`)
+                }
+                open={open}
+              />
+            );
+          })}
+
+          <div className={clsx("my-3 border-t border-border", !open && "mx-2")} />
+
+          {open ? (
+            <p className="px-3 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {t("adminShell.workspaceLabel")}
+            </p>
+          ) : null}
+
           <MenuLink
             href="/account"
             icon={<User size={18} />}
@@ -117,44 +132,61 @@ export default function Sidebar({
             open={open}
           />
 
-          <button
-            type="button"
-            onClick={() => setSubmenuOpen((prev) => !prev)}
-            className={clsx(
-              "flex w-full items-center rounded-xl py-2.5 text-sm font-medium transition",
-              open ? "gap-3 px-3" : "justify-center px-0",
-              isStatisticsActive || submenuOpen
-                ? "bg-primary-soft text-primary ring-1 ring-inset ring-primary/10"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground",
-            )}
-          >
-            <BarChart3 size={18} />
-            {open ? (
-              <>
-                <span className="truncate">{t("adminShell.statistics")}</span>
-                <ChevronDown
-                  size={16}
-                  className={clsx(
-                    "ml-auto transition-transform",
-                    submenuOpen && "rotate-180",
-                  )}
-                />
-              </>
-            ) : null}
-          </button>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setManualSubmenuOpen((prev) => !prev)}
+              className={clsx(
+                "flex w-full items-center rounded-xl py-2.5 text-sm font-medium transition",
+                open ? "gap-3 px-3" : "justify-center px-0",
+                isStatisticsActive || submenuOpen
+                  ? "bg-primary-soft text-primary ring-1 ring-inset ring-primary/10"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
+              )}
+            >
+              <BarChart3 size={18} />
+              {open ? (
+                <>
+                  <span className="truncate">{t("adminShell.statistics")}</span>
+                  <ChevronDown
+                    size={16}
+                    className={clsx(
+                      "ml-auto transition-transform",
+                      submenuOpen && "rotate-180",
+                    )}
+                  />
+                </>
+              ) : null}
+            </button>
 
-          <AnimatePresence initial={false}>
-            {open && submenuOpen ? (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="ml-4 space-y-1 overflow-hidden border-l border-border pl-4"
-              >
-                <SubMenu />
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
+            <AnimatePresence initial={false}>
+              {open && submenuOpen ? (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="ml-4 space-y-1 overflow-hidden border-l border-border pl-4"
+                >
+                  <SubMenu />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+
+            <AnimatePresence>
+              {!open && submenuOpen ? (
+                <motion.div
+                  ref={popoverRef}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute left-full top-0 ml-3 w-48 rounded-2xl border border-border bg-card p-2 shadow-xl shadow-black/5"
+                >
+                  <SubMenu onSelect={() => setManualSubmenuOpen(false)} />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </div>
 
           <MenuLink
             href="/audit"
@@ -164,21 +196,6 @@ export default function Sidebar({
             open={open}
           />
         </nav>
-
-        <AnimatePresence>
-          {!open && submenuOpen ? (
-            <motion.div
-              ref={popoverRef}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2 }}
-              className="absolute left-20 top-36 w-48 rounded-2xl border border-border bg-card p-2 shadow-xl shadow-black/5"
-            >
-              <SubMenu onSelect={() => setSubmenuOpen(false)} />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
       </div>
 
       <div className="border-t border-border p-3">
