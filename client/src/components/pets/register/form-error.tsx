@@ -8,7 +8,7 @@ export function FormError({ name }: { name: string }) {
     <ErrorMessage
       name={name}
       render={(msg) => (
-        <p className="mt-1 text-sm text-destructive">
+        <p className="mt-1 text-sm text-red-600">
           {t(msg, { defaultValue: msg })}
         </p>
       )}

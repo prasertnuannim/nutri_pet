@@ -16,19 +16,30 @@ import (
 func main() {
 	cfg := config.Load()
 
-	gormDB, err := db.Connect(cfg)
+	authDB, err := db.Connect(cfg, cfg.AuthDBName)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// migrate DB models
-	if err := gormDB.AutoMigrate(
+	petDB, err := db.Connect(cfg, cfg.PetDBName)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// migrate auth DB models
+	if err := authDB.AutoMigrate(
 		&gormrepo_model.User{},
 		&gormrepo_model.Account{},
 		&gormrepo_model.Session{},
 		&gormrepo_model.VerificationToken{},
 		&gormrepo_model.Authenticator{},
 		&gormrepo_model.RefreshTokenModel{},
+	); err != nil {
+		log.Fatal(err)
+	}
+
+	// migrate pet DB models
+	if err := petDB.AutoMigrate(
 		&gormrepo_model.PetOwner{},
 		&gormrepo_model.Pet{},
 	); err != nil {
@@ -45,7 +56,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			userRepo := gormrepo.NewUserRepo(gormDB)
+			userRepo := gormrepo.NewUserRepo(authDB)
 			if err := userRepo.EnsureSeedUser(
 				context.Background(),
 				cfg.SeedEmail,
@@ -59,7 +70,8 @@ func main() {
 	}
 
 	app := wire.BuildApp(
-		gormDB,
+		authDB,
+		petDB,
 		cfg.JWTIssuer,
 		cfg.JWTAccessSecret,
 		cfg.JWTRefreshSecret,

@@ -23,9 +23,9 @@ type JWTConfig struct {
 	RefreshTTL    time.Duration
 }
 
-func BuildApp(db *gorm.DB, issuer, accessSecret, refreshSecret string, accessTTL, refreshTTL time.Duration) *fiber.App {
-	userRepo := gormrepo.NewUserRepo(db)
-	tokenRepo := gormrepo.NewTokenRepo(db)
+func BuildApp(authDB, petDB *gorm.DB, issuer, accessSecret, refreshSecret string, accessTTL, refreshTTL time.Duration) *fiber.App {
+	userRepo := gormrepo.NewUserRepo(authDB)
+	tokenRepo := gormrepo.NewTokenRepo(authDB)
 
 	hasher := security.BcryptHasher{}
 	j := jwtinfra.New(issuer, accessSecret, refreshSecret, accessTTL, refreshTTL)
@@ -34,8 +34,8 @@ func BuildApp(db *gorm.DB, issuer, accessSecret, refreshSecret string, accessTTL
 	authSvc := auth.New(userRepo, tokenRepo, hasher, j, j, clock)
 
 	authHandler := handler.NewAuthHandler(authSvc)
-	userHandler := handler.NewUserHandler(db)
-	petHandler := handler.NewPetHandler(db)
+	userHandler := handler.NewUserHandler(authDB)
+	petHandler := handler.NewPetHandler(petDB)
 
 	app := fiber.New()
 	httpadapter.Register(app, authHandler, userHandler, petHandler, j)

@@ -11,10 +11,10 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-func Connect(cfg config.Config) (*gorm.DB, error) {
+func Connect(cfg config.Config, dbName string) (*gorm.DB, error) {
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=%s TimeZone=Asia/Bangkok",
-		cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, cfg.DBName, cfg.DBSSLMode,
+		cfg.DBHost, cfg.DBPort, cfg.DBUser, cfg.DBPassword, dbName, cfg.DBSSLMode,
 	)
 
 	level := logger.Info

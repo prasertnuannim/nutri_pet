@@ -16,7 +16,8 @@ type Config struct {
 	DBPort     int
 	DBUser     string
 	DBPassword string
-	DBName     string
+	AuthDBName string
+	PetDBName  string
 	DBSSLMode  string
 	DBLogLevel string
 
@@ -34,7 +35,7 @@ type Config struct {
 }
 
 func Load() Config {
-	_ = godotenv.Load()
+	_ = godotenv.Load(".env", "server/.env")
 
 	accessMin := getEnvInt("ACCESS_TOKEN_TTL_MIN", 15)
 	refreshTTL := getRefreshTTL()
@@ -46,7 +47,8 @@ func Load() Config {
 		DBPort:     getEnvInt("DB_PORT", 5432),
 		DBUser:     getEnv("DB_USER", "postgres"),
 		DBPassword: getEnv("DB_PASSWORD", "postgres"),
-		DBName:     getEnv("DB_NAME", "authdb"),
+		AuthDBName: getEnv("AUTH_DB_NAME", getEnv("DB_NAME", "authdb")),
+		PetDBName:  getEnv("PET_DB_NAME", "petDb"),
 		DBSSLMode:  getEnv("DB_SSLMODE", "disable"),
 		DBLogLevel: getEnv("DB_LOG_LEVEL", "info"),
 

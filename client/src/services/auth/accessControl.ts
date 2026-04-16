@@ -21,7 +21,7 @@ export const ACCESS_RULES: Record<string, AccessRole[]> = {
 };
 
 const ROLE_REDIRECT_RULES: Record<AccessRole, string> = {
-  [AccessRole.Admin]: "/account",
+  [AccessRole.Admin]: "/dashboard",
   [AccessRole.User]: "/dashboard",
   [AccessRole.Doctor]: "/doctor",
   [AccessRole.Nurse]: "/schedule",
