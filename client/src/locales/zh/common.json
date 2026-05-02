@@ -345,7 +345,7 @@
       "dashboard": "仪表板",
       "pets": "宠物",
       "orders": "订单",
-      "factory": "工厂"
+      "formulaSettings": "配方设置"
     },
     "profile": {
       "defaultName": "诊所操作员",
@@ -354,9 +354,7 @@
   },
   "userPlaceholder": {
     "ordersTitle": "订单",
-    "ordersDescription": "订单追踪现在位于同一个诊所仪表板框架下。此页面已为队列、营养计划和履约模块预留。",
-    "factoryTitle": "工厂",
-    "factoryDescription": "工厂概览已加入用户导航，因此菜单与设计稿一致。下一步可在这里接入产量指标和批次状态。"
+    "ordersDescription": "订单追踪现在位于同一个诊所仪表板框架下。此页面已为队列、营养计划和履约模块预留。"
   },
   "userDashboard": {
     "stats": {
@@ -421,6 +419,214 @@
     "noTreatmentHistoryDescription": "该患者目前还没有已记录的就诊或治疗数据。新增治疗跟踪后会显示在这里。",
     "notAvailable": "-"
   },
+  "userOrders": {
+    "pageEyebrow": "履约看板",
+    "pageTitle": "营养订单",
+    "pageDescription": "在诊所工作区内统一跟踪审核、配制、付款与交付状态。",
+    "createOrder": "从患者资料创建",
+    "searchPlaceholder": "按订单号、患者、主人或配方搜索...",
+    "sourceHint": "订单会在患者页面确认治疗方案后生成。",
+    "filters": {
+      "status": "状态",
+      "fulfillment": "交付方式",
+      "payment": "付款状态",
+      "allStatuses": "全部状态",
+      "allFulfillment": "全部交付方式",
+      "allPayments": "全部付款状态"
+    },
+    "summary": {
+      "active": "进行中的订单",
+      "review": "待审核",
+      "handoff": "待交付",
+      "value": "预计总额"
+    },
+    "columns": {
+      "order": "订单号",
+      "patient": "患者",
+      "formula": "配方",
+      "fulfillment": "交付方式",
+      "status": "状态",
+      "total": "总额",
+      "actions": "操作"
+    },
+    "status": {
+      "awaitingReview": "待审核",
+      "mixing": "生产中",
+      "ready": "可交付",
+      "completed": "已完成"
+    },
+    "fulfillment": {
+      "pickup": "诊所自提",
+      "localDelivery": "本地配送",
+      "courier": "快递"
+    },
+    "payment": {
+      "pending": "待付款",
+      "partial": "已付订金",
+      "paid": "已付款"
+    },
+    "bags_one": "{{count}} 袋",
+    "bags_other": "{{count}} 袋",
+    "days_one": "{{count}} 天",
+    "days_other": "{{count}} 天",
+    "ownerPrefix": "主人：{{name}}",
+    "updatedAt": "更新于 {{date}}",
+    "scheduledAt": "目标时间 {{date}}",
+    "empty": "没有符合当前筛选条件的订单。",
+    "showingOrders": "显示 {{shown}} / {{total}} 个订单",
+    "openOrder": "打开订单 {{id}}"
+  },
+  "formulaSettings": {
+    "pageEyebrow": "配方库",
+    "pageTitle": "宠物食品配方设置",
+    "pageDescription": "维护可直接投入生产的基础配方、营养目标、原料比例与喂养说明，再用于正式营养订单。",
+    "activateFormula": "启用配方",
+    "pauseFormula": "暂停配方",
+    "searchPlaceholder": "按配方名称、编号、备注或原料搜索...",
+    "sourceHint": "在这里统一维护批次默认值、营养目标和生产备注，确保与临床营养方案一致。",
+    "requirementsPage": {
+      "loadErrorEyebrow": "营养需求",
+      "loadErrorTitle": "加载数据失败",
+      "loadErrorDescription": "请检查数据库连接，并确认 `requirements` 表可用。",
+      "pageEyebrow": "PawCare 配方",
+      "pageTitle": "营养需求",
+      "pageDescription": "选择 requirement 配置后，可在同一页面按分类管理 nutrient limits，包括 Energy、Amino Acids、Minerals 和 Vitamins。",
+      "countLabel": "需求数量",
+      "feedback": {
+        "fetchFailed": "获取 nutrient limits 失败",
+        "createFailed": "创建 nutrient limit 失败",
+        "updateFailed": "更新 nutrient limit 失败",
+        "deleteFailed": "删除 nutrient limit 失败",
+        "createSuccess": "已成功添加 nutrient “{{nutrient}}”",
+        "updateSuccess": "已成功保存 nutrient “{{nutrient}}”",
+        "deleteSuccess": "已成功删除 nutrient limit #{{id}}"
+      },
+      "selection": {
+        "eyebrow": "需求配置",
+        "title": "选择 Requirement",
+        "searchPlaceholder": "按 id、species、type 或 requirement 搜索",
+        "emptySearch": "没有符合搜索条件的 requirement"
+      },
+      "limits": {
+        "title": "Nutrient Limits",
+        "description": "此区域适用于按分类管理大量 nutrient 的 requirement 表格，并为每项分别维护 min 与 max 数值。",
+        "summary": "Requirement #{{id}} • {{count}} 项限制",
+        "nutrientPlaceholder": "Nutrient 名称",
+        "minPlaceholder": "最小值",
+        "maxPlaceholder": "最大值",
+        "adding": "添加中...",
+        "addButton": "添加 Limit",
+        "loading": "正在加载 nutrient limits...",
+        "empty": "该 requirement 还没有 nutrient limits",
+        "saving": "保存中...",
+        "saveButton": "保存",
+        "deleteButton": "删除",
+        "selectRequirement": "请先选择 requirement 以查看 nutrient limits",
+        "table": {
+          "nutrient": "Nutrient",
+          "min": "Min",
+          "max": "Max",
+          "actions": "操作"
+        }
+      },
+      "categories": {
+        "energy": "能量",
+        "proximateAnalysis": "常规成分分析",
+        "aminoAcids": "氨基酸",
+        "fattyAcids": "脂肪酸",
+        "minerals": "矿物质",
+        "vitamins": "维生素",
+        "others": "其他"
+      }
+    },
+    "filters": {
+      "species": "物种",
+      "status": "配方状态",
+      "allSpecies": "全部物种",
+      "allStatuses": "全部状态"
+    },
+    "summary": {
+      "active": "已启用配方",
+      "draft": "待审核草稿",
+      "coverage": "物种覆盖",
+      "coverageValue": "犬 {{dog}} • 猫 {{cat}}",
+      "output": "平均批次产量"
+    },
+    "libraryTitle": "配方列表",
+    "libraryDescription": "显示 {{shown}} / {{total}} 个配方",
+    "empty": "没有符合当前筛选条件的配方。",
+    "editorTitle": "配方编辑器",
+    "editorDescription": "调整所选配方的基础信息、营养目标和生产说明。",
+    "status": {
+      "draft": "草稿",
+      "active": "启用中",
+      "paused": "已暂停"
+    },
+    "species": {
+      "dog": "犬",
+      "cat": "猫"
+    },
+    "lifeStage": {
+      "adult": "成体",
+      "senior": "老年",
+      "recovery": "恢复期"
+    },
+    "texture": {
+      "dry": "干粮",
+      "gentlyCooked": "轻熟",
+      "stew": "湿粮"
+    },
+    "line": {
+      "lineA": "A 线",
+      "lineB": "B 线",
+      "coldPrep": "冷配线"
+    },
+    "lastReviewedAt": "最近审核 {{date}}",
+    "unsaved": "有未保存的修改",
+    "notice": {
+      "saved": "配方修改已保存。",
+      "activated": "该配方已启用用于生产。",
+      "paused": "该配方已暂停使用。"
+    },
+    "stats": {
+      "linkedOrders": "关联订单",
+      "bagSize": "包装规格",
+      "energy": "每 100 克能量",
+      "lastReview": "最近审核"
+    },
+    "fields": {
+      "name": "配方名称",
+      "code": "配方编号",
+      "species": "物种",
+      "lifeStage": "适用阶段",
+      "texture": "形态",
+      "productionLine": "生产线",
+      "bagSize": "包装规格 (g)",
+      "batchYield": "每批产量 (kg)",
+      "kcalPer100g": "每 100 克能量 (kcal)",
+      "ingredientName": "原料",
+      "ratio": "比例 (%)",
+      "prep": "处理方式",
+      "protein": "蛋白质 (%)",
+      "fat": "脂肪 (%)",
+      "fiber": "纤维 (%)",
+      "moisture": "水分 (%)",
+      "energy": "能量 (kcal/100g)",
+      "sodium": "钠 (mg/100g)",
+      "allergenNote": "避免项 / 过敏限制",
+      "feedingGuide": "喂养说明",
+      "notes": "内部备注"
+    },
+    "ingredientsTitle": "原料配比",
+    "ingredientsDescription": "调整生产端默认使用的主要原料比例与处理方式。",
+    "nutrientsTitle": "营养目标",
+    "nutrientsDescription": "设定配方的目标营养值，用于方案审核与质检。",
+    "notesTitle": "操作说明",
+    "notesDescription": "记录临床限制、喂养建议以及交接给生产团队的说明。",
+    "footerHint": "切换到其他配方前请先保存修改，避免本次编辑丢失。",
+    "resetChanges": "重置修改",
+    "saveChanges": "保存修改"
+  },
   "petTreatment": {
     "backToPatient": "返回患者页面",
     "chiefComplaint": "主诉",
@@ -467,6 +673,72 @@
     "bodyConditionScorePlaceholder": "输入 1-9 分",
     "bodyConditionScoreHint": "4-5 分为理想状态",
     "assessmentTool": "评估工具",
+    "bcsQuestionnaire": {
+      "show": "显示 BCS 问卷",
+      "hide": "隐藏 BCS 问卷",
+      "title": "BCS 问卷",
+      "description": "可参考以下观察要点来判定体况评分。",
+      "sections": [
+        {
+          "title": "1. 观察并触诊肋骨区域",
+          "items": [
+            "清晰可见，触诊时无脂肪或肌肉覆盖。",
+            "清晰可见，无脂肪，触诊时有轻微肌肉覆盖。",
+            "易于触及，表面仅有少量脂肪覆盖。",
+            "可触及，但有脂肪覆盖。",
+            "难以触及，脂肪覆盖明显。",
+            "无法触及，脂肪大量堆积，需用力按压，颈部周围也有脂肪堆积。"
+          ]
+        },
+        {
+          "title": "2. 脊柱与腰部区域",
+          "items": [
+            "清晰可见，触诊时无脂肪或肌肉覆盖。",
+            "清晰可见，无脂肪，触诊时有轻微肌肉覆盖。",
+            "从上方观察清晰可见。",
+            "有轻微脂肪和肌肉覆盖。",
+            "难以触及，开始出现脂肪堆积。",
+            "无法触及，可见脂肪堆积。",
+            "无法触及，脂肪堆积明显。"
+          ]
+        },
+        {
+          "title": "3. 髋骨",
+          "items": [
+            "清晰可见，触诊时无脂肪或肌肉覆盖。",
+            "清晰可见，无脂肪，触诊时有轻微肌肉覆盖。",
+            "清晰可见。",
+            "有轻微脂肪和肌肉覆盖。",
+            "有脂肪和肌肉覆盖，但仍可触及骨性突起。",
+            "难以触及，开始出现脂肪堆积。",
+            "无法触及，可见脂肪堆积。",
+            "无法触及，脂肪堆积明显。"
+          ]
+        },
+        {
+          "title": "4. 观察上躯干和腰部",
+          "items": [
+            "从上方看呈沙漏形。",
+            "腰部收窄明显。",
+            "腰部略微收窄。",
+            "腰部开始变直。",
+            "腰部平直。",
+            "从上方看呈啤酒桶形。"
+          ]
+        },
+        {
+          "title": "5. 观察并触诊尾根部",
+          "items": [
+            "骨与皮肤之间无组织。",
+            "可触及骨骼。",
+            "无法触及骨骼。",
+            "无法触及骨骼，尾根部开始出现脂肪堆积。",
+            "无法触及骨骼，尾根部有脂肪堆积。",
+            "无法触及骨骼，尾根部脂肪堆积明显。"
+          ]
+        }
+      ]
+    },
     "diagnosis": "诊断",
     "diagnosisHealthy": "健康",
     "diagnosisDisease": "疾病",

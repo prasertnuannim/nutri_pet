@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import FormAlert from "@/components/form/formAlert";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { RegisteredPet } from "@/types/pets-register";
+import type { RegisteredPet } from "@/types/pets-register.type";
 import { getPetByIdAction } from "../../actions";
 import { NutritionRequirementForm } from "./_components/nutrition-requirement-form";
 import { OrderSummaryForm } from "./_components/order-summary-form";

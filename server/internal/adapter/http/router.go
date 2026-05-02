@@ -19,6 +19,7 @@ func Register(
 	h *handler.AuthHandler,
 	userHandler *handler.UserHandler,
 	petHandler *handler.PetHandler,
+	formulaHandler *handler.FormulaHandler,
 	verifier port.TokenVerifier,
 ) {
 	app.Use(recover.New())
@@ -59,4 +60,11 @@ func Register(
 	pets.Post("/register", petHandler.Register)
 	pets.Get("/owners", petHandler.SearchOwners)
 	pets.Get("/:id", petHandler.GetByID)
+
+	requirements := protected.Group("/requirements")
+	requirements.Get("/", formulaHandler.ListRequirements)
+	requirements.Get("/:requirementId/limits", formulaHandler.ListNutrientLimits)
+	requirements.Post("/:requirementId/limits", formulaHandler.CreateNutrientLimit)
+	requirements.Put("/:requirementId/limits/:limitId", formulaHandler.UpdateNutrientLimit)
+	requirements.Delete("/:requirementId/limits/:limitId", formulaHandler.DeleteNutrientLimit)
 }

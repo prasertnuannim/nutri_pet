@@ -13,7 +13,7 @@ export const ACCESS_RULES: Record<string, AccessRole[]> = {
   "/dashboard": [AccessRole.Admin, AccessRole.User],
   "/pets": [AccessRole.Admin, AccessRole.User],
   "/orders": [AccessRole.Admin, AccessRole.User],
-  "/factory": [AccessRole.Admin, AccessRole.User],
+  "/formulas": [AccessRole.Admin, AccessRole.User],
   "/settings": [AccessRole.Admin],
   "/statistics": [AccessRole.Admin],
   "/doctor": [AccessRole.Doctor],

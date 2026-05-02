@@ -31,7 +31,7 @@ const USER_SIDEBAR_PATHS = [
   "/dashboard",
   "/pets",
   "/orders",
-  "/factory",
+  "/formulas",
 ] as const;
 
 function matchesSidebarPath(

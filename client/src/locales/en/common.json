@@ -345,7 +345,7 @@
       "dashboard": "Dashboard",
       "pets": "Pets",
       "orders": "Orders",
-      "factory": "Factory"
+      "formulaSettings": "Formula Setting"
     },
     "profile": {
       "defaultName": "Clinic Operator",
@@ -354,9 +354,7 @@
   },
   "userPlaceholder": {
     "ordersTitle": "Orders",
-    "ordersDescription": "Order tracking now sits under the same clinic dashboard shell. This page is prepared for queue, nutrition plan, and fulfillment modules.",
-    "factoryTitle": "Factory",
-    "factoryDescription": "Factory overview has been added to the user navigation so the menu matches the mockup. Production metrics and batch status can be plugged in here next."
+    "ordersDescription": "Order tracking now sits under the same clinic dashboard shell. This page is prepared for queue, nutrition plan, and fulfillment modules."
   },
   "userDashboard": {
     "stats": {
@@ -421,6 +419,214 @@
     "noTreatmentHistoryDescription": "This patient does not have any recorded visits or treatments yet. Entries will appear here once treatment tracking is added.",
     "notAvailable": "-"
   },
+  "userOrders": {
+    "pageEyebrow": "Fulfillment Board",
+    "pageTitle": "Nutrition Orders",
+    "pageDescription": "Track review, batching, payment, and owner handoff from one place without leaving the clinic workspace.",
+    "createOrder": "Create From Patient",
+    "searchPlaceholder": "Search by order no., patient, owner, or formula...",
+    "sourceHint": "Orders are created after a treatment plan is confirmed from the pet profile.",
+    "filters": {
+      "status": "Status",
+      "fulfillment": "Fulfillment",
+      "payment": "Payment",
+      "allStatuses": "All statuses",
+      "allFulfillment": "All fulfillment",
+      "allPayments": "All payments"
+    },
+    "summary": {
+      "active": "ACTIVE ORDERS",
+      "review": "NEEDS REVIEW",
+      "handoff": "READY FOR HANDOFF",
+      "value": "PROJECTED VALUE"
+    },
+    "columns": {
+      "order": "ORDER",
+      "patient": "PATIENT",
+      "formula": "FORMULA",
+      "fulfillment": "FULFILLMENT",
+      "status": "STATUS",
+      "total": "TOTAL",
+      "actions": "ACTIONS"
+    },
+    "status": {
+      "awaitingReview": "Awaiting Review",
+      "mixing": "In Production",
+      "ready": "Ready",
+      "completed": "Completed"
+    },
+    "fulfillment": {
+      "pickup": "Clinic Pickup",
+      "localDelivery": "Local Delivery",
+      "courier": "Courier"
+    },
+    "payment": {
+      "pending": "Pending",
+      "partial": "Deposit Paid",
+      "paid": "Paid"
+    },
+    "bags_one": "{{count}} bag",
+    "bags_other": "{{count}} bags",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "ownerPrefix": "Owner: {{name}}",
+    "updatedAt": "Updated {{date}}",
+    "scheduledAt": "Target {{date}}",
+    "empty": "No orders match the selected filters.",
+    "showingOrders": "Showing {{shown}} of {{total}} orders",
+    "openOrder": "Open order {{id}}"
+  },
+  "formulaSettings": {
+    "pageEyebrow": "Formula Library",
+    "pageTitle": "Pet Food Formula Settings",
+    "pageDescription": "Maintain production-ready base formulas, nutrient targets, ingredient ratios, and feeding notes before they are used in live nutrition orders.",
+    "activateFormula": "Activate Formula",
+    "pauseFormula": "Pause Formula",
+    "searchPlaceholder": "Search by formula name, code, notes, or ingredients...",
+    "sourceHint": "Use this workspace to keep batch defaults, nutrient targets, and production notes aligned with the clinic nutrition plan.",
+    "requirementsPage": {
+      "loadErrorEyebrow": "Requirements",
+      "loadErrorTitle": "Failed to load data",
+      "loadErrorDescription": "Check your database connection and confirm the `requirements` table is available.",
+      "pageEyebrow": "PawCare Formula",
+      "pageTitle": "Requirements",
+      "pageDescription": "Choose a requirement profile and manage nutrient limits by category, including Energy, Amino Acids, Minerals, and Vitamins, from one workspace.",
+      "countLabel": "Requirements count",
+      "feedback": {
+        "fetchFailed": "Failed to fetch nutrient limits",
+        "createFailed": "Failed to create nutrient limit",
+        "updateFailed": "Failed to update nutrient limit",
+        "deleteFailed": "Failed to delete nutrient limit",
+        "createSuccess": "Added nutrient \"{{nutrient}}\" successfully",
+        "updateSuccess": "Saved nutrient \"{{nutrient}}\" successfully",
+        "deleteSuccess": "Deleted nutrient limit #{{id}} successfully"
+      },
+      "selection": {
+        "eyebrow": "Requirement Profiles",
+        "title": "Requirement Selection",
+        "searchPlaceholder": "Search by id, species, type, or requirement",
+        "emptySearch": "No requirements match your search"
+      },
+      "limits": {
+        "title": "Nutrient Limits",
+        "description": "This section is designed for requirement spreadsheets where many nutrients are grouped by category and each one has separate min and max values.",
+        "summary": "Requirement #{{id}} • {{count}} limits",
+        "nutrientPlaceholder": "Nutrient name",
+        "minPlaceholder": "Min",
+        "maxPlaceholder": "Max",
+        "adding": "Adding...",
+        "addButton": "Add Limit",
+        "loading": "Loading nutrient limits...",
+        "empty": "No nutrient limits for this requirement yet",
+        "saving": "Saving...",
+        "saveButton": "Save",
+        "deleteButton": "Delete",
+        "selectRequirement": "Select a requirement to view nutrient limits",
+        "table": {
+          "nutrient": "Nutrient",
+          "min": "Min",
+          "max": "Max",
+          "actions": "Actions"
+        }
+      },
+      "categories": {
+        "energy": "Energy",
+        "proximateAnalysis": "Proximate Analysis",
+        "aminoAcids": "Amino Acids",
+        "fattyAcids": "Fatty Acids",
+        "minerals": "Minerals",
+        "vitamins": "Vitamins",
+        "others": "Others"
+      }
+    },
+    "filters": {
+      "species": "Species",
+      "status": "Formula status",
+      "allSpecies": "All species",
+      "allStatuses": "All statuses"
+    },
+    "summary": {
+      "active": "ACTIVE FORMULAS",
+      "draft": "DRAFTS TO REVIEW",
+      "coverage": "SPECIES COVERAGE",
+      "coverageValue": "{{dog}} dog • {{cat}} cat",
+      "output": "AVERAGE BATCH YIELD"
+    },
+    "libraryTitle": "Formula Library",
+    "libraryDescription": "Showing {{shown}} of {{total}} formulas",
+    "empty": "No formulas match the selected filters.",
+    "editorTitle": "Formula Editor",
+    "editorDescription": "Adjust base profile, nutrient goals, and operating notes for the selected recipe.",
+    "status": {
+      "draft": "Draft",
+      "active": "Active",
+      "paused": "Paused"
+    },
+    "species": {
+      "dog": "Dog",
+      "cat": "Cat"
+    },
+    "lifeStage": {
+      "adult": "Adult",
+      "senior": "Senior",
+      "recovery": "Recovery"
+    },
+    "texture": {
+      "dry": "Dry",
+      "gentlyCooked": "Gently cooked",
+      "stew": "Stew"
+    },
+    "line": {
+      "lineA": "Line A",
+      "lineB": "Line B",
+      "coldPrep": "Cold Prep"
+    },
+    "lastReviewedAt": "Reviewed {{date}}",
+    "unsaved": "Unsaved changes",
+    "notice": {
+      "saved": "Formula changes have been saved.",
+      "activated": "This formula is now active for production.",
+      "paused": "This formula has been paused."
+    },
+    "stats": {
+      "linkedOrders": "Linked Orders",
+      "bagSize": "Pack Size",
+      "energy": "Energy / 100 g",
+      "lastReview": "Last Review"
+    },
+    "fields": {
+      "name": "Formula name",
+      "code": "Formula code",
+      "species": "Species",
+      "lifeStage": "Life stage",
+      "texture": "Texture",
+      "productionLine": "Production line",
+      "bagSize": "Pack size (g)",
+      "batchYield": "Batch yield (kg)",
+      "kcalPer100g": "Energy per 100 g (kcal)",
+      "ingredientName": "Ingredient",
+      "ratio": "Ratio (%)",
+      "prep": "Preparation",
+      "protein": "Protein (%)",
+      "fat": "Fat (%)",
+      "fiber": "Fiber (%)",
+      "moisture": "Moisture (%)",
+      "energy": "Energy (kcal/100g)",
+      "sodium": "Sodium (mg/100g)",
+      "allergenNote": "Avoidances / allergen guardrail",
+      "feedingGuide": "Feeding guide",
+      "notes": "Internal formula notes"
+    },
+    "ingredientsTitle": "Ingredient Blend",
+    "ingredientsDescription": "Adjust the default ingredient split and preparation rules used by the production team.",
+    "nutrientsTitle": "Nutrient Targets",
+    "nutrientsDescription": "Set the intended macro and sodium targets used for plan review and QC.",
+    "notesTitle": "Operational Notes",
+    "notesDescription": "Capture clinical restrictions, feeding guidance, and handoff notes for production operators.",
+    "footerHint": "Save changes before switching to another formula to keep edits in sync.",
+    "resetChanges": "Reset Changes",
+    "saveChanges": "Save Changes"
+  },
   "petTreatment": {
     "backToPatient": "Back to patient",
     "chiefComplaint": "Chief Complaint",
@@ -467,6 +673,72 @@
     "bodyConditionScorePlaceholder": "Enter score 1-9",
     "bodyConditionScoreHint": "Score 4-5 is ideal",
     "assessmentTool": "Assessment Tool",
+    "bcsQuestionnaire": {
+      "show": "Show BCS Questionnaires",
+      "hide": "Hide BCS Questionnaires",
+      "title": "BCS Questionnaires",
+      "description": "Use the following observations as a guide when assigning a body condition score.",
+      "sections": [
+        {
+          "title": "1. Observe and palpate the rib area",
+          "items": [
+            "Clearly visible, no fat or muscle coverage when palpated.",
+            "Clearly visible, no fat, with slight muscle coverage when palpated.",
+            "Easily palpable with slight fat covering.",
+            "Palpable with fat coverage.",
+            "Hard to palpate, with significant fat coverage.",
+            "Cannot palpate, large fat accumulation, must press hard, fat accumulates around the neck."
+          ]
+        },
+        {
+          "title": "2. Spine and waist area",
+          "items": [
+            "Clearly visible, no fat or muscle coverage when palpated.",
+            "Clearly visible, no fat, with slight muscle coverage when palpated.",
+            "Clearly visible from above.",
+            "Slight fat and muscle coverage.",
+            "Difficult to palpate, beginning fat accumulation present.",
+            "Cannot palpate, fat accumulation present.",
+            "Cannot palpate, significant fat accumulation."
+          ]
+        },
+        {
+          "title": "3. Hip bones",
+          "items": [
+            "Clearly visible, no fat or muscle coverage when palpated.",
+            "Clearly visible, no fat, with slight muscle coverage when palpated.",
+            "Clearly visible.",
+            "Slight fat and muscle coverage.",
+            "Fat and muscle coverage with palpable bony prominence.",
+            "Difficult to palpate, beginning fat accumulation.",
+            "Cannot palpate, fat accumulation present.",
+            "Cannot palpate, significant fat accumulation."
+          ]
+        },
+        {
+          "title": "4. Observing the upper body and waist",
+          "items": [
+            "Hourglass shape when viewed from above.",
+            "Tapered waist.",
+            "Slightly tapered waist.",
+            "Waist beginning to straighten.",
+            "Straight waist.",
+            "Beer barrel shape when viewed from above."
+          ]
+        },
+        {
+          "title": "5. Observing and palpating the base of the tail",
+          "items": [
+            "No tissue between bone and skin.",
+            "Bone is palpable.",
+            "Bone is not palpable.",
+            "Unable to feel bone, base of tail shows beginning fat accumulation.",
+            "Unable to feel bone, fat accumulation at the base of the tail.",
+            "Unable to feel bone, significant fat accumulation at the base of the tail."
+          ]
+        }
+      ]
+    },
     "diagnosis": "Diagnosis",
     "diagnosisHealthy": "Healthy",
     "diagnosisDisease": "Disease",

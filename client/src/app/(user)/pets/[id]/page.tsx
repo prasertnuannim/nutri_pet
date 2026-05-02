@@ -19,7 +19,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getIntlLocale, resolveLanguage } from "@/lib/i18n/shared";
-import type { RegisteredPet } from "@/types/pets-register";
+import type { RegisteredPet } from "@/types/pets-register.type";
 import { getPetByIdAction } from "../actions";
 
 type DetailRowProps = {

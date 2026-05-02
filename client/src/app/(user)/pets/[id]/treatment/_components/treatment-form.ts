@@ -5,6 +5,7 @@ export type TreatmentFormValues = {
   heartRate: string;
   respiratoryRate: string;
   bodyConditionScore: string;
+  bcsQuestionnaireAnswers: string[];
   diagnosis: "healthy" | "disease";
   crossSectionMethod: "minMostFit" | "minLowest" | "";
   aafcoStandard: "adultMaintenance" | "growthReproduction" | "seniorSupport" | "weightManagement" | "";
@@ -51,6 +52,7 @@ export const initialTreatmentValues: TreatmentFormValues = {
   heartRate: "100",
   respiratoryRate: "20",
   bodyConditionScore: "",
+  bcsQuestionnaireAnswers: ["", "", "", "", ""],
   diagnosis: "healthy",
   crossSectionMethod: "minMostFit",
   aafcoStandard: "",

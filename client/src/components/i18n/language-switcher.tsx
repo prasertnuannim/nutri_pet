@@ -1,6 +1,8 @@
 "use client";
 
+import { startTransition } from "react";
 import { Globe2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useAppLanguage } from "@/context/language-context";
 import { resolveLanguage } from "@/lib/i18n/shared";
@@ -20,11 +22,18 @@ export default function LanguageSwitcher({
 }) {
   const { language, languages, setLanguage } = useAppLanguage();
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <Select
       value={language}
-      onValueChange={(value) => setLanguage(resolveLanguage(value))}
+      onValueChange={(value) => {
+        const nextLanguage = resolveLanguage(value);
+        setLanguage(nextLanguage);
+        startTransition(() => {
+          router.refresh();
+        });
+      }}
     >
       <SelectTrigger
         aria-label={t("languageSwitcher.label")}

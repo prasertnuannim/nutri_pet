@@ -42,6 +42,8 @@ func main() {
 	if err := petDB.AutoMigrate(
 		&gormrepo_model.PetOwner{},
 		&gormrepo_model.Pet{},
+		&gormrepo_model.Requirement{},
+		&gormrepo_model.NutrientLimit{},
 	); err != nil {
 		log.Fatal(err)
 	}

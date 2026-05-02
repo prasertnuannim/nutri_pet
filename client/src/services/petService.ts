@@ -1,5 +1,5 @@
 import { goApiFetch } from "@/lib/auth/goApi";
-import type { PetOwnersListResponse, PetsListResponse, RegisteredPet } from "@/types/pets-register";
+import type { PetOwnersListResponse, PetsListResponse, RegisteredPet } from "@/types/pets-register.type";
 
 type AuthInput = {
   accessToken: string;

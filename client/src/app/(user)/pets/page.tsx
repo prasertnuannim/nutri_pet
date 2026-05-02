@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table";
 import { getIntlLocale, resolveLanguage } from "@/lib/i18n/shared";
 import { getPetsAction } from "./actions";
-import type { PetsListResponse, RegisteredPet } from "@/types/pets-register";
+import type { PetsListResponse, RegisteredPet } from "@/types/pets-register.type";
 
 export default function PatientsTablePage() {
   const { t, i18n } = useTranslation();

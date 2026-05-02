@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { SectionTitle } from "./section-title";
 import { TabButton } from "./tab-button";
 import { RadioCard } from "./radio-card";
-import { RegisterPetsFormValues } from "@/types/pets-register";
+import { RegisterPetsFormValues } from "@/types/pets-register.type";
 
 type Props = {
   formik: FormikProps<RegisterPetsFormValues>;

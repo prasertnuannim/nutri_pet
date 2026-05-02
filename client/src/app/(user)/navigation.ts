@@ -1,7 +1,7 @@
 import {
   ClipboardList,
-  Factory,
   LayoutDashboard,
+  SlidersHorizontal,
   type LucideIcon,
   Users,
 } from "lucide-react";
@@ -41,10 +41,10 @@ export const userNavigationItems: UserNavigationItem[] = [
     icon: ClipboardList,
   },
   {
-    href: "/factory",
-    labelKey: "userShell.navigation.factory",
-    breadcrumbKey: "userShell.navigation.factory",
-    icon: Factory,
+    href: "/formulas",
+    labelKey: "userShell.navigation.formulaSettings",
+    breadcrumbKey: "userShell.navigation.formulaSettings",
+    icon: SlidersHorizontal,
   },
 ];
 

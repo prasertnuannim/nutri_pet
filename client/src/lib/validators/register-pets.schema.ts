@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { RegisterPetsFormValues } from "@/types/pets-register";
+import { RegisterPetsFormValues } from "@/types/pets-register.type";
 
 export const registerPetsInitialValues: RegisterPetsFormValues = {
   hn: "",

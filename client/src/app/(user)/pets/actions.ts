@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { AccessRole } from "@/lib/auth/accessRole";
 import { withAuthAction, type AuthContext } from "@/services/security/safeAction";
 import { petService, type RegisterPetPayload } from "@/services/petService";
-import type { PetOwnersListResponse, PetsListResponse, RegisterPetsFormValues, RegisteredPet } from "@/types/pets-register";
+import type { PetOwnersListResponse, PetsListResponse, RegisterPetsFormValues, RegisteredPet } from "@/types/pets-register.type";
 
 export type PetActionResult<T = unknown> = {
   success: boolean;

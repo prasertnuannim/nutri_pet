@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import type { RegisteredPet } from "@/types/pets-register";
+import type { RegisteredPet } from "@/types/pets-register.type";
 import { PatientTreatmentSummary } from "./patient-treatment-summary";
 import { type TreatmentFormValues } from "./treatment-form";
 

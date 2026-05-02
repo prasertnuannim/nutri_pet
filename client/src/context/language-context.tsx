@@ -42,6 +42,12 @@ export function LanguageProvider({
   const [language, setLanguageState] = useState<AppLanguage>(initialLanguage);
   const [isReady, setIsReady] = useState(false);
 
+  const setLanguage = (nextLanguage: AppLanguage) => {
+    const resolved = resolveLanguage(nextLanguage);
+    applyLanguage(resolved);
+    setLanguageState(resolved);
+  };
+
   useEffect(() => {
     let storedLanguage: string | null = null;
 
@@ -68,7 +74,6 @@ export function LanguageProvider({
   }, [initialLanguage]);
 
   useEffect(() => {
-    applyLanguage(language);
     void i18n.changeLanguage(language);
   }, [i18n, language]);
 
@@ -77,7 +82,7 @@ export function LanguageProvider({
       <LanguageContext.Provider
         value={{
           language,
-          setLanguage: setLanguageState,
+          setLanguage,
           languages: LANGUAGE_OPTIONS,
           isReady,
         }}

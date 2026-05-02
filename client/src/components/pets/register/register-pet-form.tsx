@@ -21,7 +21,7 @@ import type {
   PetOwnersListResponse,
   RegisterPetsFormValues,
   RegisteredPet,
-} from "@/types/pets-register";
+} from "@/types/pets-register.type";
 
 import { PetInformationSection } from "./pet-information-section";
 import { OwnerInformationSection } from "./owner-information-section";

@@ -5,7 +5,7 @@ import { ClipboardList } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Separator } from "@/components/ui/separator";
-import type { RegisteredPet } from "@/types/pets-register";
+import type { RegisteredPet } from "@/types/pets-register.type";
 import { PatientTreatmentSummary } from "./patient-treatment-summary";
 import { getCommercialFormulaById, getHomecookedRecipeById } from "./product-matching-data";
 import { type TreatmentFormValues } from "./treatment-form";

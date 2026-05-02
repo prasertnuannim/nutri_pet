@@ -12,7 +12,7 @@ import {
 import { SectionTitle } from "./section-title";
 import { FormError } from "./form-error";
 import { RadioGroupInline } from "./radio-group-inline";
-import { RegisterPetsFormValues } from "@/types/pets-register";
+import { RegisterPetsFormValues } from "@/types/pets-register.type";
 
 type Props = {
   formik: FormikProps<RegisterPetsFormValues>;

@@ -2,7 +2,7 @@ import { FormikProps } from "formik";
 import { useTranslation } from "react-i18next";
 import { SectionTitle } from "./section-title";
 import { RadioGroupInline } from "./radio-group-inline";
-import { RegisterPetsFormValues } from "@/types/pets-register";
+import { RegisterPetsFormValues } from "@/types/pets-register.type";
 
 type Props = {
   formik: FormikProps<RegisterPetsFormValues>;

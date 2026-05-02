@@ -4,7 +4,7 @@ import { PawPrint } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Separator } from "@/components/ui/separator";
-import type { RegisteredPet } from "@/types/pets-register";
+import type { RegisteredPet } from "@/types/pets-register.type";
 
 type PatientTreatmentSummaryProps = {
   pet: RegisteredPet;

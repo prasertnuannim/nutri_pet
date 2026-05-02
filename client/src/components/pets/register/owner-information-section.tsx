@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { SectionTitle } from "./section-title";
 import { FormError } from "./form-error";
 import { TabButton } from "./tab-button";
-import { PetOwnerSummary, RegisterPetsFormValues } from "@/types/pets-register";
+import { PetOwnerSummary, RegisterPetsFormValues } from "@/types/pets-register.type";
 
 type Props = {
   formik: FormikProps<RegisterPetsFormValues>;
