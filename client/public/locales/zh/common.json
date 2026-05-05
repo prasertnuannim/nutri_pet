@@ -221,6 +221,7 @@
     "workspaceLabel": "管理员区域",
     "accounts": "账号",
     "settings": "设置",
+    "foodStock": "食品库存",
     "statistics": "统计",
     "audit": "审计日志",
     "dailyReport": "日报",
@@ -238,6 +239,11 @@
         "label": "主题设置",
         "badge": "主题工作台",
         "section": "主题定制"
+      },
+      "foodStock": {
+        "label": "食品库存",
+        "badge": "原料库存",
+        "section": "库存管理"
       },
       "statisticsDaily": {
         "label": "日报",
@@ -280,6 +286,82 @@
     "title": "账号管理",
     "description": "在一个仪表板中管理用户、角色和访问权限。"
   },
+  "ownerAccountPage": {
+    "badge": "Owner 控制台",
+    "title": "医院套餐设置",
+    "description": "选择医院并分配要启用的会员套餐。",
+    "selector": {
+      "label": "选择医院",
+      "currentPackage": "当前套餐"
+    },
+    "comparison": {
+      "title": "Functions",
+      "note": "* 仅限曼谷",
+      "features": {
+        "userManagement": "1. 用户管理",
+        "requirement": "2. Requirement",
+        "diseaseIntersection": "3. Disease intersection",
+        "rawMaterials": "4. 原材料",
+        "shippingFee": "5. 运费",
+        "messengerConsult": "6. Messenger 咨询",
+        "update": "7. 更新",
+        "premixOnly": "8. 仅 premix 功能"
+      }
+    },
+    "plans": {
+      "selected": "已选择",
+      "regular": {
+        "name": "Regular",
+        "fullName": "Regular Membership",
+        "values": {
+          "userManagement": "Doctor & Manager",
+          "requirement": "AAFCO, Hands, CKD",
+          "diseaseIntersection": "<=3 intersection",
+          "rawMaterials": "Rice, Chicken, Oil, Premix",
+          "shippingFee": "始终收取运费",
+          "messengerConsult": "无",
+          "update": "silver 后更新（6 个月）",
+          "premixOnly": "无"
+        }
+      },
+      "silver": {
+        "name": "Silver",
+        "fullName": "Silver Membership",
+        "values": {
+          "userManagement": "Reception",
+          "requirement": "所有疾病",
+          "diseaseIntersection": "4-5 intersection",
+          "rawMaterials": "Beef, Fish, Liver",
+          "shippingFee": ">7 天 & 1,000฿ : Free*",
+          "messengerConsult": "2 例/月",
+          "update": "gold 后更新（3 个月）",
+          "premixOnly": "无"
+        }
+      },
+      "gold": {
+        "name": "Gold",
+        "fullName": "Gold Membership",
+        "values": {
+          "userManagement": "Admin",
+          "requirement": "所有疾病",
+          "diseaseIntersection": "Unlimited",
+          "rawMaterials": "Additional (N)",
+          "shippingFee": ">7 天 & 500฿ : Free*",
+          "messengerConsult": "8 例/月",
+          "update": "立即",
+          "premixOnly": "是"
+        }
+      }
+    },
+    "table": {
+      "title": "医院列表",
+      "hospitalHeader": "医院",
+      "packageHeader": "套餐"
+    },
+    "actions": {
+      "save": "保存套餐设置"
+    }
+  },
   "accountForm": {
     "name": "姓名",
     "email": "邮箱",
@@ -295,6 +377,7 @@
     "deleteRowDescription": "该记录将从系统中永久移除。",
     "deleteRowConfirm": "确认删除",
     "roleAdmin": "管理员",
+    "roleOwner": "主人",
     "roleUser": "用户",
     "roleOptionAdmin": "管理员",
     "roleOptionUser": "用户",
@@ -315,6 +398,78 @@
     "paletteTitle": "主题面板",
     "paletteDescription": "可直接从 9 种色调中选择。",
     "active": "当前主题：{{theme}}"
+  },
+  "foodStockPage": {
+    "badge": "原料库存",
+    "title": "用于配方制作的食品库存",
+    "description": "跟踪配方生产所需原料，保持备料库存可用，并在配方投入使用前检查需要补货的项目。",
+    "summary": {
+      "totalItems": {
+        "title": "原料项目数",
+        "description": "当前在配方库存中持续跟踪的全部原料"
+      },
+      "readyItems": {
+        "title": "可立即使用",
+        "description": "可以直接分配到生产流程中的原料"
+      },
+      "lowItems": {
+        "title": "库存偏低",
+        "description": "低于补货点或接近补货阈值的原料"
+      },
+      "holdItems": {
+        "title": "暂停使用",
+        "description": "在投入生产前需要暂时停用的原料"
+      }
+    },
+    "table": {
+      "title": "库存食品数据",
+      "description": "查看每种配方原料的可用数量、已预留数量以及供应商信息。",
+      "totalLinkedFormulas": "共关联 {{count}} 个配方使用项",
+      "headers": {
+        "ingredient": "原料",
+        "category": "分类",
+        "available": "可用库存",
+        "reserved": "已预留",
+        "reorderPoint": "补货点",
+        "formulas": "关联配方",
+        "supplier": "供应商 / 更新时间",
+        "status": "状态"
+      }
+    },
+    "watchlist": {
+      "title": "需关注项目",
+      "description": "优先检查库存偏低或暂停使用的原料，再将其纳入正式配方。",
+      "availableLabel": "可用库存",
+      "reorderLabel": "补货点",
+      "formulasLabel": "关联配方"
+    },
+    "status": {
+      "out": "缺货",
+      "ready": "可用",
+      "low": "偏低",
+      "hold": "暂停"
+    },
+    "categories": {
+      "protein": "蛋白质",
+      "carbohydrate": "碳水",
+      "vegetable": "蔬菜",
+      "oil": "油脂",
+      "supplement": "补充剂"
+    },
+    "cards": {
+      "ingredients": {
+        "title": "核心原料清单",
+        "description": "集中管理蛋白质、碳水化合物、脂肪及配方专用原料，让生产团队可以在一个地方维护库存。"
+      },
+      "availability": {
+        "title": "可用状态",
+        "description": "在原料进入配方前，先检查哪些可直接使用、哪些库存偏低、以及哪些需要暂时停用。"
+      },
+      "formulaPrep": {
+        "title": "支持配方准备",
+        "description": "此区域后续可扩展为配方与原料绑定、最低库存阈值和提醒机制，保证配方规划不中断。"
+      }
+    }
   },
   "auditPage": {
     "title": "审计日志",

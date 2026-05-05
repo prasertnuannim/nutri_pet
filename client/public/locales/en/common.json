@@ -221,6 +221,7 @@
     "workspaceLabel": "Administrator Area",
     "accounts": "Accounts",
     "settings": "Settings",
+    "foodStock": "Food Stock",
     "statistics": "Statistics",
     "audit": "Audit Log",
     "dailyReport": "Daily Report",
@@ -238,6 +239,11 @@
         "label": "Theme Settings",
         "badge": "Theme Studio",
         "section": "Theme Customization"
+      },
+      "foodStock": {
+        "label": "Food Stock",
+        "badge": "Ingredient Inventory",
+        "section": "Stock Management"
       },
       "statisticsDaily": {
         "label": "Daily Report",
@@ -280,6 +286,82 @@
     "title": "Account Management",
     "description": "Manage users, roles, and access from a single dashboard."
   },
+  "ownerAccountPage": {
+    "badge": "Owner Console",
+    "title": "Hospital Package Setting",
+    "description": "Select a hospital and assign the membership package it should use.",
+    "selector": {
+      "label": "Select Hospital",
+      "currentPackage": "Current Package"
+    },
+    "comparison": {
+      "title": "Functions",
+      "note": "* Only in Bangkok",
+      "features": {
+        "userManagement": "1. User management",
+        "requirement": "2. Requirement",
+        "diseaseIntersection": "3. Disease intersection",
+        "rawMaterials": "4. Raw materials",
+        "shippingFee": "5. Shipping fee",
+        "messengerConsult": "6. Messenger consult",
+        "update": "7. Update",
+        "premixOnly": "8. Only premix function"
+      }
+    },
+    "plans": {
+      "selected": "Selected",
+      "regular": {
+        "name": "Regular",
+        "fullName": "Regular Membership",
+        "values": {
+          "userManagement": "Doctor & Manager",
+          "requirement": "AAFCO, Hands, CKD",
+          "diseaseIntersection": "<=3 intersection",
+          "rawMaterials": "Rice, Chicken, Oil, Premix",
+          "shippingFee": "Always shipping fee",
+          "messengerConsult": "None",
+          "update": "After silver (6 months)",
+          "premixOnly": "None"
+        }
+      },
+      "silver": {
+        "name": "Silver",
+        "fullName": "Silver Membership",
+        "values": {
+          "userManagement": "Reception",
+          "requirement": "All diseases",
+          "diseaseIntersection": "4-5 intersection",
+          "rawMaterials": "Beef, Fish, Liver",
+          "shippingFee": ">7 days & 1,000฿ : Free*",
+          "messengerConsult": "2 cases/months",
+          "update": "After gold (3 months)",
+          "premixOnly": "None"
+        }
+      },
+      "gold": {
+        "name": "Gold",
+        "fullName": "Gold Membership",
+        "values": {
+          "userManagement": "Admin",
+          "requirement": "All diseases",
+          "diseaseIntersection": "Unlimited",
+          "rawMaterials": "Additional (N)",
+          "shippingFee": ">7 days & 500฿ : Free*",
+          "messengerConsult": "8 cases/months",
+          "update": "Immediately",
+          "premixOnly": "Yes"
+        }
+      }
+    },
+    "table": {
+      "title": "Hospital List",
+      "hospitalHeader": "Hospital",
+      "packageHeader": "Package"
+    },
+    "actions": {
+      "save": "Save Package Setting"
+    }
+  },
   "accountForm": {
     "name": "Name",
     "email": "Email",
@@ -295,6 +377,7 @@
     "deleteRowDescription": "This record will be removed from the system forever.",
     "deleteRowConfirm": "Confirm delete",
     "roleAdmin": "Admin",
+    "roleOwner": "Owner",
     "roleUser": "User",
     "roleOptionAdmin": "Admin",
     "roleOptionUser": "User",
@@ -315,6 +398,78 @@
     "paletteTitle": "Theme Palette",
     "paletteDescription": "Choose from all 9 tones directly.",
     "active": "Active: {{theme}}"
+  },
+  "foodStockPage": {
+    "badge": "Ingredient Inventory",
+    "title": "Food Stock For Formula Production",
+    "description": "Track the ingredients used to produce formulas, keep preparation stock ready, and review which items need replenishment before a formula goes live.",
+    "summary": {
+      "totalItems": {
+        "title": "Tracked Ingredients",
+        "description": "All ingredients currently monitored in the formula inventory"
+      },
+      "readyItems": {
+        "title": "Ready To Use",
+        "description": "Ingredients that can be allocated to production immediately"
+      },
+      "lowItems": {
+        "title": "Running Low",
+        "description": "Ingredients below reorder level or approaching refill threshold"
+      },
+      "holdItems": {
+        "title": "On Hold",
+        "description": "Ingredients temporarily blocked before production use"
+      }
+    },
+    "table": {
+      "title": "Food Inventory Data",
+      "description": "Review available stock, reserved quantity, and supplier details for each ingredient used in formula production.",
+      "totalLinkedFormulas": "Linked across {{count}} formula assignments",
+      "headers": {
+        "ingredient": "Ingredient",
+        "category": "Category",
+        "available": "Available",
+        "reserved": "Reserved",
+        "reorderPoint": "Reorder Point",
+        "formulas": "Formulas",
+        "supplier": "Supplier / Updated",
+        "status": "Status"
+      }
+    },
+    "watchlist": {
+      "title": "Needs Attention",
+      "description": "Monitor ingredients that are low or temporarily paused before they are included in a live formula.",
+      "availableLabel": "Available",
+      "reorderLabel": "Reorder point",
+      "formulasLabel": "Linked formulas"
+    },
+    "status": {
+      "out": "Out",
+      "ready": "Ready",
+      "low": "Low",
+      "hold": "On hold"
+    },
+    "categories": {
+      "protein": "Protein",
+      "carbohydrate": "Carbohydrate",
+      "vegetable": "Vegetable",
+      "oil": "Oil",
+      "supplement": "Supplement"
+    },
+    "cards": {
+      "ingredients": {
+        "title": "Core Ingredient List",
+        "description": "Centralize the formula ingredients such as proteins, carbohydrates, fats, and specialty items so the production team can maintain stock from one place."
+      },
+      "availability": {
+        "title": "Availability Status",
+        "description": "Review which ingredients are ready to use, running low, or temporarily unavailable before they are included in a formula."
+      },
+      "formulaPrep": {
+        "title": "Built For Formula Prep",
+        "description": "Use this area as the base for connecting ingredients to formulas, minimum stock thresholds, and alerts so formula planning stays uninterrupted."
+      }
+    }
   },
   "auditPage": {
     "title": "Audit Log",

@@ -1,6 +1,6 @@
-import enCommon from "@/locales/en/common.json";
-import thCommon from "@/locales/th/common.json";
-import zhCommon from "@/locales/zh/common.json";
+import enCommon from "../../../public/locales/en/common.json";
+import thCommon from "../../../public/locales/th/common.json";
+import zhCommon from "../../../public/locales/zh/common.json";
 
 export const LANGUAGE_STORAGE_KEY = "nutripet-language";
 export const LANGUAGE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;

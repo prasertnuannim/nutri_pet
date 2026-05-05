@@ -81,6 +81,14 @@ function getPageMeta(pathname: string): PageMeta {
     };
   }
 
+  if (pathname.startsWith("/food-stock")) {
+    return {
+      labelKey: "adminShell.pages.foodStock.label",
+      badgeKey: "adminShell.pages.foodStock.badge",
+      sectionKey: "adminShell.pages.foodStock.section",
+    };
+  }
+
   if (pathname === "/statistics/daily") {
     return {
       labelKey: "adminShell.pages.statisticsDaily.label",

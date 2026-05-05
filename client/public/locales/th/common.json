@@ -221,6 +221,7 @@
     "workspaceLabel": "พื้นที่ผู้ดูแลระบบ",
     "accounts": "บัญชี",
     "settings": "ตั้งค่า",
+    "foodStock": "สต็อคอาหาร",
     "statistics": "สถิติ",
     "audit": "บันทึกการตรวจสอบ",
     "dailyReport": "รายงานประจำวัน",
@@ -238,6 +239,11 @@
         "label": "ตั้งค่าธีม",
         "badge": "สตูดิโอธีม",
         "section": "ปรับแต่งธีม"
+      },
+      "foodStock": {
+        "label": "สต็อคอาหาร",
+        "badge": "คลังวัตถุดิบ",
+        "section": "จัดการสต็อค"
       },
       "statisticsDaily": {
         "label": "รายงานประจำวัน",
@@ -280,6 +286,82 @@
     "title": "จัดการบัญชี",
     "description": "จัดการผู้ใช้ บทบาท และสิทธิ์การเข้าถึงจากแดชบอร์ดเดียว"
   },
+  "ownerAccountPage": {
+    "badge": "คอนโซลเจ้าของ",
+    "title": "ตั้งค่าแพ็กเกจโรงพยาบาล",
+    "description": "เลือกโรงพยาบาล แล้วกำหนดแพ็กเกจสมาชิกที่ต้องการให้ใช้งาน",
+    "selector": {
+      "label": "เลือกโรงพยาบาล",
+      "currentPackage": "แพ็กเกจปัจจุบัน"
+    },
+    "comparison": {
+      "title": "Functions",
+      "note": "* เฉพาะในกรุงเทพฯ",
+      "features": {
+        "userManagement": "1. จัดการผู้ใช้",
+        "requirement": "2. Requirement",
+        "diseaseIntersection": "3. Disease intersection",
+        "rawMaterials": "4. วัตถุดิบ",
+        "shippingFee": "5. ค่าจัดส่ง",
+        "messengerConsult": "6. ปรึกษาผ่าน Messenger",
+        "update": "7. อัปเดต",
+        "premixOnly": "8. ฟังก์ชันเฉพาะ premix"
+      }
+    },
+    "plans": {
+      "selected": "เลือกอยู่",
+      "regular": {
+        "name": "Regular",
+        "fullName": "Regular Membership",
+        "values": {
+          "userManagement": "Doctor & Manager",
+          "requirement": "AAFCO, Hands, CKD",
+          "diseaseIntersection": "<=3 intersection",
+          "rawMaterials": "Rice, Chicken, Oil, Premix",
+          "shippingFee": "คิดค่าส่งทุกครั้ง",
+          "messengerConsult": "ไม่มี",
+          "update": "หลัง silver (6 เดือน)",
+          "premixOnly": "ไม่มี"
+        }
+      },
+      "silver": {
+        "name": "Silver",
+        "fullName": "Silver Membership",
+        "values": {
+          "userManagement": "Reception",
+          "requirement": "ทุกโรค",
+          "diseaseIntersection": "4-5 intersection",
+          "rawMaterials": "Beef, Fish, Liver",
+          "shippingFee": ">7 วัน & 1,000฿ : Free*",
+          "messengerConsult": "2 เคส/เดือน",
+          "update": "หลัง gold (3 เดือน)",
+          "premixOnly": "ไม่มี"
+        }
+      },
+      "gold": {
+        "name": "Gold",
+        "fullName": "Gold Membership",
+        "values": {
+          "userManagement": "Admin",
+          "requirement": "ทุกโรค",
+          "diseaseIntersection": "Unlimited",
+          "rawMaterials": "Additional (N)",
+          "shippingFee": ">7 วัน & 500฿ : Free*",
+          "messengerConsult": "8 เคส/เดือน",
+          "update": "ทันที",
+          "premixOnly": "มี"
+        }
+      }
+    },
+    "table": {
+      "title": "รายการโรงพยาบาล",
+      "hospitalHeader": "โรงพยาบาล",
+      "packageHeader": "แพ็กเกจ"
+    },
+    "actions": {
+      "save": "บันทึกการตั้งค่าแพ็กเกจ"
+    }
+  },
   "accountForm": {
     "name": "ชื่อ",
     "email": "อีเมล",
@@ -295,6 +377,7 @@
     "deleteRowDescription": "ข้อมูลนี้จะถูกลบออกจากระบบอย่างถาวร",
     "deleteRowConfirm": "ยืนยันการลบ",
     "roleAdmin": "ผู้ดูแลระบบ",
+    "roleOwner": "เจ้าของ",
     "roleUser": "ผู้ใช้",
     "roleOptionAdmin": "ผู้ดูแลระบบ",
     "roleOptionUser": "ผู้ใช้",
@@ -315,6 +398,78 @@
     "paletteTitle": "พาเลตธีม",
     "paletteDescription": "เลือกได้จาก 9 โทนสีหลักโดยตรง",
     "active": "กำลังใช้งาน: {{theme}}"
+  },
+  "foodStockPage": {
+    "badge": "คลังวัตถุดิบ",
+    "title": "สต็อคอาหารสำหรับทำสูตร",
+    "description": "ติดตามวัตถุดิบที่ใช้ผลิตสูตรอาหาร จัดเตรียมสต็อคพร้อมใช้งาน และตรวจสอบรายการที่ต้องเติมก่อนนำไปใช้กับสูตรจริง",
+    "summary": {
+      "totalItems": {
+        "title": "รายการวัตถุดิบ",
+        "description": "รายการทั้งหมดในคลังสูตรที่ติดตามอยู่ตอนนี้"
+      },
+      "readyItems": {
+        "title": "พร้อมใช้งาน",
+        "description": "วัตถุดิบที่พร้อมใช้ทำสูตรได้ทันที"
+      },
+      "lowItems": {
+        "title": "ใกล้หมด",
+        "description": "วัตถุดิบที่ต่ำกว่าจุดสั่งซื้อหรือควรเติมเพิ่ม"
+      },
+      "holdItems": {
+        "title": "พักการใช้",
+        "description": "รายการที่ต้องหยุดใช้ชั่วคราวก่อนปล่อยเข้าการผลิต"
+      }
+    },
+    "table": {
+      "title": "ข้อมูลอาหารในคลัง",
+      "description": "ดูปริมาณคงเหลือ ปริมาณที่จองใช้กับสูตร และ supplier ของวัตถุดิบแต่ละรายการ",
+      "totalLinkedFormulas": "ผูกกับสูตรทั้งหมด {{count}} รายการ",
+      "headers": {
+        "ingredient": "วัตถุดิบ",
+        "category": "หมวด",
+        "available": "คงเหลือใช้ได้",
+        "reserved": "จองไว้",
+        "reorderPoint": "จุดสั่งซื้อ",
+        "formulas": "สูตรที่ใช้",
+        "supplier": "ผู้ขาย / อัปเดต",
+        "status": "สถานะ"
+      }
+    },
+    "watchlist": {
+      "title": "รายการที่ต้องติดตาม",
+      "description": "ตรวจสอบวัตถุดิบที่ใกล้หมดหรือถูกพักใช้ก่อนนำไปคำนวณสูตร",
+      "availableLabel": "คงเหลือใช้ได้",
+      "reorderLabel": "จุดสั่งซื้อ",
+      "formulasLabel": "สูตรที่เกี่ยวข้อง"
+    },
+    "status": {
+      "out": "หมด",
+      "ready": "พร้อมใช้",
+      "low": "ใกล้หมด",
+      "hold": "พักใช้"
+    },
+    "categories": {
+      "protein": "โปรตีน",
+      "carbohydrate": "คาร์โบไฮเดรต",
+      "vegetable": "ผัก",
+      "oil": "น้ำมัน",
+      "supplement": "อาหารเสริม"
+    },
+    "cards": {
+      "ingredients": {
+        "title": "รายการวัตถุดิบหลัก",
+        "description": "รวมวัตถุดิบที่ใช้ทำสูตรอาหาร เช่น โปรตีน คาร์โบไฮเดรต ไขมัน และวัตถุดิบเฉพาะสูตร เพื่อให้ทีมผลิตอัปเดตสต็อคจากจุดเดียว"
+      },
+      "availability": {
+        "title": "สถานะพร้อมใช้งาน",
+        "description": "ตรวจสอบว่ารายการใดพร้อมใช้ รายการใกล้หมด หรือรายการที่ต้องพักการใช้ชั่วคราวก่อนคำนวณและผลิตสูตร"
+      },
+      "formulaPrep": {
+        "title": "รองรับการเตรียมสูตร",
+        "description": "ใช้พื้นที่นี้ต่อยอดเป็นการผูกวัตถุดิบกับสูตร ปริมาณคงเหลือขั้นต่ำ และการแจ้งเตือนเพื่อให้การจัดสูตรไม่สะดุด"
+      }
+    }
   },
   "auditPage": {
     "title": "บันทึกการตรวจสอบ",

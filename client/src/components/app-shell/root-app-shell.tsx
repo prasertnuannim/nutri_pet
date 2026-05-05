@@ -23,6 +23,7 @@ const ADMIN_SIDEBAR_PATHS = [
   "/admin",
   "/account",
   "/audit",
+  "/food-stock",
   "/settings",
   "/statistics",
 ] as const;

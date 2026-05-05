@@ -14,6 +14,7 @@ export const ACCESS_RULES: Record<string, AccessRole[]> = {
   "/pets": [AccessRole.Admin, AccessRole.User],
   "/orders": [AccessRole.Admin, AccessRole.User],
   "/formulas": [AccessRole.Admin, AccessRole.User],
+  "/food-stock": [AccessRole.Admin],
   "/settings": [AccessRole.Admin],
   "/statistics": [AccessRole.Admin],
   "/doctor": [AccessRole.Doctor],

@@ -6,6 +6,7 @@ import {
   ChevronDown,
   ClipboardList,
   LogOut,
+  Package2,
   PawPrint,
   Settings,
   User,
@@ -27,6 +28,8 @@ export type AppShellProfile = {
   image: string | null;
 };
 
+const OWNER_NAVIGATION_PATHS = new Set(["/formulas"]);
+
 export default function Sidebar({
   profile,
 }: {
@@ -43,6 +46,23 @@ export default function Sidebar({
   const submenuOpen = isStatisticsActive || manualSubmenuOpen;
   const avatarSrc =
     profile?.image && profile.image.trim().length > 0 ? profile.image : undefined;
+  const normalizedRole = profile?.role?.trim().toLowerCase() ?? null;
+  const profileMeta =
+    profile?.email ??
+    (normalizedRole === "admin"
+      ? t("accountForm.roleAdmin")
+      : normalizedRole === "user"
+        ? t("accountForm.roleUser")
+        : normalizedRole === "owner"
+          ? t("accountForm.roleOwner")
+          : profile?.role) ??
+    t("adminShell.workspaceMember");
+  const userSectionItems = userNavigationItems.filter(
+    (item) => !OWNER_NAVIGATION_PATHS.has(item.href),
+  );
+  const ownerSectionItems = userNavigationItems.filter((item) =>
+    OWNER_NAVIGATION_PATHS.has(item.href),
+  );
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -90,111 +110,152 @@ export default function Sidebar({
       </div>
 
       <div className="relative flex-1 overflow-y-auto px-3 py-4">
-        <nav className="space-y-1">
-          {userNavigationItems.map((item) => {
-            const Icon = item.icon;
+        <nav className="divide-y divide-border">
+          <div className="space-y-1 py-4 first:pt-0 last:pb-0">
+            {open ? (
+              <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {t("accountForm.roleUser")}
+              </p>
+            ) : null}
 
-            return (
-              <MenuLink
-                key={item.href}
-                href={item.href}
-                icon={<Icon size={18} />}
-                label={t(item.labelKey)}
-                active={
-                  pathname === item.href || pathname.startsWith(`${item.href}/`)
-                }
-                open={open}
-              />
-            );
-          })}
+            {userSectionItems.map((item) => {
+              const Icon = item.icon;
 
-          <div className={clsx("my-3 border-t border-border", !open && "mx-2")} />
-
-          {open ? (
-            <p className="px-3 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              {t("adminShell.workspaceLabel")}
-            </p>
-          ) : null}
-
-          <MenuLink
-            href="/account"
-            icon={<User size={18} />}
-            label={t("adminShell.accounts")}
-            active={pathname.startsWith("/account")}
-            open={open}
-          />
-
-          <MenuLink
-            href="/settings"
-            icon={<Settings size={18} />}
-            label={t("adminShell.settings")}
-            active={pathname.startsWith("/settings")}
-            open={open}
-          />
-
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setManualSubmenuOpen((prev) => !prev)}
-              className={clsx(
-                "flex w-full items-center rounded-xl py-2.5 text-sm font-medium transition",
-                open ? "gap-3 px-3" : "justify-center px-0",
-                isStatisticsActive || submenuOpen
-                  ? "bg-primary-soft text-primary ring-1 ring-inset ring-primary/10"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
-              )}
-            >
-              <BarChart3 size={18} />
-              {open ? (
-                <>
-                  <span className="truncate">{t("adminShell.statistics")}</span>
-                  <ChevronDown
-                    size={16}
-                    className={clsx(
-                      "ml-auto transition-transform",
-                      submenuOpen && "rotate-180",
-                    )}
-                  />
-                </>
-              ) : null}
-            </button>
-
-            <AnimatePresence initial={false}>
-              {open && submenuOpen ? (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="ml-4 space-y-1 overflow-hidden border-l border-border pl-4"
-                >
-                  <SubMenu />
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {!open && submenuOpen ? (
-                <motion.div
-                  ref={popoverRef}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute left-full top-0 ml-3 w-48 rounded-2xl border border-border bg-card p-2 shadow-xl shadow-black/5"
-                >
-                  <SubMenu onSelect={() => setManualSubmenuOpen(false)} />
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
+              return (
+                <MenuLink
+                  key={item.href}
+                  href={item.href}
+                  icon={<Icon size={18} />}
+                  label={t(item.labelKey)}
+                  active={
+                    pathname === item.href || pathname.startsWith(`${item.href}/`)
+                  }
+                  open={open}
+                />
+              );
+            })}
           </div>
 
-          <MenuLink
-            href="/audit"
-            icon={<ClipboardList size={18} />}
-            label={t("adminShell.audit")}
-            active={pathname.startsWith("/audit")}
-            open={open}
-          />
+          <div className="space-y-1 py-4 first:pt-0 last:pb-0">
+            {open ? (
+              <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {t("accountForm.roleOwner")}
+              </p>
+            ) : null}
+
+            {ownerSectionItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <MenuLink
+                  key={item.href}
+                  href={item.href}
+                  icon={<Icon size={18} />}
+                  label={t(item.labelKey)}
+                  active={
+                    pathname === item.href || pathname.startsWith(`${item.href}/`)
+                  }
+                  open={open}
+                />
+              );
+            })}
+
+            <MenuLink
+              href="/account"
+              icon={<User size={18} />}
+              label={t("adminShell.accounts")}
+              active={pathname.startsWith("/account")}
+              open={open}
+            />
+          </div>
+
+          <div className="space-y-1 py-4 first:pt-0 last:pb-0">
+            {open ? (
+              <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {t("accountForm.roleAdmin")}
+              </p>
+            ) : null}
+
+            <MenuLink
+              href="/settings"
+              icon={<Settings size={18} />}
+              label={t("adminShell.settings")}
+              active={pathname.startsWith("/settings")}
+              open={open}
+            />
+
+            <MenuLink
+              href="/food-stock"
+              icon={<Package2 size={18} />}
+              label={t("adminShell.foodStock")}
+              active={pathname.startsWith("/food-stock")}
+              open={open}
+            />
+
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setManualSubmenuOpen((prev) => !prev)}
+                className={clsx(
+                  "flex w-full items-center rounded-xl py-2.5 text-sm font-medium transition",
+                  open ? "gap-3 px-3" : "justify-center px-0",
+                  isStatisticsActive || submenuOpen
+                    ? "bg-primary-soft text-primary ring-1 ring-inset ring-primary/10"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                )}
+              >
+                <BarChart3 size={18} />
+                {open ? (
+                  <>
+                    <span className="truncate">{t("adminShell.statistics")}</span>
+                    <ChevronDown
+                      size={16}
+                      className={clsx(
+                        "ml-auto transition-transform",
+                        submenuOpen && "rotate-180",
+                      )}
+                    />
+                  </>
+                ) : null}
+              </button>
+
+              <AnimatePresence initial={false}>
+                {open && submenuOpen ? (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="ml-4 space-y-1 overflow-hidden border-l border-border pl-4"
+                  >
+                    <SubMenu />
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+
+              <AnimatePresence>
+                {!open && submenuOpen ? (
+                  <motion.div
+                    ref={popoverRef}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-full top-0 ml-3 w-48 rounded-2xl border border-border bg-card p-2 shadow-xl shadow-black/5"
+                  >
+                    <SubMenu onSelect={() => setManualSubmenuOpen(false)} />
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+
+            <MenuLink
+              href="/audit"
+              icon={<ClipboardList size={18} />}
+              label={t("adminShell.audit")}
+              active={pathname.startsWith("/audit")}
+              open={open}
+            />
+          </div>
         </nav>
       </div>
 
@@ -219,7 +280,7 @@ export default function Sidebar({
                   {profile?.name ?? t("adminShell.guest")}
                 </p>
                 <p className="truncate text-xs text-muted-foreground">
-                  {profile?.role ?? profile?.email ?? t("adminShell.workspaceMember")}
+                  {profileMeta}
                 </p>
               </div>
             </div>
